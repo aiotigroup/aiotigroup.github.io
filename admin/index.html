@@ -124,6 +124,21 @@ details.ttl>summary{color:var(--brand)}
 .tb .ib{height:38px;font-size:14px}
 .tb .ib.del:not(:disabled){background:#FDECEA;border-color:#F3C4BE}
 .tb .ib:disabled{opacity:.45}
+.tb .ib.cap:not(:disabled){background:#FFF6DC;border-color:var(--sun);color:var(--on-sun)}
+/* hộp chú thích hàng loạt */
+.bc-th{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0 12px}
+.bc-th img{width:52px;height:40px;object-fit:cover;border-radius:5px;border:1px solid var(--line)}
+.bc-th span{align-self:center;font-size:12.5px;color:var(--muted);font-weight:600}
+.bc-modes{display:grid;gap:6px;margin:4px 0 12px}
+@media(min-width:560px){ .bc-modes{grid-template-columns:1fr 1fr} }
+.bc-modes label{display:flex;gap:8px;align-items:flex-start;font-size:14px;border:1.5px solid var(--line);border-radius:9px;padding:9px 11px;cursor:pointer;background:var(--cloud)}
+.bc-modes label:has(input:checked){border-color:var(--brand);background:#FFF7F5}
+.bc-modes input{margin-top:3px;accent-color:var(--brand)}
+.bc-modes small{display:block;color:var(--muted);font-size:12.5px}
+.bc-sug{display:flex;flex-wrap:wrap;gap:5px;margin:-4px 0 12px}
+.bc-sug button{border:1px dashed var(--line);background:var(--cream);border-radius:14px;padding:4px 10px;font-size:12.5px;cursor:pointer;color:var(--muted)}
+.bc-prev{font-size:13px;background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 6px;color:var(--text)}
+.bc-prev b{color:var(--muted);font-weight:600}
 .dup{background:var(--cloud);border:1.5px solid var(--sun);border-radius:12px;padding:14px;margin:0 0 12px}
 .dup h3{font-size:16px;margin-bottom:4px}
 .dgrp{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
@@ -354,7 +369,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img id="topLogo" src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.15</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.16</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -439,6 +454,8 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
     <div class="tb" id="wTools">
       <button class="ib" data-t="all" type="button">Chọn tất cả</button>
       <button class="ib" data-t="none" type="button">Bỏ chọn</button>
+      <button class="ib" data-t="selnew" type="button" title="Chọn các ảnh vừa thêm, chưa đăng lên web">Chọn ảnh mới (0)</button>
+      <button class="ib cap" data-t="bulkcap" type="button" disabled>✎ Chú thích hàng loạt (0)</button>
       <button class="ib del" data-t="delsel" type="button" disabled>Xóa đã chọn (0)</button>
       <button class="ib del" data-t="delall" type="button">Xóa toàn bộ</button>
       <button class="ib" data-t="dup" type="button">Tìm ảnh trùng</button>
@@ -604,13 +621,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=315"></script>
+<script src="render.js?v=316"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="3.15";
+const APP_VER="3.16";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -859,7 +876,9 @@ async function addWorkFiles(list){
   const added=fs.map(f=>{const id=uid();newFiles.set(id,{file:f,kind:"anh",url:URL.createObjectURL(f)});return {id,cat:wCat,cap:""};});
   D.gallery=added.concat(D.gallery);          // ảnh mới lên đầu
   if(wFilter!=="all"&&wFilter!==wCat){ wFilter="all"; $("wFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.c==="all")); }
+  sel=new Set(added.map(a=>a.id));            // chọn sẵn ảnh vừa thêm → ghi chú thích hàng loạt ngay
   renderWorks(); updateBar();
+  if(added.length>1&&!r.failed.length) $("wMsg").innerHTML=`<div class="msg good" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1">Đã thêm <b>${added.length}</b> ảnh vào ${esc(CATS[wCat])} — đang chọn sẵn.</span><button class="ib cap" type="button" onclick="bulkCaption([...sel])" style="background:#FFF6DC;border-color:var(--sun)">✎ Ghi chú thích chung</button></div>`;
   scanDup(true);      // tự cảnh báo nếu ảnh vừa thêm trùng ảnh đã có
   return fs.length;
 }
@@ -985,7 +1004,7 @@ async function addByTab(files){
   }
   if(curTab!=="works") switchTab("works");
   const n=await addWorkFiles(files);
-  if(n||heicNote) toast((n?`Đã thêm ${n} ảnh vào ${CATS[wCat]}.`:"")+heicNote, !!heicNote); else if(!anyImg) toast("Không có file ảnh nào",true);
+  if(heicNote||n===1) toast((n?`Đã thêm ${n} ảnh vào ${CATS[wCat]}.`:"")+heicNote, !!heicNote); else if(!n&&!anyImg) toast("Không có file ảnh nào",true);   // ≥2 ảnh: giữ thông báo "Ghi chú thích chung"
 }
 function toast(t,bad){
   const html=`<div class="msg ${bad?"bad":"good"}">${esc(t.trim())}</div>`;
@@ -1027,6 +1046,11 @@ function updTools(nVis){
   t.querySelector('[data-t="all"]').disabled=!nv;
   t.querySelector('[data-t="delall"]').disabled=!nv;
   t.querySelector('[data-t="dup"]').disabled=D.gallery.length<2;
+  const nNew=D.gallery.filter(p=>newFiles.has(p.id)).length;
+  t.querySelector('[data-t="selnew"]').textContent=`Chọn ảnh mới (${nNew})`;
+  t.querySelector('[data-t="selnew"]').disabled=!nNew;
+  t.querySelector('[data-t="bulkcap"]').textContent=`✎ Chú thích hàng loạt (${n})`;
+  t.querySelector('[data-t="bulkcap"]').disabled=!n;
 }
 function removeIds(ids,silent){
   ids=ids.filter(id=>D.gallery.some(p=>p.id===id));
@@ -1059,7 +1083,64 @@ $("wTools").addEventListener("click",e=>{
       removeIds(vis.map(i=>D.gallery[i].id));
   }
   if(t==="dup") scanDup(false);
+  if(t==="selnew"){ sel=new Set(D.gallery.filter(p=>newFiles.has(p.id)).map(p=>p.id)); if(wFilter!=="all"){ wFilter="all"; $("wFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.c==="all")); } renderWorks(); }
+  if(t==="bulkcap") bulkCaption([...sel]);
 });
+
+/* ---- CHÚ THÍCH HÀNG LOẠT: ghi một chú thích (và/hoặc ngành) cho nhiều ảnh cùng lúc ---- */
+let bcLast={mode:"empty",text:""};
+function bulkCaption(ids){
+  const items=D.gallery.filter(p=>ids.includes(p.id));
+  if(!items.length) return;
+  const nEmpty=items.filter(p=>!String(p.cap||"").trim()).length;
+  const used=[...new Set(D.gallery.map(p=>String(p.cap||"").trim()).filter(Boolean))].slice(0,4);
+  const o=dialog(`<h3>Chú thích hàng loạt — ${items.length} ảnh</h3>
+    <div class="bc-th">${items.slice(0,10).map(p=>`<img src="${esc(thumbOf(p,"anh"))}" alt="">`).join("")}${items.length>10?`<span>+${items.length-10} ảnh</span>`:""}</div>
+    <div class="fld"><label for="bcText">Chú thích chung</label>
+      <textarea id="bcText" placeholder="Ví dụ: Hệ 10kWp hòa lưới — 18 tấm 550W, inverter Huawei, mái tôn nhà xưởng Bình Dương"></textarea></div>
+    ${used.length?`<div class="bc-sug"><span class="hint" style="margin:0;align-self:center">Dùng lại:</span>${used.map(u=>`<button type="button" data-u="${esc(u)}">${esc(u.length>38?u.slice(0,36)+"…":u)}</button>`).join("")}</div>`:""}
+    <div class="bc-modes">
+      <label><input type="radio" name="bcMode" value="empty"><span><b>Chỉ ghi cho ảnh chưa có chú thích</b><small>${nEmpty} / ${items.length} ảnh chưa có — ảnh đã có chú thích giữ nguyên</small></span></label>
+      <label><input type="radio" name="bcMode" value="replace"><span><b>Thay toàn bộ</b><small>Ghi đè chú thích cũ của cả ${items.length} ảnh</small></span></label>
+      <label><input type="radio" name="bcMode" value="append"><span><b>Thêm vào cuối chú thích cũ</b><small>Ví dụ thêm "— nghiệm thu 10/2026"</small></span></label>
+      <label><input type="radio" name="bcMode" value="number"><span><b>Thay toàn bộ + đánh số</b><small>Chú thích (1/${items.length}), (2/${items.length})… theo thứ tự trên web</small></span></label>
+    </div>
+    <div class="fld"><label for="bcCat">Đổi ngành cho các ảnh này</label>
+      <select id="bcCat"><option value="">Giữ nguyên ngành</option>${Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></div>
+    <p class="bc-prev" id="bcPrev"></p>
+    <div class="row"><button class="btn btn-line" id="bcNo" type="button">Thôi</button><button class="btn btn-red" id="bcOk" type="button">Áp dụng</button></div>`);
+  o.querySelector(".dlg").style.maxWidth="640px";
+  const q=x=>o.querySelector(x), txt=q("#bcText");
+  const mode0=nEmpty&&nEmpty<items.length?"empty":(bcLast.mode==="empty"?"replace":bcLast.mode);
+  q(`input[name=bcMode][value=${nEmpty===items.length&&mode0==="append"?"replace":mode0}]`).checked=true;
+  const mode=()=>q("input[name=bcMode]:checked").value;
+  const newCap=(p,k,t)=>{
+    const old=String(p.cap||"").trim(), m=mode();
+    if(m==="empty") return old?old:t;
+    if(m==="append") return t?(old?`${old} — ${t}`:t):old;
+    if(m==="number") return t?`${t} (${k+1}/${items.length})`:old;
+    return t;
+  };
+  const preview=()=>{
+    const t=txt.value.trim(), cat=q("#bcCat").value;
+    const ch=items.filter((p,k)=>newCap(p,k,t)!==String(p.cap||"").trim()).length;
+    const ex=items.find((p,k)=>newCap(p,k,t)!==String(p.cap||"").trim());
+    q("#bcPrev").innerHTML=(t||cat)?`Sẽ đổi chú thích <b>${ch}</b> / ${items.length} ảnh${cat?` · đổi ngành sang <b>${esc(CATS[cat])}</b>`:""}.${ex?`<br>Ví dụ: “${esc(newCap(ex,items.indexOf(ex),t))}”`:""}`:"Gõ chú thích hoặc chọn ngành để áp dụng.";
+    q("#bcOk").disabled=!(t||cat)||(!ch&&!cat);
+  };
+  o.addEventListener("input",preview); o.addEventListener("change",preview);
+  o.querySelectorAll(".bc-sug button").forEach(b=>b.onclick=()=>{ txt.value=b.dataset.u; preview(); txt.focus(); });
+  q("#bcNo").onclick=()=>o.remove();
+  q("#bcOk").onclick=()=>{
+    const t=txt.value.trim(), cat=q("#bcCat").value;
+    let n=0;
+    items.forEach((p,k)=>{ const c=newCap(p,k,t); if(c!==String(p.cap||"").trim()){ p.cap=c; n++; } if(cat&&p.cat!==cat){ p.cat=cat; if(p.cover) D.gallery.forEach(x=>{ if(x!==p&&x.cat===cat) delete x.cover; }); } });
+    bcLast={mode:mode(),text:t};
+    o.remove(); renderWorks(); updateBar();
+    $("wMsg").innerHTML=`<div class="msg good">Đã ghi chú thích cho <b>${n}</b> ảnh${cat?` và đổi ngành ${items.length} ảnh sang ${esc(CATS[cat])}`:""}. Sai thì bấm <b>Hoàn tác</b> (Ctrl+Z).</div>`;
+  };
+  preview(); setTimeout(()=>txt.focus(),50);
+}
 $("wList").addEventListener("change",e=>{
   if(e.target.dataset.sel===undefined) return;
   const row=e.target.closest(".it"), id=D.gallery[+row.dataset.i].id;
@@ -2006,6 +2087,6 @@ $("btnReload").addEventListener("click",async()=>{
   }
 })();
 </script>
-<script src="backup.js?v=315"></script>
+<script src="backup.js?v=316"></script>
 </body>
 </html>
