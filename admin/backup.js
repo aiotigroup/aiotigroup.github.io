@@ -255,6 +255,23 @@ async function restoreVersion(sha) {
 }
 
 /* ======================= KHÔI PHỤC TỪ FILE .ZIP ======================= */
+/* Tạo cây file theo từng đợt nhỏ — gửi một lần vài trăm file thì GitHub báo "request timed out" */
+async function buildTree(ent, say) {
+  let base = null, i = 0, size = 100;
+  while (i < ent.length) {
+    const chunk = ent.slice(i, i + size);
+    try {
+      const t = await ghRetry("/git/trees", { method: "POST", body: base ? { base_tree: base, tree: chunk } : { tree: chunk } }, say,
+        `(ghép ${Math.min(i + chunk.length, ent.length)}/${ent.length} file)`);
+      base = t.sha; i += chunk.length;
+      say(`Ghép danh sách file ${i}/${ent.length}…`);
+    } catch (e) {
+      if (/timed out|too large|timeout/i.test(e.message || "") && size > 10) { size = Math.max(10, Math.floor(size / 2)); continue; }   // vẫn quá tải → chia nhỏ hơn
+      throw e;
+    }
+  }
+  return base;
+}
 /* gọi GitHub, tự thử lại khi rớt mạng / GitHub bận / quá giới hạn tốc độ */
 async function ghRetry(path, opt, say, what) {
   for (let t = 0; ; t++) {
@@ -361,7 +378,7 @@ async function restoreFromZip(file, onDone) {
     if (keepAdmin) Cur.files.filter(f => f.path.startsWith("admin/")).forEach(f => ent.push({ path: f.path, mode: f.mode || "100644", type: "blob", sha: f.sha }));
     // 3. tạo phiên bản mới = đúng nội dung file sao lưu
     log("Lưu lên GitHub…"); bar(.95);
-    const tree = await ghRetry("/git/trees", { method: "POST", body: { tree: ent } }, log);
+    const tree = { sha: await buildTree(ent, log) };
     const when = man && man.createdAt ? fmtTime(man.createdAt) : file.name;
     const cm = await ghRetry("/git/commits", { method: "POST", body: { message: `Khôi phục từ file sao lưu ${when}`, tree: tree.sha, parents: [head] } }, log);
     await ghRetry(`/git/refs/heads/${cfg.branch}`, { method: "PATCH", body: { sha: cm.sha } }, log);
