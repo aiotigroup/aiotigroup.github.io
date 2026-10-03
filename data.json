@@ -1,6 +1,6 @@
 {
  "site": {
-  "url": "https://aiotigroup.github.io/"
+  "url": "https://khoantm.github.io/website-aioti/"
  },
  "contact": {
   "phone": "0978113762",
@@ -13,7 +13,9 @@
   "mapUrl": "https://www.google.com/maps/place/N%C4%82NG+L%C6%AF%E1%BB%A2NG+M%E1%BA%B6T+TR%E1%BB%9CI+%26+CAMERA+-+AIOTI/@10.7866651,106.7757631,17z/data=!3m1!4b1!4m6!3m5!1s0x317525ec37171301:0x2dbcaa7c020fccd4!8m2!3d10.7866598!4d106.778338!16s%2Fg%2F11fmyj4brh",
   "mapLat": "10.7866598",
   "mapLng": "106.778338",
-  "googleNote": "5,0★ · 494 lượt xem trên Google"
+  "googleNote": "5,0★ · 494 lượt xem trên Google",
+  "eyebrow": "Liên hệ",
+  "title": "Gọi AIOTI"
  },
  "hero": {
   "eyebrow": "Công ty TNHH AIOTI · MST 0314830058",
@@ -24,8 +26,14 @@
  },
  "stats": {
   "fromYear": 2017,
-  "devices": "1.000+",
-  "kwp": "100+"
+  "devices": "3.000+",
+  "kwp": "400.000+",
+  "labelYear": "Cung cấp giải pháp - Thi công lắp đặt - Dịch vụ từ {năm}",
+  "labelDevices": "Thiết bị an ninh,  mạng wifi, smart home + năng lượng mặt trời đã lắp đặt",
+  "labelKwp": "Điện sạch tạo ra mỗi năm, giúp khách hàng tiết kiệm hơn 1 tỷ đồng tiền điện và giảm khoảng 260 tấn CO₂ mỗi năm",
+  "unitYear": "năm",
+  "unitDevices": "",
+  "unitKwp": "kWh"
  },
  "services": {
   "title": "Sản phẩm và dịch vụ AIOTI cung cấp",
@@ -37,14 +45,14 @@
     "name": "Điện năng lượng mặt trời",
     "desc": "Thiết kế và thi công trọn gói hệ áp mái. Công suất tính theo hóa đơn điện thực tế của từng công trình, không bán theo gói có sẵn.",
     "items": [
-     "**Hệ hòa lưới** — giảm hóa đơn, điện dư bán lại cho EVN",
+     "**Hệ hòa lưới** — giảm hóa đơn điện.",
      "**Hệ hòa lưới có lưu trữ** — vẫn có điện khi cúp điện",
      "**Hệ độc lập** cho khu vực chưa có điện lưới",
      "Tấm pin, inverter, pin lưu trữ lithium",
      "Khung giá đỡ cho mái tôn, mái bê tông, mái ngói",
      "Tủ điện, chống sét lan truyền, hộp cách ly DC"
     ],
-    "img": ""
+    "img": "01"
    },
    {
     "cat": "camera",
@@ -58,7 +66,7 @@
      "Lắp bổ sung vào hệ camera đang có sẵn",
      "Cài đặt xem từ xa, bàn giao tài khoản quản trị"
     ],
-    "img": ""
+    "img": "15"
    },
    {
     "cat": "smart",
@@ -72,20 +80,1378 @@
      "Công tắc, rèm, đèn điều khiển qua điện thoại",
      "Hướng dẫn đến khi gia chủ tự vận hành được"
     ],
-    "img": ""
+    "img": "09"
    }
-  ]
+  ],
+  "eyebrow": "Dịch vụ"
  },
  "works": {
-  "title": "Ảnh thật, chụp tại công trình AIOTI đã làm",
-  "intro": "Không phải ảnh minh họa lấy trên mạng. Bấm vào từng ảnh để xem lớn và đọc chi tiết kỹ thuật.",
-  "note": "Cần xem thêm ảnh của một loại công trình cụ thể — nhà phố, biệt thự hay nhà xưởng — gọi hotline, AIOTI gửi ngay qua Zalo."
+  "title": "Ảnh thật, chụp tại công trình đã làm",
+  "intro": "",
+  "note": "Cần xem thêm ảnh của một loại công trình cụ thể — nhà phố, biệt thự hay nhà xưởng — gọi hotline, AIOTI gửi ngay qua Zalo.",
+  "eyebrow": "Công trình"
  },
- "gallery": [],
+ "gallery": [
+  {
+   "id": "afiop60c",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "afiopt9d",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "afioqfqo",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "afioqxhd",
+   "cat": "camera",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "afioqa6d",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afioq3nr",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afiorun4",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "afior1q4",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "afior9aw",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "afior0yx",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "afiosb67",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "afios1uy",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afiosu8g",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afios0lk",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afiotyz2",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afiouz8b",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afioux9z",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "afiovrx4",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "01",
+   "cat": "solar",
+   "cap": "Biệt thự — dàn pin lắp trên mái, không phá vỡ kiến trúc mặt tiền",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "02",
+   "cat": "solar",
+   "cap": "Dàn pin hoàn thiện trên mái bê tông, có camera giám sát riêng cho khu vực mái",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "03",
+   "cat": "solar",
+   "cap": "Hai dãy pin bố trí song song, chừa lối đi giữa để vệ sinh và bảo trì",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "04",
+   "cat": "solar",
+   "cap": "Lối đi giữa hai dãy pin và máng thoát nước — thiết kế để mái không đọng nước",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "09",
+   "cat": "solar",
+   "cap": "Hệ hybrid có lưu trữ: inverter, tủ điện và ba module pin 16,08 kWh",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "10",
+   "cat": "solar",
+   "cap": "Tủ điện dán nhãn từng aptomat — EVN, BACKUP, LOAD, SPD, CB PV1, CB PV2",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "14",
+   "cat": "solar",
+   "cap": "Cẩu pin lưu trữ vào công trình bằng xe cẩu chuyên dụng",
+   "w": 1400,
+   "h": 1050,
+   "cover": true
+  },
+  {
+   "id": "acvchb39",
+   "cat": "solar",
+   "cap": "",
+   "w": 1049,
+   "h": 1400
+  },
+  {
+   "id": "acvcinjm",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "acvci0nw",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "05",
+   "cat": "solar",
+   "cap": "Khung nâng cao vừa phát điện vừa che nắng cho sân thượng",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "06",
+   "cat": "solar",
+   "cap": "Kết cấu thép mạ kẽm nhúng nóng, giằng chéo chống lật khi gió lớn",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "07",
+   "cat": "solar",
+   "cap": "Khung giá đỡ dựng xong trước khi lắp pin — chân đế xử lý chống thấm tại điểm khoan",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "acvcih28",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "acvcjeor",
+   "cat": "solar",
+   "cap": "",
+   "w": 1049,
+   "h": 1400
+  },
+  {
+   "id": "acvcjwk8",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "acvcmsvy",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "acvcn0fb",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cnywg1sr",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cnywiph8",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 982
+  },
+  {
+   "id": "cnywi5sh",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 681
+  },
+  {
+   "id": "cnywiazw",
+   "cat": "smart",
+   "cap": "",
+   "w": 681,
+   "h": 1400
+  },
+  {
+   "id": "cnywijzs",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 681
+  },
+  {
+   "id": "cnywiblv",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 998
+  },
+  {
+   "id": "cnywj6mw",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 930
+  },
+  {
+   "id": "cnywjopc",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywjv9t",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1072
+  },
+  {
+   "id": "cnywjqxi",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 681
+  },
+  {
+   "id": "cnywjn7f",
+   "cat": "smart",
+   "cap": "",
+   "w": 1138,
+   "h": 1400
+  },
+  {
+   "id": "cnywku05",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1216
+  },
+  {
+   "id": "cnywkf4a",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1298
+  },
+  {
+   "id": "cnywku84",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1280
+  },
+  {
+   "id": "cnywk28q",
+   "cat": "smart",
+   "cap": "",
+   "w": 1348,
+   "h": 1400
+  },
+  {
+   "id": "cnywktft",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 680
+  },
+  {
+   "id": "cnywkda8",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 582
+  },
+  {
+   "id": "cnywlajm",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 893
+  },
+  {
+   "id": "cnywlzmv",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 736
+  },
+  {
+   "id": "cnywl796",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywl3qo",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 767,
+   "cover": true
+  },
+  {
+   "id": "cnywm2gc",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1062
+  },
+  {
+   "id": "cnywmt40",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywmop5",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywmi2t",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywmkoc",
+   "cat": "smart",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cnywmqsh",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywnn64",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 807
+  },
+  {
+   "id": "cnywno2q",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywns5h",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1026
+  },
+  {
+   "id": "cnywnted",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1036
+  },
+  {
+   "id": "cnywo7cf",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywohln",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywo8ac",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywohs8",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywoe64",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1131
+  },
+  {
+   "id": "cnywpszl",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cnywprcq",
+   "cat": "smart",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cnywp4ui",
+   "cat": "smart",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sqfms",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 750
+  },
+  {
+   "id": "cn4sqhpa",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 720
+  },
+  {
+   "id": "cn4sq6y9",
+   "cat": "camera",
+   "cap": "",
+   "w": 1153,
+   "h": 1400
+  },
+  {
+   "id": "cn4sqjsu",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4srp7h",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4srx1r",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 681
+  },
+  {
+   "id": "cn4srvu2",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4src6h",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4srjrv",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 654
+  },
+  {
+   "id": "cn4ss7e9",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 726
+  },
+  {
+   "id": "cn4ssp5i",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4ssod5",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4ssslh",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4sslmj",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4stbah",
+   "cat": "camera",
+   "cap": "",
+   "w": 1280,
+   "h": 720
+  },
+  {
+   "id": "cn4stet5",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4steru",
+   "cat": "camera",
+   "cap": "",
+   "w": 1280,
+   "h": 623
+  },
+  {
+   "id": "cn4stmr9",
+   "cat": "camera",
+   "cap": "",
+   "w": 1280,
+   "h": 623
+  },
+  {
+   "id": "cn4st2w5",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4std3f",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4suvx6",
+   "cat": "camera",
+   "cap": "",
+   "w": 1280,
+   "h": 724
+  },
+  {
+   "id": "cn4sua50",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4su5cs",
+   "cat": "camera",
+   "cap": "",
+   "w": 960,
+   "h": 1280
+  },
+  {
+   "id": "cn4suyl1",
+   "cat": "camera",
+   "cap": "",
+   "w": 622,
+   "h": 1280
+  },
+  {
+   "id": "cn4suxdy",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4suc72",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 969
+  },
+  {
+   "id": "cn4svn5e",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1232
+  },
+  {
+   "id": "cn4sv9xz",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4svr37",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sv4hw",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4svy7g",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4svdp5",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4swpv8",
+   "cat": "camera",
+   "cap": "",
+   "cover": true,
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4swhax",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4swdp3",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4swrs1",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4sxb3r",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4sxvk3",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sxids",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sx8c6",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sxs5n",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4syqwm",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sywk0",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sytan",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4syoem",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4syoxt",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4sysuu",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4szv8a",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4szrf4",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 890
+  },
+  {
+   "id": "cn4szapr",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4szcdg",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4szqi9",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t0up8",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t0g61",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t0rva",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t0nma",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t0fco",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t0b2b",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t05wc",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t10h6",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t17hn",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t1s8m",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t14cz",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t1yjx",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t1xmd",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t26zq",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t21jx",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t2bex",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t2v08",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t297v",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t2cok",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t33e9",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t3sw6",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "cn4t3baw",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t3gvg",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t3rrm",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t3t5i",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t4t3v",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t43bu",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t4bxv",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t4g3p",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t4472",
+   "cat": "camera",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "cn4t4ivo",
+   "cat": "camera",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "cn4t545t",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t5tda",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t5cc3",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t540w",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t66xj",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t63nk",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t6yit",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t60xl",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t62df",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "cn4t6e43",
+   "cat": "camera",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "cn4t7x9z",
+   "cat": "camera",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "3n0m6631",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m73q2",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m7oah",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m7j7y",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m7bjh",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "3n0m8bht",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "3n0m811t",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "acvcjobq",
+   "cat": "solar",
+   "cap": "",
+   "w": 240,
+   "h": 320
+  },
+  {
+   "id": "acvcjd4g",
+   "cat": "solar",
+   "cap": "",
+   "w": 240,
+   "h": 320
+  },
+  {
+   "id": "acvcje2n",
+   "cat": "solar",
+   "cap": "",
+   "w": 240,
+   "h": 320
+  },
+  {
+   "id": "acvcknu2",
+   "cat": "solar",
+   "cap": "",
+   "w": 240,
+   "h": 320
+  },
+  {
+   "id": "3n0m89jh",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "3n0m8gtx",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m8r6n",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "3n0m981c",
+   "cat": "solar",
+   "cap": "",
+   "w": 1400,
+   "h": 788
+  },
+  {
+   "id": "3n0m922p",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "3n0m90w5",
+   "cat": "solar",
+   "cap": "",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "id": "acvckrvf",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "acvckjqo",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "acvcm1jj",
+   "cat": "solar",
+   "cap": "",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "id": "08",
+   "cat": "solar",
+   "cap": "Nhìn từ đường: dàn pin nằm gọn sau mái đua, khuất tầm nhìn mặt tiền",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "id": "11",
+   "cat": "solar",
+   "cap": "Pin lưu trữ lithium, đèn báo trạng thái sạc nhìn thấy từ xa",
+   "w": 1400,
+   "h": 1866
+  },
+  {
+   "id": "12",
+   "cat": "solar",
+   "cap": "Inverter lắp ngoài trời, chọn vị trí thoáng gió để tản nhiệt",
+   "w": 1400,
+   "h": 1866
+  },
+  {
+   "id": "13",
+   "cat": "solar",
+   "cap": "Hộp cách ly DC chuẩn IP67 — ngắt được nguồn một chiều từ pin khi cần sửa chữa",
+   "w": 1400,
+   "h": 1866
+  }
+ ],
  "pricing": {
   "title": "Bảng giá tham khảo",
   "intro": "Giá thiết bị và gói lắp đặt phổ biến. Bấm vào ảnh để xem lớn. Giá thực tế theo khảo sát từng công trình.",
-  "note": "Giá có thể thay đổi theo thời điểm và cấu hình. Gọi hotline để được báo giá chính xác."
+  "note": "Giá có thể thay đổi theo thời điểm và cấu hình. Gọi hotline để được báo giá chính xác.",
+  "eyebrow": "Bảng giá"
  },
  "prices": [],
  "why": {
@@ -119,10 +1485,34 @@
    }
   ]
  },
- "videos": [],
+ "videos": [
+  {
+   "id": "EHf5K2h1Fr0",
+   "cat": "camera",
+   "cap": ""
+  },
+  {
+   "id": "QUNsOG0HyUw",
+   "cat": "camera",
+   "cap": ""
+  },
+  {
+   "id": "gvNxrVBWQHE",
+   "cat": "camera",
+   "cap": ""
+  }
+ ],
  "video": {
-  "title": "Video công trình",
+  "title": "Video AIOTI",
   "intro": "Quay thực tế tại các công trình AIOTI thi công. Bấm vào để xem ngay trên trang.",
-  "channel": ""
+  "channel": "",
+  "eyebrow": "Video"
+ },
+ "theme": {
+  "preset": "xanh-rung",
+  "brand": "#166534",
+  "sun": "#EAB308",
+  "sky": "#2B6CB0",
+  "ink": "#05140A"
  }
 }
