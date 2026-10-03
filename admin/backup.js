@@ -255,6 +255,23 @@ async function restoreVersion(sha) {
 }
 
 /* ======================= KHÔI PHỤC TỪ FILE .ZIP ======================= */
+/* gọi GitHub, tự thử lại khi rớt mạng / GitHub bận / quá giới hạn tốc độ */
+async function ghRetry(path, opt, say, what) {
+  for (let t = 0; ; t++) {
+    try { return await gh(path, opt); }
+    catch (e) {
+      const net = e instanceof TypeError || !e.status;
+      const rl = (e.status === 403 || e.status === 429) && /rate limit|abuse|secondary/i.test(e.message || "");
+      const busy = e.status >= 500;
+      if (!(net || rl || busy) || t >= 10) throw e;
+      const wait = rl ? 60 : [3, 5, 10, 20, 30, 45, 60, 60, 60, 60][t];
+      for (let s = wait; s > 0; s--) {
+        say(`${rl ? "GitHub yêu cầu chờ (giới hạn tốc độ)" : net ? "Mất kết nối tới GitHub" : "GitHub đang bận"} — tự thử lại sau ${s} giây… ${what || ""}`);
+        await sleep(1000);
+      }
+    }
+  }
+}
 function pickZip() {
   return new Promise(res => {
     const i = document.createElement("input"); i.type = "file"; i.accept = ".zip,application/zip";
@@ -264,7 +281,15 @@ function pickZip() {
 async function restoreFromZip(file, onDone) {
   const o = dialog('<h3>Khôi phục từ file sao lưu</h3><p class="plog" id="zLog">Đọc file .zip…</p>');
   const q = s => o.querySelector(s);
-  const fail = e => { console.error(e); q(".dlg").innerHTML = `<h3>Chưa khôi phục được</h3><div class="msg bad">${esc(e.message && !e.status ? e.message : friendly(e))}</div><div class="row"><button class="btn btn-line" id="zX">Đóng</button></div>`; q("#zX").onclick = () => o.remove(); };
+  let started = false;
+  const fail = e => {
+    console.error(e);
+    const msg = e instanceof TypeError ? "Mất kết nối tới GitHub (mạng chập chờn hoặc GitHub tạm thời không phản hồi)." : (e.message && !e.status ? e.message : friendly(e));
+    q(".dlg").innerHTML = `<h3>Chưa khôi phục được</h3><div class="msg bad">${esc(msg)}</div>
+      ${started ? '<div class="msg warn">Web hiện tại <b>chưa bị thay đổi</b>. Kiểm tra mạng rồi bấm <b>Chọn file sao lưu</b> lại với cùng file — các file đã tải lên sẽ được bỏ qua, công cụ chạy tiếp phần còn lại.</div>' : ""}
+      <div class="row"><button class="btn btn-line" id="zX">Đóng</button></div>`;
+    q("#zX").onclick = () => o.remove();
+  };
   let entries, man = null, files;
   try {
     entries = await readZip(file);
@@ -293,7 +318,7 @@ async function restoreFromZip(file, onDone) {
     q("#zNo").onclick = () => o.remove();
     await new Promise(res => { q("#zYes").onclick = res; });
   } catch (e) { fail(e); return; }
-  const keep = q("#zKeep").checked;
+  const keep = q("#zKeep").checked; started = true;
   q(".dlg").innerHTML = `<h3>Đang khôi phục</h3><p>Giữ màn hình mở. Kho trống hoặc nhiều ảnh mới có thể mất vài phút (GitHub giới hạn tốc độ tải lên).</p>
     <div class="prog"><i id="zI"></i></div><p class="plog" id="zLog">Kiểm tra kho GitHub…</p>`;
   const log = t => { q("#zLog").textContent = t; }, bar = p => { q("#zI").style.width = Math.round(p * 100) + "%"; };
@@ -325,26 +350,21 @@ async function restoreFromZip(file, onDone) {
       let exists = false;
       try { const r = await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/git/blobs/${f.sha}`, { method: "HEAD", headers: { Authorization: "Bearer " + cfg.token } }); exists = r.ok; } catch (_) { }
       if (!exists) need.push(f);
+      log(`Kiểm tra file đã có trên GitHub… ${up.indexOf(f) + 1}/${up.length}`);
     }
     let n = 0;
     for (const f of need) {
       n++; bar(.25 + n / Math.max(1, need.length) * .65); log(`Tải lên ${n}/${need.length} file…`);
-      for (let tries = 0; ; tries++) {
-        try { await gh("/git/blobs", { method: "POST", body: { content: u8ToB64(f.data), encoding: "base64" } }); break; }
-        catch (e) {
-          if ((e.status === 403 || e.status === 429) && tries < 6) { for (let s = 60; s > 0; s--) { log(`GitHub yêu cầu chờ — tiếp tục sau ${s} giây… (${n}/${need.length})`); await sleep(1000); } continue; }
-          throw e;
-        }
-      }
-      if (need.length > 60) await sleep(800);          // giữ dưới giới hạn ~80 lần/phút của GitHub
+      await ghRetry("/git/blobs", { method: "POST", body: { content: u8ToB64(f.data), encoding: "base64" } }, log, `(${n}/${need.length})`);
+      if (need.length > 40) await sleep(750);          // giữ dưới giới hạn ~80 lần tải lên/phút của GitHub
     }
     if (keepAdmin) Cur.files.filter(f => f.path.startsWith("admin/")).forEach(f => ent.push({ path: f.path, mode: f.mode || "100644", type: "blob", sha: f.sha }));
     // 3. tạo phiên bản mới = đúng nội dung file sao lưu
     log("Lưu lên GitHub…"); bar(.95);
-    const tree = await gh("/git/trees", { method: "POST", body: { tree: ent } });
+    const tree = await ghRetry("/git/trees", { method: "POST", body: { tree: ent } }, log);
     const when = man && man.createdAt ? fmtTime(man.createdAt) : file.name;
-    const cm = await gh("/git/commits", { method: "POST", body: { message: `Khôi phục từ file sao lưu ${when}`, tree: tree.sha, parents: [head] } });
-    await gh(`/git/refs/heads/${cfg.branch}`, { method: "PATCH", body: { sha: cm.sha } });
+    const cm = await ghRetry("/git/commits", { method: "POST", body: { message: `Khôi phục từ file sao lưu ${when}`, tree: tree.sha, parents: [head] } }, log);
+    await ghRetry(`/git/refs/heads/${cfg.branch}`, { method: "PATCH", body: { sha: cm.sha } }, log);
     bar(1);
     q(".dlg").innerHTML = `<h3>Đã khôi phục</h3><div class="msg good">Web đã được khôi phục từ file sao lưu${need.length ? ` (tải lên ${need.length} file)` : ""}. Khoảng <b>1–2 phút</b> sau web tự cập nhật.</div>
       <p>Kho mới tạo? Nhớ bật GitHub Pages: Settings → Pages → Branch <b>${esc(cfg.branch)}</b> → Save.</p>
