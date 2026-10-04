@@ -501,14 +501,6 @@
    "fp": "73fef87e3f3f9f94"
   },
   {
-   "id": "a4kmn3ym",
-   "cat": "solar",
-   "cap": "",
-   "w": 1400,
-   "h": 1050,
-   "fp": "737efc7e3f3f9fd4"
-  },
-  {
    "id": "a4kmo17t",
    "cat": "solar",
    "cap": "",
@@ -3477,14 +3469,6 @@
    "fp": "9b9efcfc9e1f9fcc"
   },
   {
-   "id": "abt7wcjo",
-   "cat": "solar",
-   "cap": "",
-   "w": 1400,
-   "h": 1050,
-   "fp": "7bfefc7e7fbf96d4"
-  },
-  {
    "id": "abt7xgqp",
    "cat": "solar",
    "cap": "",
@@ -5364,12 +5348,5 @@
   "intro": "Quay thực tế tại các công trình AIOTI thi công. Bấm vào để xem ngay trên trang.",
   "channel": "",
   "eyebrow": "Video"
- },
- "theme": {
-  "preset": "xanh-rung",
-  "brand": "#166534",
-  "sun": "#EAB308",
-  "sky": "#2B6CB0",
-  "ink": "#05140A"
  }
 }
