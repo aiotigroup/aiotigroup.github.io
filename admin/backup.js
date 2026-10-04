@@ -256,8 +256,8 @@ async function restoreVersion(sha) {
 
 /* ======================= KHÔI PHỤC TỪ FILE .ZIP ======================= */
 /* Tạo cây file theo từng đợt nhỏ — gửi một lần vài trăm file thì GitHub báo "request timed out" */
-async function buildTree(ent, say) {
-  let base = null, i = 0, size = 100;
+async function buildTree(ent, say, startBase) {
+  let base = startBase || null, i = 0, size = 100;
   while (i < ent.length) {
     const chunk = ent.slice(i, i + size);
     try {
@@ -274,13 +274,16 @@ async function buildTree(ent, say) {
 }
 /* gọi GitHub, tự thử lại khi rớt mạng / GitHub bận / quá giới hạn tốc độ */
 async function ghRetry(path, opt, say, what) {
+  let rlWait = 0;                                   // tổng thời gian đã chờ vì giới hạn tốc độ
   for (let t = 0; ; t++) {
     try { return await gh(path, opt); }
     catch (e) {
       const net = e instanceof TypeError || !e.status;
       const rl = (e.status === 403 || e.status === 429) && /rate limit|abuse|secondary/i.test(e.message || "");
       const busy = e.status >= 500;
-      if (!(net || rl || busy) || t >= 10) throw e;
+      if (!(net || rl || busy)) throw e;
+      if (rl) { if (rlWait >= 70 * 60) throw e; rlWait += 60; t = Math.max(0, t - 1); }   // GitHub giới hạn theo giờ → chờ tối đa ~70 phút
+      else if (t >= 10) throw e;
       const wait = rl ? 60 : [3, 5, 10, 20, 30, 45, 60, 60, 60, 60][t];
       for (let s = wait; s > 0; s--) {
         say(`${rl ? "GitHub yêu cầu chờ (giới hạn tốc độ)" : net ? "Mất kết nối tới GitHub" : "GitHub đang bận"} — tự thử lại sau ${s} giây… ${what || ""}`);

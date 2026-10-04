@@ -369,7 +369,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img id="topLogo" src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.16</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.17</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -621,13 +621,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=316"></script>
+<script src="render.js?v=317"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="3.16";
+const APP_VER="3.17";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -843,18 +843,31 @@ async function browserReads(f){
   if(!window.createImageBitmap) return false;
   try{ const b=await createImageBitmap(f); if(b.close) b.close(); return true; }catch(_){ return false; }
 }
+/* đọc vài byte đầu để biết ảnh thật sự là gì (tên file có thể ghi .jpg nhưng ruột là HEIC) */
+async function sniff(f){
+  try{
+    const b=new Uint8Array(await f.slice(0,16).arrayBuffer());
+    const s=String.fromCharCode(...b.slice(4,12));
+    if(/^ftyp(heic|heix|hevc|heim|heis|mif1|msf1)/.test(s)) return "heic";
+    if(b[0]===0xFF&&b[1]===0xD8) return "jpg";
+    if(b[0]===0x89&&b[1]===0x50) return "png";
+    return "";
+  }catch(_){ return ""; }
+}
 async function normalizeFiles(list,say){
   const out=[], failed=[];
-  const heic=list.filter(isHeic);
+  for(const f of list) if(!isHeic(f)&&await sniff(f)==="heic") f._heic=true;   // HEIC mang đuôi .jpg
+  const isH=f=>isHeic(f)||f._heic;
+  const heic=list.filter(isH);
   let k=0;
   for(const f of list){
-    if(!isHeic(f)||await browserReads(f)){ out.push(f); continue; }
+    if(!isH(f)||await browserReads(f)){ out.push(f); continue; }
     k++; if(say) say(`Đang chuyển ảnh HEIC sang JPG ${k}/${heic.length}… (lần đầu chờ tải công cụ chuyển đổi)`);
     try{
       const conv=await loadHeicLib();
       let b=await conv({blob:f,toType:"image/jpeg",quality:.92});
       if(Array.isArray(b)) b=b[0];
-      out.push(new File([b],(f.name||"anh").replace(/\.hei[cf]$/i,"")+".jpg",{type:"image/jpeg"}));
+      out.push(new File([b],(f.name||"anh").replace(/\.(hei[cf]|jpe?g)$/i,"")+".jpg",{type:"image/jpeg"}));
     }catch(e){ console.error(e); failed.push(f.name||"ảnh"); }
   }
   return {files:out,failed};
@@ -868,7 +881,7 @@ async function addWorkFiles(list){
   let fs=list.filter(isImg);
   if(!fs.length) return 0;
   const say=t=>{ $("wMsg").innerHTML=`<div class="msg warn">${esc(t)}</div>`; };
-  const r=await normalizeFiles(fs, fs.some(isHeic)?say:null);
+  const r=await normalizeFiles(fs, say);
   fs=r.files; heicNote=heicFailMsg(r.failed);
   if(r.failed.length) $("wMsg").innerHTML=`<div class="msg bad">${heicFailMsg(r.failed).trim()}</div>`;
   else if(list.some(isHeic)) $("wMsg").innerHTML="";
@@ -1888,9 +1901,14 @@ $("btnScan").addEventListener("click",()=>{
 async function loadImg(file){
   try{ return await createImageBitmap(file,{imageOrientation:"from-image"}); }
   catch(_){
-    return await new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);
-      im.onerror=()=>rej(new Error("Không đọc được ảnh "+file.name+". Hãy mở ảnh trên máy, lưu lại dạng JPG rồi thêm lại."));
-      im.src=URL.createObjectURL(file);});
+    try{
+      return await new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);im.onerror=rej;im.src=URL.createObjectURL(file);});
+    }catch(_){
+      if(await sniff(file)==="heic"){                 // ảnh HEIC đặt đuôi .jpg → chuyển rồi đọc lại
+        try{ const conv=await loadHeicLib(); let b=await conv({blob:file,toType:"image/jpeg",quality:.92}); if(Array.isArray(b)) b=b[0]; return await createImageBitmap(b); }catch(_){}
+      }
+      throw new Error("Không đọc được ảnh "+(file.name||"")+". Hãy mở ảnh trên máy, lưu lại dạng JPG rồi thêm lại.");
+    }
   }
 }
 function resize(img,max,q){
@@ -1959,15 +1977,24 @@ $("btnPublish").addEventListener("click",async()=>{
     const entries=[];
     const total=newFiles.size*2+3; let done=0; const step=()=>bar(++done/total);
 
-    // 2. nén + tải ảnh mới
+    // 2. nén + tải ảnh mới — ảnh nào lỗi thì bỏ qua, đăng tiếp ảnh khác, báo lại ở cuối
     let k=0;
+    const failedImgs=[];          // {id,kind,name,why}
+    const upBlob=async(blob,label)=>{                 // tải 1 file lên GitHub: file đã có sẵn thì bỏ qua, rớt mạng / quá giới hạn thì tự thử lại
+      const u8=new Uint8Array(await blob.arrayBuffer()), sha=await gitSha(u8);
+      try{ const r=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/git/blobs/${sha}`,{method:"HEAD",headers:{Authorization:"Bearer "+cfg.token}}); if(r.ok) return {sha}; }catch(_){}
+      const r=await ghRetry("/git/blobs",{method:"POST",body:{content:u8ToB64(u8),encoding:"base64"}},log,label);
+      if(newFiles.size>30) await sleep(600);          // nhiều ảnh: đi chậm để GitHub không chặn
+      return r;
+    };
     for(const [id,nf] of newFiles){
-      k++; log(`Nén và tải ảnh ${k}/${newFiles.size}…`);
+      k++; log(`Nén và tải ảnh ${k}/${newFiles.size}…${failedImgs.length?` (bỏ qua ${failedImgs.length} ảnh lỗi)`:""}`);
+      try{
       if(nf.kind==="img"){                       // logo & hình ảnh: đã xử lý sẵn khi chọn ảnh
         if(!(D.images&&D.images[nf.slot]===nf.path)){ step(); step(); continue; }
-        const b1=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(nf.file),encoding:"base64"}}); step();
+        const b1=await upBlob(nf.file,`(ảnh ${k}/${newFiles.size})`); step();
         entries.push({path:nf.path,mode:"100644",type:"blob",sha:b1.sha});
-        if(nf.file64){ const b2=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(nf.file64),encoding:"base64"}});
+        if(nf.file64){ const b2=await upBlob(nf.file64,`(ảnh ${k}/${newFiles.size})`);
           entries.push({path:R.favSmall(nf.path),mode:"100644",type:"blob",sha:b2.sha}); }
         step(); continue;
       }
@@ -1978,11 +2005,23 @@ $("btnPublish").addEventListener("click",async()=>{
       if(img.close) img.close();
       const fullPath=nf.kind==="gia"?`gia/${id}.jpg`:`anh/ct-${id}.jpg`;
       const thPath=nf.kind==="gia"?`gia/t-${id}.jpg`:`anh/t-${id}.jpg`;
-      const b1=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(full.blob),encoding:"base64"}}); step();
-      const b2=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(th.blob),encoding:"base64"}}); step();
+      const b1=await upBlob(full.blob,`(ảnh ${k}/${newFiles.size})`); step();
+      const b2=await upBlob(th.blob,`(ảnh ${k}/${newFiles.size})`); step();
       entries.push({path:fullPath,mode:"100644",type:"blob",sha:b1.sha},{path:thPath,mode:"100644",type:"blob",sha:b2.sha});
       const rec=(nf.kind==="gia"?D.prices:D.gallery).find(x=>x.id===id);
       if(rec){rec.w=full.w;rec.h=full.h;}
+      }catch(err){
+        if(err&&(err.status===401||err.status===404||(err.status===403&&!/rate limit|abuse|secondary/i.test(err.message||"")))) throw err;   // lỗi mã khóa / quyền → dừng hẳn
+        console.error(err);
+        failedImgs.push({id,kind:nf.kind,slot:nf.slot,name:(nf.file&&nf.file.name)||"ảnh",why:err instanceof TypeError||!err.status?"không đọc được / mất kết nối":(err.message||"lỗi")});
+        step(); step();
+      }
+    }
+    // gỡ ảnh lỗi khỏi lần đăng này (anh sửa ảnh rồi thêm lại sau)
+    const failedSet=new Set(failedImgs.map(f=>f.id));
+    if(failedSet.size){
+      D.gallery=D.gallery.filter(p=>!failedSet.has(p.id)); D.prices=D.prices.filter(p=>!failedSet.has(p.id));
+      failedImgs.filter(f=>f.kind==="img").forEach(f=>{ if(D.images){ delete D.images[f.slot]; if(!Object.keys(D.images).length) delete D.images; } });
     }
 
     // 2b. ảnh tự đổi màu theo màu chủ đạo (đại bàng nhỏ, biểu tượng web) — tạo nếu web chưa có
@@ -2011,8 +2050,9 @@ $("btnPublish").addEventListener("click",async()=>{
 
     // 5. tạo bản cập nhật
     log("Lưu lên GitHub…");
-    const tree=await gh("/git/trees",{method:"POST",body:{base_tree:base.tree,tree:entries}}); step();
-    const nw=[...newFiles.values()];
+    const tree={sha:await buildTree(entries,log,base.tree)}; step();      // ghép theo đợt nhỏ — nhiều ảnh không bị "timed out"
+    const nwAll=newFiles.size;
+    const nw=[...newFiles.entries()].filter(([id])=>!failedSet.has(id)).map(([,v])=>v);
     const sum=[];
     const a=nw.filter(f=>f.kind==="anh").length, g=nw.filter(f=>f.kind==="gia").length;
     if(a) sum.push(`+${a} ảnh công trình`); if(g) sum.push(`+${g} bảng giá`);
@@ -2037,7 +2077,10 @@ $("btnPublish").addEventListener("click",async()=>{
     $("acctInfo").innerHTML=`Kho: <b>${esc(cfg.owner)}/${esc(cfg.repo)}</b> · nhánh <b>${esc(cfg.branch)}</b><br>Phiên bản đang sửa: <code>${commit.sha.slice(0,7)}</code><br>Công cụ quản lý: <b>v${APP_VER}</b>`;
     const t=new Date();
     ov.querySelector(".dlg").innerHTML=`<h3>Đã đăng xong</h3>
-      <div class="msg good">Đăng lúc ${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}. Web tự cập nhật sau khoảng <b>1–2 phút</b>.</div>
+      <div class="msg good">Đăng lúc ${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}. Web tự cập nhật sau khoảng <b>1–2 phút</b>.${nwAll?` Đã đăng <b>${nwAll-failedImgs.length}/${nwAll}</b> ảnh mới.`:""}</div>
+      ${failedImgs.length?`<div class="msg bad"><b>${failedImgs.length} ảnh bị lỗi, đã bỏ qua</b> (không đăng, đã gỡ khỏi danh sách):
+        <div class="junk" style="background:#fff">${failedImgs.map(f=>esc(f.name)).join("\n")}</div>
+        Cách sửa: mở ảnh trên máy (Photos / Paint) → lưu lại dạng <b>JPG</b> → thêm lại ảnh đó.</div>`:""}
       <p>Mở web lúc đó nếu vẫn thấy bản cũ, kéo xuống để tải lại trang.</p>
       <div class="row"><a class="btn btn-line" href="${esc((D.site&&D.site.url)||"../")}" target="_blank" rel="noopener">Xem web ↗</a><button class="btn btn-line" id="okBk">⬇ Tải bản sao lưu</button><button class="btn btn-red" id="okClose">Xong</button></div>`;
     ov.querySelector("#okClose").onclick=()=>ov.remove();
@@ -2087,6 +2130,6 @@ $("btnReload").addEventListener("click",async()=>{
   }
 })();
 </script>
-<script src="backup.js?v=316"></script>
+<script src="backup.js?v=317"></script>
 </body>
 </html>
