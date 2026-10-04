@@ -407,9 +407,10 @@ $("bkHist").addEventListener("click", e => {
   if (e.target.id === "bkMore") { e.target.disabled = true; loadHistory(true); return; }
   const b = e.target.closest("[data-h]"); if (!b) return;
   const sha = b.closest(".hrow").dataset.sha;
-  if (b.dataset.h === "view") viewVersion(sha); else restoreVersion(sha);
+  if (b.dataset.h === "view") viewVersion(sha); else { if (pubBusy()) return; restoreVersion(sha); }
 });
 $("bkZip").addEventListener("click", async () => {
+  if (pubBusy()) return;
   if (hasUnsaved() && !confirm("Có thay đổi CHƯA ĐĂNG — khôi phục sẽ bỏ các thay đổi này. Tiếp tục?")) return;
   const f = await pickZip(); if (!f) return;
   restoreFromZip(f, async () => { await load(); switchTab("backup"); });
