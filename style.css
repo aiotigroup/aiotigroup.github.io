@@ -152,7 +152,9 @@ section{padding:80px 0}
 .filt button:hover{border-color:var(--sun);color:var(--sun-lt)}
 .filt button.on{background:var(--sun);border-color:var(--sun);color:var(--on-sun)}
 .filt button i{font-style:normal;opacity:.62;margin-left:5px;font-family:'IBM Plex Mono';font-size:12px}
-.shot.off,.vid.off{display:none}
+.shot.off,.vid.off,.shot.pg{display:none}
+.more-shots{display:flex;margin:22px auto 0;min-width:240px}
+.more-shots[hidden]{display:none}
 .grid-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
 .shot{position:relative;padding:0;border:1px solid var(--line-d);border-radius:6px;
   overflow:hidden;background:var(--ink-2);cursor:pointer;display:block;line-height:0;

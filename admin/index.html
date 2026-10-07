@@ -154,9 +154,9 @@ details.ttl>summary{color:var(--brand)}
 .pubbox.mini{padding:10px 14px}.pubbox.mini .prog{margin:8px 0 0}
 .dup-acts{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:var(--toph,100px);z-index:6;background:var(--cloud);padding:10px 0;margin:6px 0 0}
 /* danh sách dài (hàng trăm ảnh): trình duyệt chỉ vẽ phần đang thấy → cuộn mượt, không treo */
-#wList .it{content-visibility:auto;contain-intrinsic-size:auto 150px}
-#wList.grid .it{contain-intrinsic-size:auto 190px}
-.dth label{content-visibility:auto;contain-intrinsic-size:auto 92px}
+#wList .it{content-visibility:auto;contain-intrinsic-height:auto 150px}
+#wList.grid .it{contain-intrinsic-height:auto 190px}
+.dth label{content-visibility:auto;contain-intrinsic-height:auto 92px}
 .dup h3{font-size:16px;margin-bottom:4px}
 .dgrp{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
 .dgrp p{font-size:13px;color:var(--muted);margin-bottom:6px}
@@ -212,7 +212,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;user-select:none!importa
 .ghost b{position:absolute;right:-9px;top:-9px;min-width:26px;height:26px;border-radius:13px;background:var(--brand);color:#fff;
   font-size:13px;display:flex;align-items:center;justify-content:center;padding:0 6px;border:2px solid #fff}
 .dropline{position:fixed;z-index:119;pointer-events:none;background:var(--brand);border-radius:3px;box-shadow:0 0 0 3px rgba(163,16,0,.18);display:none}
-@media(max-width:520px){ .g-lg{grid-template-columns:repeat(3,1fr);gap:7px} .g-xl{grid-template-columns:repeat(2,1fr);gap:8px} .views button{padding:8px 10px} }
+@media(max-width:520px){ .g-lg{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px} .g-xl{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px} .views button{padding:8px 10px} }
 .dlg.edit{max-width:620px}
 .ehead{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
 .ehead h3{margin:0}
@@ -268,6 +268,38 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
 .junk{font-family:'IBM Plex Mono';font-size:12.5px;max-height:150px;overflow:auto;background:var(--cream);
   border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:8px 0;white-space:pre-line}
 @media(max-width:520px){ .g2{grid-template-columns:1fr} }
+
+/* ===== ĐIỆN THOẠI ===== */
+@media(max-width:700px){
+  /* 7 thẻ xếp 2 hàng — thấy hết, không phải vuốt ngang tìm thẻ Màu sắc / Liên hệ / Sao lưu */
+  .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:0 2px;overflow:visible}
+  .tab{padding:8px 2px 9px;font-size:13.5px;text-align:center;border-bottom-width:3px}
+  .tab i{margin-left:3px;padding:0 5px;font-size:10px}
+  .top-in{padding-bottom:6px}
+  .top-in img{width:36px}
+  .top-in h1{font-size:15.5px}
+  .top-in small{font-size:9.5px;letter-spacing:.06em}
+  .top-in a{padding:5px 10px;font-size:12.5px}
+  /* thanh đăng: dòng trạng thái ở trên, 4 nút một hàng ở dưới */
+  .bar .wrap{flex-wrap:wrap;gap:6px 8px}
+  .bar .st{flex:0 0 100%;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar .st br{display:none}
+  .bar .st b{margin-right:6px}
+  .bar .hb{flex:0 0 46px;padding:11px 0}
+  .bar .btn{padding:12px 10px}
+  #btnPreview{flex:1;white-space:nowrap;padding-left:6px;padding-right:6px}
+  #btnPublish{flex:1.6;white-space:nowrap}
+  /* ô gõ chữ ≥16px: iPhone không tự phóng to màn hình khi chạm vào ô */
+  input:not([type=checkbox]):not([type=radio]):not([type=color]),textarea,select{font-size:16px!important}
+  /* nút / ô chọn to hơn cho ngón tay */
+  .ck{width:34px;height:34px}
+  .ck input{width:20px;height:20px}
+  .ib{min-height:38px}
+  .sep-t .ib.del{height:36px!important}
+  .pubbox{right:10px;width:calc(100vw - 20px)}
+  .card{padding:16px 14px}
+  body{padding-bottom:calc(var(--barh,110px) + 14px)}
+}
 
 /* ---- MÀU SẮC ---- */
 .th-lay{display:grid;gap:0 18px}
@@ -386,7 +418,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img id="topLogo" src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.19</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.20</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -638,13 +670,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=319"></script>
+<script src="render.js?v=320"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="3.19";
+const APP_VER="3.20";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -801,6 +833,7 @@ document.addEventListener("keydown",e=>{
 
 function updateBar(){
   if(!D) return;
+  requestAnimationFrame(()=>{ const b=$("bar"); if(b&&b.offsetHeight) document.documentElement.style.setProperty("--barh",b.offsetHeight+"px"); });
   $("cWorks").textContent=D.gallery.length; $("cPrices").textContent=D.prices.length; $("cVideos").textContent=D.videos.length;
   const changed=JSON.stringify(D)!==base.snap||newFiles.size||junk.length;
   const nNew=[...newFiles.values()];
@@ -2229,6 +2262,6 @@ window.addEventListener("resize",setTopH); setTopH();
   }
 })();
 </script>
-<script src="backup.js?v=319"></script>
+<script src="backup.js?v=320"></script>
 </body>
 </html>

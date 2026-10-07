@@ -81,7 +81,29 @@
 
   /* ---- lọc theo ngành — dùng chung cho Công trình và Video ----
      Công trình: hiện khi từ 2 ngành trở lên có ≥ 3 ảnh · Video: hiện khi từ 2 ngành trở lên có video */
-  function catFilter(barId, items, min) {
+  /* ---- Công trình nhiều ảnh: hiện từng đợt + nút "Xem thêm" (điện thoại không phải cuộn hàng trăm ảnh) ---- */
+  const pager = (function () {
+    const grid = document.querySelector(".grid-shots");
+    if (!grid || shots.length <= 16) return null;
+    const step = () => window.innerWidth < 760 ? 12 : 16;
+    let shown = step();
+    const btn = document.createElement("button");
+    btn.className = "btn btn-sun more-shots"; btn.type = "button";
+    grid.insertAdjacentElement("afterend", btn);
+    function apply() {
+      const vis = shots.filter(t => !t.classList.contains("off"));
+      vis.forEach((t, i) => t.classList.toggle("pg", i >= shown));
+      shots.filter(t => t.classList.contains("off")).forEach(t => t.classList.remove("pg"));
+      const left = vis.length - Math.min(shown, vis.length);
+      btn.hidden = left <= 0;
+      btn.textContent = `Xem thêm ${Math.min(left, step())} ảnh · còn ${left}`;
+    }
+    btn.addEventListener("click", () => { shown += step(); apply(); });
+    apply();
+    return { reset() { shown = step(); apply(); } };
+  })();
+
+  function catFilter(barId, items, min, onChange) {
     const NAME = { solar: "Điện mặt trời", camera: "Camera an ninh", smart: "Nhà thông minh" };
     const cnt = {};
     items.forEach(t => { const c = t.dataset.cat || "solar"; cnt[c] = (cnt[c] || 0) + 1; });
@@ -95,9 +117,10 @@
       const b = e.target.closest("button"); if (!b) return;
       bar.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
       items.forEach(t => t.classList.toggle("off", !(b.dataset.c === "all" || (t.dataset.cat || "solar") === b.dataset.c)));
+      if (onChange) onChange();
     });
   }
-  catFilter("filt", shots, 3);
+  catFilter("filt", shots, 3, () => pager && pager.reset());
   catFilter("vfilt", [...document.querySelectorAll(".vid")], 1);
 
   /* ---- nút lên đầu trang ---- */
