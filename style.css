@@ -315,11 +315,19 @@ footer{background:linear-gradient(180deg,var(--ink),var(--ink-3));color:var(--so
   body{font-size:16px}
   /* điện thoại: mỗi chỉ số một hàng — số bên trái, chữ giải thích bên phải */
   .stats-g{grid-template-columns:1fr;gap:0}
-  .stats-g div{display:grid;grid-template-columns:minmax(128px,38%) 1fr;align-items:center;column-gap:14px;
+  .stats-g div{display:grid;grid-template-columns:minmax(0,42%) 1fr;align-items:center;column-gap:14px;
     padding:15px 18px;text-align:left;border-bottom:1px solid rgba(163,16,0,.18)}
   .stats-g div:last-child{border-bottom:0}
-  .stats dd{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;margin:0;
-    font-size:clamp(25px,7.2vw,29px)}
+  .stats dd{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px;margin:0;min-width:0;
+    font-size:clamp(23px,6.6vw,29px)}
+  .stats dd.l{font-size:clamp(20px,5.6vw,26px)}
+  .stats dd.xl{font-size:clamp(17px,4.6vw,22px)}
+  .stats dt{min-width:0;overflow-wrap:break-word}
+  /* trình duyệt hỗ trợ subgrid: cột số của cả 3 hàng rộng bằng nhau, vừa đúng số dài nhất */
+  @supports (grid-template-columns:subgrid){
+    .stats-g{grid-template-columns:fit-content(46%) minmax(0,1fr)}
+    .stats-g div{grid-column:1/-1;grid-template-columns:subgrid}
+  }
   .stats dd small{margin-left:0;font-size:.5em}
   .stats dt{font-size:14px;line-height:1.45}
   .top{right:14px;bottom:80px;width:46px;height:46px}

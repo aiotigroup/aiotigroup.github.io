@@ -88,6 +88,7 @@
     const unit = (v, d) => (v == null ? d : String(v).trim());
     const uY = unit(S.unitYear, "năm"), uD = unit(S.unitDevices, ""), uK = unit(S.unitKwp, "kWp");
     const sm = u => (u ? `<small> ${esc(u)}</small>` : "");
+    const lc = v => { const n = String(v == null ? "" : v).replace(/\s+/g, "").length; return n >= 10 ? ' class="xl"' : n >= 7 ? ' class="l"' : ""; };
 
     const tiles = gal.map((p, i) => {
       const cap = esc(p.cap || CATS[p.cat] || "");
@@ -220,8 +221,8 @@ ${gal.length ? `    <a class="lnk" href="#congtrinh">Công trình</a>\n` : ""}${
 <div class="stats">
   <dl class="wrap stats-g">
     <div><dd id="stY" data-from="${+S.fromYear}" data-unit="${esc(uY)}">${years}${sm(uY)}</dd><dt>${esc(S.labelYear != null && S.labelYear !== "" ? S.labelYear : "Trong nghề từ {năm}").replace(/\{n[aă]m\}/gi, +S.fromYear)}</dt></div>
-    <div><dd>${esc(S.devices)}${sm(uD)}</dd><dt>${esc(S.labelDevices || "Thiết bị an ninh đã lắp đặt")}</dt></div>
-    <div><dd>${esc(S.kwp)}${sm(uK)}</dd><dt>${esc(S.labelKwp || "Điện mặt trời đã hòa lưới")}</dt></div>
+    <div><dd${lc(S.devices)}>${esc(S.devices)}${sm(uD)}</dd><dt>${esc(S.labelDevices || "Thiết bị an ninh đã lắp đặt")}</dt></div>
+    <div><dd${lc(S.kwp)}>${esc(S.kwp)}${sm(uK)}</dd><dt>${esc(S.labelKwp || "Điện mặt trời đã hòa lưới")}</dt></div>
   </dl>
 </div>
 
