@@ -244,7 +244,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.0</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.2</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -323,6 +323,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
     <div class="tb" id="wTools">
       <button class="ib" data-t="all" type="button">Chọn tất cả</button>
       <button class="ib" data-t="none" type="button">Bỏ chọn</button>
+      <button class="ib" data-t="dl" type="button" disabled title="Tải bản chất lượng cao nhất về máy">⬇ Tải ảnh đã chọn (0)</button>
       <button class="ib del" data-t="delsel" type="button" disabled>Xóa đã chọn (0)</button>
       <button class="ib del" data-t="delall" type="button">Xóa toàn bộ</button>
       <button class="ib" data-t="dup" type="button">Tìm ảnh trùng</button>
@@ -412,13 +413,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=40"></script>
+<script src="render.js?v=42"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="4.0";
+const APP_VER="4.2";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -809,12 +810,105 @@ document.addEventListener("paste",e=>{
 /* ======================= CHỌN & XÓA HÀNG LOẠT ======================= */
 let sel=new Set(), undo=null;
 function visIdx(){ return D.gallery.map((p,i)=>i).filter(i=>wFilter==="all"||D.gallery[i].cat===wFilter); }
+/* ======================= TẢI ẢNH VỀ MÁY ======================= */
+/* Ảnh đã đăng: bản lớn trên web (anh/ct-*.jpg). Ảnh mới chưa đăng: ảnh gốc nguyên chất lượng. */
+let dlBusy=false;
+function slugVi(s){
+  return String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D")
+    .replace(/[^A-Za-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,50).replace(/-+$/,"");
+}
+function dlName(p){
+  /* Tên theo ngành + số thứ tự trong ngành: AIOTI-Dien-mat-troi-03.jpg */
+  const same=D.gallery.filter(g=>g.cat===p.cat);
+  const no=String(same.indexOf(p)+1).padStart(2,"0");
+  const nf=newFiles.get(p.id);
+  let ext="jpg";
+  if(nf){ const m=String(nf.file.name||"").match(/\.([A-Za-z0-9]{2,5})$/); ext=(m?m[1]:(String(nf.file.type).split("/")[1]||"jpg")).toLowerCase().replace("jpeg","jpg"); }
+  return `AIOTI-${slugVi(CATS[p.cat])||"Khac"}-${no}.${ext}`;
+}
+async function fetchFull(p){
+  const nf=newFiles.get(p.id);
+  if(nf) return nf.file;                                    // chưa đăng → ảnh gốc
+  const path=`anh/ct-${p.id}.jpg`;
+  try{ const r=await fetch(raw(path)); if(r.ok) return await r.blob(); }catch(_){}
+  const r=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${path}?ref=${base.commit}`,
+    {headers:{Authorization:"Bearer "+cfg.token,Accept:"application/vnd.github.raw"}});   // kho riêng tư
+  if(!r.ok) throw new Error("HTTP "+r.status);
+  return await r.blob();
+}
+/* tạo file .zip (không nén lại — ảnh JPG giữ nguyên chất lượng) */
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;}return t;})();
+function crc32(u8){let c=0xFFFFFFFF;for(let i=0;i<u8.length;i++)c=CRC[(c^u8[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0;}
+function makeZip(entries){            // entries: [{name, data:Uint8Array}]
+  const enc=new TextEncoder(), parts=[], central=[]; let off=0;
+  const now=new Date(), dt=((now.getHours()<<11)|(now.getMinutes()<<5)|(now.getSeconds()>>1))&0xFFFF,
+        dd=(((now.getFullYear()-1980)<<9)|((now.getMonth()+1)<<5)|now.getDate())&0xFFFF;
+  for(const e of entries){
+    const nm=enc.encode(e.name), crc=crc32(e.data), sz=e.data.length;
+    const h=new DataView(new ArrayBuffer(30));
+    h.setUint32(0,0x04034b50,true); h.setUint16(4,20,true); h.setUint16(6,0x0800,true); h.setUint16(8,0,true);
+    h.setUint16(10,dt,true); h.setUint16(12,dd,true); h.setUint32(14,crc,true); h.setUint32(18,sz,true); h.setUint32(22,sz,true);
+    h.setUint16(26,nm.length,true); h.setUint16(28,0,true);
+    parts.push(new Uint8Array(h.buffer),nm,e.data);
+    const c=new DataView(new ArrayBuffer(46));
+    c.setUint32(0,0x02014b50,true); c.setUint16(4,20,true); c.setUint16(6,20,true); c.setUint16(8,0x0800,true); c.setUint16(10,0,true);
+    c.setUint16(12,dt,true); c.setUint16(14,dd,true); c.setUint32(16,crc,true); c.setUint32(20,sz,true); c.setUint32(24,sz,true);
+    c.setUint16(28,nm.length,true); c.setUint32(42,off,true);
+    central.push(new Uint8Array(c.buffer),nm);
+    off+=30+nm.length+sz;
+  }
+  const cdSize=central.reduce((s,x)=>s+x.length,0);
+  const end=new DataView(new ArrayBuffer(22));
+  end.setUint32(0,0x06054b50,true); end.setUint16(8,entries.length,true); end.setUint16(10,entries.length,true);
+  end.setUint32(12,cdSize,true); end.setUint32(16,off,true);
+  return new Blob([...parts,...central,new Uint8Array(end.buffer)],{type:"application/zip"});
+}
+function saveBlob(blob,name){
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href),60000);
+}
+async function downloadIds(ids){
+  if(dlBusy||!ids.length) return;
+  const items=ids.map(id=>D.gallery.find(p=>p.id===id)).filter(Boolean);
+  const msg=t=>{ $("wMsg").innerHTML=t; };
+  dlBusy=true; updTools();
+  try{
+    if(items.length===1){
+      msg('<div class="msg warn">Đang tải ảnh…</div>');
+      const b=await fetchFull(items[0]); saveBlob(b,dlName(items[0]));
+      msg(`<div class="msg good">Đã tải <b>${esc(dlName(items[0]))}</b>${newFiles.has(items[0].id)?" — ảnh gốc":""}.</div>`);
+      return;
+    }
+    const entries=[], fail=[], used=new Set();
+    for(let i=0;i<items.length;i++){
+      msg(`<div class="msg warn">Đang tải ảnh ${i+1}/${items.length}… giữ trang mở.</div>`);
+      try{
+        const b=await fetchFull(items[i]);
+        let nm=dlName(items[i]); while(used.has(nm)) nm=nm.replace(/(\.\w+)$/,"-"+i+"$1"); used.add(nm);
+        entries.push({name:nm,data:new Uint8Array(await b.arrayBuffer())});
+      }catch(e){ fail.push(dlName(items[i]).replace(/\.\w+$/,"")); }
+    }
+    if(!entries.length) throw new Error("không tải được ảnh nào");
+    const d=new Date(), stamp=`${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+    const zipName=`AIOTI-anh-cong-trinh-${entries.length}-anh-${stamp}.zip`;
+    saveBlob(makeZip(entries),zipName);
+    msg(`<div class="msg ${fail.length?"bad":"good"}">Đã tải <b>${entries.length}</b> ảnh trong file <b>${esc(zipName)}</b>.`+
+        (fail.length?` Không tải được ảnh ${fail.join(", ")} — kiểm tra mạng rồi thử lại.`:"")+`</div>`);
+  }catch(e){
+    console.error(e);
+    msg(`<div class="msg bad">Chưa tải được ảnh (${esc(e.message||e)}). Kiểm tra mạng rồi thử lại.</div>`);
+  }finally{ dlBusy=false; updTools(); }
+}
+
 function updTools(nVis){
   const t=$("wTools"); if(!t) return;
   const n=sel.size;
   t.querySelector('[data-t="delsel"]').textContent=`Xóa đã chọn (${n})`;
   t.querySelector('[data-t="delsel"]').disabled=!n;
   t.querySelector('[data-t="none"]').disabled=!n;
+  t.querySelector('[data-t="dl"]').textContent=`⬇ Tải ảnh đã chọn (${n})`;
+  t.querySelector('[data-t="dl"]').disabled=!n||dlBusy;
   const nv=nVis==null?visIdx().length:nVis;
   t.querySelector('[data-t="all"]').disabled=!nv;
   t.querySelector('[data-t="delall"]').disabled=!nv;
@@ -851,6 +945,7 @@ $("wTools").addEventListener("click",e=>{
       removeIds(vis.map(i=>D.gallery[i].id));
   }
   if(t==="dup") scanDup(false);
+  if(t==="dl") downloadIds(D.gallery.filter(p=>sel.has(p.id)).map(p=>p.id));
 });
 $("wList").addEventListener("change",e=>{
   if(e.target.dataset.sel===undefined) return;
@@ -996,6 +1091,7 @@ function editTile(id){
     <div class="fld"><label>Ngành</label><select id="eCat">${catOpts}</select></div>
     <div class="fld"><label>Chú thích kỹ thuật</label><textarea id="eCap" placeholder="Ví dụ: Đầu ghi 8 kênh, dây đi trong ống có nhãn"></textarea></div>
     <button class="btn btn-line btn-w" id="eStar" type="button"></button>
+    <button class="btn btn-line btn-w" id="eDl" type="button" style="margin-top:8px">⬇ Tải ảnh này (chất lượng cao nhất)</button>
     <div class="row"><button class="btn btn-line" id="eDel" type="button" style="color:var(--brand)">Xóa ảnh</button><button class="btn btn-red" id="eOk" type="button">Xong</button></div>`);
   o.querySelector(".dlg").classList.add("edit");
   const q=x=>o.querySelector(x);
@@ -1030,6 +1126,7 @@ function editTile(id){
   q("#eCap").addEventListener("input",ev=>{ p.cap=ev.target.value; updateBar(); });
   q("#eCat").addEventListener("change",ev=>{ p.cat=ev.target.value; if(p.cover) D.gallery.forEach(x=>{ if(x!==p&&x.cat===p.cat) delete x.cover; }); updateBar(); });
   q("#eStar").onclick=()=>{ const was=!!p.cover; D.gallery.forEach(x=>{ if(x.cat===p.cat) delete x.cover; }); if(!was) p.cover=true; q("#eStar").textContent=starTxt(); updateBar(); };
+  q("#eDl").onclick=()=>downloadIds([p.id]);
   q("#eDel").onclick=()=>{
     const gone=p.id; removeIds([gone]);
     list=list.filter(x=>x!==gone);
