@@ -7,9 +7,9 @@
   const stY = $("stY");
   if (stY && stY.dataset.from) {
     const y = Math.max(1, new Date().getFullYear() - (+stY.dataset.from));
-    const u = stY.dataset.unit == null ? "năm" : stY.dataset.unit;
+    const unit = stY.dataset.unit != null ? stY.dataset.unit : "năm";
     stY.textContent = y;
-    if (u) { const sm = document.createElement("small"); sm.textContent = " " + u; stY.appendChild(sm); }
+    if (unit) { const sm = document.createElement("small"); sm.textContent = " " + unit; stY.appendChild(sm); }
   }
   const yr = $("yr"); if (yr) yr.textContent = new Date().getFullYear();
 
@@ -79,49 +79,23 @@
     document.addEventListener("keydown", e => { if (e.key === "Escape" && vb.classList.contains("on")) vClose(); });
   }
 
-  /* ---- lọc theo ngành — dùng chung cho Công trình và Video ----
-     Công trình: hiện khi từ 2 ngành trở lên có ≥ 3 ảnh · Video: hiện khi từ 2 ngành trở lên có video */
-  /* ---- Công trình nhiều ảnh: hiện từng đợt + nút "Xem thêm" (điện thoại không phải cuộn hàng trăm ảnh) ---- */
-  const pager = (function () {
-    const grid = document.querySelector(".grid-shots");
-    if (!grid || shots.length <= 16) return null;
-    const step = () => window.innerWidth < 760 ? 12 : 16;
-    let shown = step();
-    const btn = document.createElement("button");
-    btn.className = "btn btn-sun more-shots"; btn.type = "button";
-    grid.insertAdjacentElement("afterend", btn);
-    function apply() {
-      const vis = shots.filter(t => !t.classList.contains("off"));
-      vis.forEach((t, i) => t.classList.toggle("pg", i >= shown));
-      shots.filter(t => t.classList.contains("off")).forEach(t => t.classList.remove("pg"));
-      const left = vis.length - Math.min(shown, vis.length);
-      btn.hidden = left <= 0;
-      btn.textContent = `Xem thêm ${Math.min(left, step())} ảnh · còn ${left}`;
-    }
-    btn.addEventListener("click", () => { shown += step(); apply(); });
-    apply();
-    return { reset() { shown = step(); apply(); } };
-  })();
-
-  function catFilter(barId, items, min, onChange) {
+  /* ---- lọc Công trình theo ngành: chỉ hiện khi từ 2 ngành trở lên có ≥ 3 ảnh ---- */
+  (function () {
     const NAME = { solar: "Điện mặt trời", camera: "Camera an ninh", smart: "Nhà thông minh" };
     const cnt = {};
-    items.forEach(t => { const c = t.dataset.cat || "solar"; cnt[c] = (cnt[c] || 0) + 1; });
-    const big = Object.keys(NAME).filter(c => (cnt[c] || 0) >= min);
-    const bar = $(barId);
+    shots.forEach(t => { const c = t.dataset.cat || "solar"; cnt[c] = (cnt[c] || 0) + 1; });
+    const big = Object.keys(NAME).filter(c => (cnt[c] || 0) >= 3);
+    const bar = $("filt");
     if (!bar || big.length < 2) return;
     bar.hidden = false;
-    bar.innerHTML = '<button class="on" data-c="all">Tất cả<i>' + items.length + '</i></button>' +
+    bar.innerHTML = '<button class="on" data-c="all">Tất cả<i>' + shots.length + '</i></button>' +
       big.map(c => `<button data-c="${c}">${NAME[c]}<i>${cnt[c]}</i></button>`).join("");
     bar.addEventListener("click", e => {
       const b = e.target.closest("button"); if (!b) return;
       bar.querySelectorAll("button").forEach(x => x.classList.toggle("on", x === b));
-      items.forEach(t => t.classList.toggle("off", !(b.dataset.c === "all" || (t.dataset.cat || "solar") === b.dataset.c)));
-      if (onChange) onChange();
+      shots.forEach(t => t.classList.toggle("off", !(b.dataset.c === "all" || (t.dataset.cat || "solar") === b.dataset.c)));
     });
-  }
-  catFilter("filt", shots, 3, () => pager && pager.reset());
-  catFilter("vfilt", [...document.querySelectorAll(".vid")], 1);
+  })();
 
   /* ---- nút lên đầu trang ---- */
   const top = $("topBtn");

@@ -27,7 +27,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .wrap{max-width:1480px;margin:0 auto;padding:0 14px}
 @media(min-width:900px){ .wrap{padding:0 28px} }
 /* thẻ toàn ô gõ chữ: giữ khổ vừa đọc */
-#vContent,#vContact,#vBackup{max-width:880px;margin-left:auto;margin-right:auto}
+#vContent,#vContact{max-width:880px;margin-left:auto;margin-right:auto}
 /* thanh thẻ trên máy tính rộng: xếp gọn bên trái thay vì dãn đều */
 @media(min-width:1000px){ .tab{flex:0 0 auto;padding:10px 22px 11px} }
 /* kiểu Danh sách, Video, Bảng giá: 2 cột khi màn hình rộng */
@@ -124,39 +124,7 @@ details.ttl>summary{color:var(--brand)}
 .tb .ib{height:38px;font-size:14px}
 .tb .ib.del:not(:disabled){background:#FDECEA;border-color:#F3C4BE}
 .tb .ib:disabled{opacity:.45}
-.tb .ib.cap:not(:disabled){background:#FFF6DC;border-color:var(--sun);color:var(--on-sun)}
-/* hộp chú thích hàng loạt */
-.bc-th{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0 12px}
-.bc-th img{width:52px;height:40px;object-fit:cover;border-radius:5px;border:1px solid var(--line)}
-.bc-th span{align-self:center;font-size:12.5px;color:var(--muted);font-weight:600}
-.bc-modes{display:grid;gap:6px;margin:4px 0 12px}
-@media(min-width:560px){ .bc-modes{grid-template-columns:1fr 1fr} }
-.bc-modes label{display:flex;gap:8px;align-items:flex-start;font-size:14px;border:1.5px solid var(--line);border-radius:9px;padding:9px 11px;cursor:pointer;background:var(--cloud)}
-.bc-modes label:has(input:checked){border-color:var(--brand);background:#FFF7F5}
-.bc-modes input{margin-top:3px;accent-color:var(--brand)}
-.bc-modes small{display:block;color:var(--muted);font-size:12.5px}
-.bc-sug{display:flex;flex-wrap:wrap;gap:5px;margin:-4px 0 12px}
-.bc-sug button{border:1px dashed var(--line);background:var(--cream);border-radius:14px;padding:4px 10px;font-size:12.5px;cursor:pointer;color:var(--muted)}
-.bc-prev{font-size:13px;background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:0 0 6px;color:var(--text)}
-.bc-prev b{color:var(--muted);font-weight:600}
 .dup{background:var(--cloud);border:1.5px solid var(--sun);border-radius:12px;padding:14px;margin:0 0 12px}
-.pubbox{position:fixed;right:16px;bottom:calc(var(--barh,72px) + 12px);z-index:60;width:min(380px,calc(100vw - 32px));background:var(--cloud);
-  border:1.5px solid var(--line);border-radius:14px;box-shadow:0 12px 34px rgba(36,19,16,.22);padding:14px 16px}
-.pubbox .pb-h{display:flex;align-items:center;gap:8px}
-.pubbox .pb-h b{flex:1;font-family:'Be Vietnam Pro';font-size:15.5px}
-.pubbox .pb-min{border:0;background:var(--cream-2);border-radius:8px;width:30px;height:30px;font-size:18px;cursor:pointer;color:var(--muted)}
-.pubbox .prog{margin:10px 0 6px}
-.pubbox .pb-note{font-size:12.5px;color:var(--muted);margin:4px 0 0}
-.pubbox .pb-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.pubbox .pb-row .btn{flex:1;padding:10px 12px;font-size:14px}
-.pubbox .msg{font-size:13.5px}
-.pubbox.mini .plog,.pubbox.mini .pb-note,.pubbox.mini .pb-row{display:none}
-.pubbox.mini{padding:10px 14px}.pubbox.mini .prog{margin:8px 0 0}
-.dup-acts{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:var(--toph,100px);z-index:6;background:var(--cloud);padding:10px 0;margin:6px 0 0}
-/* danh sách dài (hàng trăm ảnh): trình duyệt chỉ vẽ phần đang thấy → cuộn mượt, không treo */
-#wList .it{content-visibility:auto;contain-intrinsic-height:auto 150px}
-#wList.grid .it{contain-intrinsic-height:auto 190px}
-.dth label{content-visibility:auto;contain-intrinsic-height:auto 92px}
 .dup h3{font-size:16px;margin-bottom:4px}
 .dgrp{border-top:1px dashed var(--line);padding-top:10px;margin-top:10px}
 .dgrp p{font-size:13px;color:var(--muted);margin-bottom:6px}
@@ -212,7 +180,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;user-select:none!importa
 .ghost b{position:absolute;right:-9px;top:-9px;min-width:26px;height:26px;border-radius:13px;background:var(--brand);color:#fff;
   font-size:13px;display:flex;align-items:center;justify-content:center;padding:0 6px;border:2px solid #fff}
 .dropline{position:fixed;z-index:119;pointer-events:none;background:var(--brand);border-radius:3px;box-shadow:0 0 0 3px rgba(163,16,0,.18);display:none}
-@media(max-width:520px){ .g-lg{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px} .g-xl{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px} .views button{padding:8px 10px} }
+@media(max-width:520px){ .g-lg{grid-template-columns:repeat(3,1fr);gap:7px} .g-xl{grid-template-columns:repeat(2,1fr);gap:8px} .views button{padding:8px 10px} }
 .dlg.edit{max-width:620px}
 .ehead{display:flex;align-items:baseline;gap:10px;margin-bottom:6px}
 .ehead h3{margin:0}
@@ -268,148 +236,6 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
 .junk{font-family:'IBM Plex Mono';font-size:12.5px;max-height:150px;overflow:auto;background:var(--cream);
   border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:8px 0;white-space:pre-line}
 @media(max-width:520px){ .g2{grid-template-columns:1fr} }
-
-/* ===== ĐIỆN THOẠI ===== */
-@media(max-width:700px){
-  /* 7 thẻ xếp 2 hàng — thấy hết, không phải vuốt ngang tìm thẻ Màu sắc / Liên hệ / Sao lưu */
-  .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:0 2px;overflow:visible}
-  .tab{padding:8px 2px 9px;font-size:13.5px;text-align:center;border-bottom-width:3px}
-  .tab i{margin-left:3px;padding:0 5px;font-size:10px}
-  .top-in{padding-bottom:6px}
-  .top-in img{width:36px}
-  .top-in h1{font-size:15.5px}
-  .top-in small{font-size:9.5px;letter-spacing:.06em}
-  .top-in a{padding:5px 10px;font-size:12.5px}
-  /* thanh đăng: dòng trạng thái ở trên, 4 nút một hàng ở dưới */
-  .bar .wrap{flex-wrap:wrap;gap:6px 8px}
-  .bar .st{flex:0 0 100%;font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .bar .st br{display:none}
-  .bar .st b{margin-right:6px}
-  .bar .hb{flex:0 0 46px;padding:11px 0}
-  .bar .btn{padding:12px 10px}
-  #btnPreview{flex:1;white-space:nowrap;padding-left:6px;padding-right:6px}
-  #btnPublish{flex:1.6;white-space:nowrap}
-  /* ô gõ chữ ≥16px: iPhone không tự phóng to màn hình khi chạm vào ô */
-  input:not([type=checkbox]):not([type=radio]):not([type=color]),textarea,select{font-size:16px!important}
-  /* nút / ô chọn to hơn cho ngón tay */
-  .ck{width:34px;height:34px}
-  .ck input{width:20px;height:20px}
-  .ib{min-height:38px}
-  .sep-t .ib.del{height:36px!important}
-  .pubbox{right:10px;width:calc(100vw - 20px)}
-  .card{padding:16px 14px}
-  body{padding-bottom:calc(var(--barh,110px) + 14px)}
-}
-
-/* ---- MÀU SẮC ---- */
-.th-lay{display:grid;gap:0 18px}
-@media(min-width:1000px){ .th-lay{grid-template-columns:minmax(0,1fr) 400px;align-items:start} .th-side{position:sticky;top:112px} }
-@media(max-width:999px){ .th-side{order:-1} }
-.th-now{font-size:14px;color:var(--muted);margin:2px 0 10px}
-.th-now b{color:var(--text)}
-.th-grp{font-family:'IBM Plex Mono';font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 2px 7px}
-.th-grp:first-child{margin-top:4px}
-.th-sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px}
-.sw{position:relative;border:2px solid var(--line);border-radius:10px;background:var(--cloud);padding:0;cursor:pointer;text-align:left;overflow:hidden}
-.sw:hover{border-color:var(--muted)}
-.sw.on{border-color:var(--text);box-shadow:0 0 0 2px var(--sun)}
-.sw.on::after{content:"✓";position:absolute;right:6px;top:6px;width:22px;height:22px;border-radius:50%;background:#fff;color:#111;
-  font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.3)}
-.sw-g{display:block;height:46px}
-.sw-d{display:flex;gap:4px;padding:7px 9px 0}
-.sw-d i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.15)}
-.sw-n{display:block;padding:4px 9px 8px;font-size:13px;font-weight:600;line-height:1.3}
-.pk{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:12px 0;border-top:1px dashed var(--line)}
-.pk:first-of-type{border-top:0}
-.pk b{font-family:'Be Vietnam Pro';font-size:15px}
-.pk p{grid-column:1;font-size:12.5px;color:var(--muted);line-height:1.4}
-.pk .pc{grid-row:1/3;grid-column:2;display:flex;align-items:center;gap:7px}
-.pk input[type=color]{width:54px;height:44px;border:1.5px solid var(--line);border-radius:9px;padding:2px;background:var(--cloud);cursor:pointer}
-.pk input[type=text]{width:96px;border:1.5px solid var(--line);border-radius:8px;padding:9px 8px;font-family:'IBM Plex Mono';font-size:14px;
-  text-transform:uppercase;background:var(--cream)}
-.pk input[type=text].bad{border-color:var(--brand);background:#FDECEA}
-.pk .rs{border:0;background:none;color:var(--muted);font-size:12px;text-decoration:underline;cursor:pointer;padding:0 2px}
-.pk .rs[hidden]{display:none}
-.th-warn .msg{font-size:13px;padding:8px 11px;margin:6px 0}
-/* bản xem thử thu nhỏ — dùng đúng tên biến màu của web */
-.tp{border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:12px;line-height:1.45;color:var(--text);background:var(--cloud-2)}
-.tp *{box-sizing:border-box}
-.tp-hd{display:flex;align-items:center;gap:8px;padding:8px 11px;background:var(--brand-deep);color:#fff}
-.tp-hd b{font-family:'Be Vietnam Pro';font-weight:800;font-size:15px;margin-right:auto}
-.tp-hd span{color:var(--soft-2);font-size:11px}
-.tp-hd i{font-style:normal;background:linear-gradient(180deg,var(--sun-lt),var(--sun));color:var(--on-sun);font-weight:700;padding:4px 9px;border-radius:4px;font-size:11px}
-.tp-hero{position:relative;padding:16px 12px 30px;color:#fff;overflow:hidden;
-  background:linear-gradient(163deg,var(--hz-1) 0%,var(--hz-2) 27%,var(--hz-3) 45%,var(--hz-4) 59%,var(--hz-5) 71%,var(--hz-6) 81%,var(--hz-7) 90%,var(--hz-8) 100%)}
-.tp-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(130px 130px at 83% 70%,rgba(var(--glow-rgb),.66),rgba(var(--glow2-rgb),.26) 42%,transparent 68%)}
-.tp-hero>*{position:relative}
-.tp-eb{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--brand);font-weight:600}
-.tp-hero .tp-eb,.tp-dark .tp-eb{color:var(--sun-lt)}
-.tp-hero h4{font-family:'Be Vietnam Pro';font-size:18px;font-weight:800;margin:5px 0 4px;line-height:1.2}
-.tp-hero h4 span{color:var(--sun-hi)}
-.tp-hero p{color:var(--soft);font-size:11.5px;max-width:30em}
-.tp-acts{display:flex;gap:6px;margin-top:10px}
-.tp-red{background:linear-gradient(180deg,var(--brand-lt),var(--brand));color:#fff;font-weight:700;padding:6px 11px;border-radius:4px}
-.tp-ln{border:1px solid rgba(255,255,255,.5);color:#fff;padding:6px 11px;border-radius:4px;font-weight:600}
-.tp-stats{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;background:linear-gradient(180deg,var(--sky-pale),var(--cloud-2));border-bottom:1px solid var(--line)}
-.tp-stats div{padding:9px 4px}
-.tp-stats b{display:block;font-family:'Be Vietnam Pro';font-weight:800;font-size:19px;color:var(--brand);line-height:1.1}
-.tp-stats em{font-style:normal;color:var(--muted);font-size:10.5px}
-.tp-light{padding:12px}
-.tp-light h5,.tp-dark h5{font-family:'Be Vietnam Pro';font-size:14.5px;font-weight:800;margin:3px 0 3px}
-.tp-light p.m{color:var(--muted);font-size:11px;margin-bottom:8px}
-.tp-card{position:relative;display:grid;grid-template-columns:1fr 70px;border:1px solid var(--line);border-radius:7px;background:var(--cloud);overflow:hidden}
-.tp-card div{padding:8px 9px}
-.tp-card small{font-family:'IBM Plex Mono';font-size:8.5px;letter-spacing:.1em;color:var(--brand);text-transform:uppercase}
-.tp-card b{display:block;font-family:'Be Vietnam Pro';font-size:12.5px}
-.tp-card li{list-style:none;position:relative;padding-left:12px;font-size:10.5px}
-.tp-card li::before{content:"";position:absolute;left:0;top:5px;width:5px;height:5px;background:var(--sun);box-shadow:0 0 0 1px rgba(var(--brand-rgb),.28)}
-.tp-card span{background:var(--cloud-3);position:relative}
-.tp-card span i{position:absolute;top:0;left:0;background:var(--brand);color:#fff;font-style:normal;font-family:'IBM Plex Mono';font-size:8px;padding:2px 5px}
-.tp-dark{padding:12px;color:#fff;background:radial-gradient(220px 120px at 8% 0%,rgba(var(--brand-rgb),.45),transparent 62%),linear-gradient(180deg,var(--ink-2),var(--ink))}
-.tp-dark p.m{color:var(--soft-2);font-size:11px;margin-bottom:8px}
-.tp-filt{display:flex;gap:5px;margin-bottom:8px}
-.tp-filt span{border:1px solid rgba(255,255,255,.22);color:var(--soft-2);border-radius:12px;padding:2px 9px;font-size:10.5px;font-weight:600}
-.tp-filt span.on{background:var(--sun);border-color:var(--sun);color:var(--on-sun)}
-.tp-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.tp-shots i{height:34px;border-radius:4px;border:1px solid var(--line-d);background:var(--ink-2)}
-.tp-shots i:first-child{border-color:var(--sun)}
-.tp-ct{padding:12px;background:linear-gradient(180deg,var(--sky-tint),var(--sky-pale));display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.tp-hot{color:#fff;background:linear-gradient(150deg,var(--hz-2),var(--hz-4));padding:7px 12px;border-radius:6px;box-shadow:0 4px 12px rgba(var(--brand-rgb),.28)}
-.tp-hot small{display:block;font-family:'IBM Plex Mono';font-size:8px;letter-spacing:.14em;color:var(--sun-hi)}
-.tp-hot b{font-family:'IBM Plex Mono';font-size:15px}
-.tp-ct a{color:var(--brand);font-weight:700}
-.tp-ft{padding:9px 12px;background:linear-gradient(180deg,var(--ink),var(--ink-3));color:var(--soft-3);font-size:10.5px;display:flex;justify-content:space-between}
-.tp-ft a{color:var(--sun-lt)}
-.tp-hd img{height:20px;width:auto}
-/* logo & hình ảnh */
-.ims{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
-.im{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--cloud);display:flex;flex-direction:column}
-.im-v{height:120px;display:flex;align-items:center;justify-content:center;padding:12px;position:relative}
-.im-v img{max-width:100%;max-height:100%;object-fit:contain;display:block}
-.im-v.dark{background:linear-gradient(150deg,var(--pv1,var(--deep)),var(--pv2,var(--brand)))}
-.im-v.light{background:var(--cream);border-bottom:1px solid var(--line)}
-.im-v.fav img{width:72px;height:72px;border-radius:16px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.18)}
-.im-v.share{padding:0}.im-v.share img{width:100%;height:100%;object-fit:cover;max-height:none}
-.im-st{position:absolute;left:8px;top:8px;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:9px;background:rgba(255,255,255,.92);color:var(--muted)}
-.im-st.up{background:var(--ok);color:#fff}.im-st.new{background:var(--sun);color:var(--on-sun)}.im-st.auto{background:#1C6E8C;color:#fff}
-.im-b{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
-.im-b b{font-family:'Be Vietnam Pro';font-size:14px;line-height:1.3}
-.im-b p{font-size:12px;color:var(--muted);line-height:1.4;flex:1}
-.im-a{display:flex;gap:6px}
-.im-a .btn{flex:1;padding:9px 10px;font-size:13.5px}
-.im-a .btn[hidden]{display:none}
-.im .msg{font-size:12.5px;margin:2px 0 0;padding:7px 9px}
-/* sao lưu */
-.bk-last{font-size:13.5px;color:var(--muted);margin:10px 0 0}
-.hrow{display:flex;gap:10px;align-items:center;padding:10px 2px;border-top:1px dashed var(--line)}
-.hrow:first-child{border-top:0}
-.hrow.cur{background:#FFFBF0;border-radius:8px;padding:10px 8px}
-.hmeta{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:14px}
-.hmeta b{font-family:'IBM Plex Mono';font-size:13.5px}
-.hmsg{flex:0 0 100%;color:var(--muted);font-size:13px;line-height:1.4}
-.hmeta code{font-size:11px;padding:0 5px}
-.hact{display:flex;gap:6px;flex:0 0 auto}
-@media(max-width:520px){ .hrow{flex-wrap:wrap} .hact{flex:0 0 100%} .hact .ib{flex:1} }
 </style>
 </head>
 <body>
@@ -417,8 +243,8 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
 <div class="top">
   <div class="wrap">
     <div class="top-in">
-      <img id="topLogo" src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.20</span></small></div>
+      <img src="../img/logo-trang.png" alt="">
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v3.9</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -426,9 +252,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
       <button class="tab" data-t="videos">Video<i id="cVideos">0</i></button>
       <button class="tab" data-t="prices">Bảng giá<i id="cPrices">0</i></button>
       <button class="tab" data-t="content">Nội dung</button>
-      <button class="tab" data-t="theme">Màu sắc</button>
       <button class="tab" data-t="contact">Liên hệ</button>
-      <button class="tab" data-t="backup">Sao lưu</button>
     </nav>
   </div>
 </div>
@@ -443,7 +267,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
       <ol class="steps">
         <li>Mở <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>trang tạo mã khóa GitHub</b></a> (đăng nhập nếu được hỏi)</li>
         <li>Token name: <code>Quan ly web AIOTI</code> · Expiration: chọn dài nhất</li>
-        <li>Repository access: <b>Only select repositories</b> → chọn kho website (ví dụ <code>aiotigroup.github.io</code>)</li>
+        <li>Repository access: <b>Only select repositories</b> → chọn <code>website-aioti</code></li>
         <li>Permissions → Repository permissions → <b>Contents</b>: <b>Read and write</b></li>
         <li>Bấm <b>Generate token</b>, copy mã, dán vào ô dưới</li>
       </ol>
@@ -451,17 +275,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
         <input id="inTok" type="password" autocomplete="off" placeholder="github_pat_..."></div>
       <details class="grp" style="margin:4px 0 12px"><summary>Nâng cao</summary><div>
         <div class="g2">
-          <div class="fld"><label for="inOwner">Tài khoản</label><input id="inOwner" value="aiotigroup"></div>
-          <div class="fld"><label for="inRepo">Kho</label><input id="inRepo" value="aiotigroup.github.io"></div>
+          <div class="fld"><label for="inOwner">Tài khoản</label><input id="inOwner" value="khoantm"></div>
+          <div class="fld"><label for="inRepo">Kho</label><input id="inRepo" value="website-aioti"></div>
         </div>
         <div class="fld"><label for="inBranch">Nhánh</label><input id="inBranch" value="main"></div>
       </div></details>
       <button class="btn btn-red btn-w" id="btnLogin">Kết nối</button>
       <div id="loginMsg"></div>
-      <details class="grp" style="margin-top:14px"><summary>Khôi phục web từ file sao lưu</summary><div>
-        <p class="hint" style="margin-bottom:10px">Dùng khi web bị mất / kho GitHub trống nên chưa vào được công cụ quản lý. Dán mã khóa ở trên, rồi chọn file <b>.zip</b> sao lưu.</p>
-        <button class="btn btn-line btn-w" id="btnLoginZip" type="button">Chọn file sao lưu (.zip)…</button>
-      </div></details>
     </div>
   </section>
 
@@ -503,8 +323,6 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
     <div class="tb" id="wTools">
       <button class="ib" data-t="all" type="button">Chọn tất cả</button>
       <button class="ib" data-t="none" type="button">Bỏ chọn</button>
-      <button class="ib" data-t="selnew" type="button" title="Chọn các ảnh vừa thêm, chưa đăng lên web">Chọn ảnh mới (0)</button>
-      <button class="ib cap" data-t="bulkcap" type="button" disabled>✎ Chú thích hàng loạt (0)</button>
       <button class="ib del" data-t="delsel" type="button" disabled>Xóa đã chọn (0)</button>
       <button class="ib del" data-t="delall" type="button">Xóa toàn bộ</button>
       <button class="ib" data-t="dup" type="button">Tìm ảnh trùng</button>
@@ -536,12 +354,6 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
       <button class="btn btn-sun btn-w" id="vAdd" type="button">＋ Thêm video vào <span id="vCatName">Điện mặt trời</span></button>
       <div id="vMsg"></div>
     </div>
-    <div class="pills" id="vFilter">
-      <button class="pill on" data-c="all">Tất cả</button>
-      <button class="pill" data-c="solar">Điện mặt trời</button>
-      <button class="pill" data-c="camera">Camera</button>
-      <button class="pill" data-c="smart">Nhà thông minh</button>
-    </div>
     <div class="list" id="vList"></div>
   </section>
 
@@ -567,76 +379,6 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <section id="vContent" class="hide">
     <p class="hint" style="margin:12px 2px 0">Mẹo: bọc chữ trong hai dấu sao để in đậm — ví dụ <code>**camera an ninh**</code>.</p>
     <div id="cForms"></div>
-  </section>
-
-  <!-- MÀU SẮC -->
-  <section id="vTheme" class="hide">
-    <div class="th-lay">
-      <div class="th-main">
-        <div class="card">
-          <h2>1. Chọn bộ màu mẫu</h2>
-          <p class="sub">Bấm một bộ để đổi màu cả trang web. Sau đó có thể chỉnh tiếp 4 màu gốc ở bước 2.</p>
-          <div id="thPresets"></div>
-        </div>
-        <div class="card">
-          <h2>2. Tinh chỉnh 4 màu gốc</h2>
-          <p class="sub">Các sắc đậm, nhạt và dải màu đầu trang tự tính theo 4 màu này.</p>
-          <div id="thPick"></div>
-        </div>
-        <div class="card">
-          <h2>3. Logo &amp; hình ảnh</h2>
-          <p class="sub">Bấm <b>Tải ảnh mới</b> để thay. Ảnh tự nén, tự cắt cho vừa. Ảnh gốc luôn được giữ lại — bấm <b>Về ảnh gốc</b> để dùng lại.</p>
-          <div class="ims" id="thImgs"></div>
-        </div>
-      </div>
-      <div class="th-side">
-        <div class="card">
-          <h2>Xem thử</h2>
-          <p class="th-now" id="thNow"></p>
-          <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px">
-            <button class="btn btn-line" id="thFull" type="button" style="padding:10px 8px;font-size:14px">Xem cả trang ↗</button>
-            <button class="btn btn-line" id="thReset" type="button" style="padding:10px 8px;font-size:14px">↺ Về màu gốc</button>
-          </div>
-          <div class="th-warn" id="thWarn"></div>
-          <div class="tp" id="thPrev">
-            <div class="tp-hd"><img id="tpLogo" src="../img/logo-trang.png" alt=""><b>AIOTI</b><span>Dịch vụ · Công trình</span><i>0978 113 762</i></div>
-            <div class="tp-hero"><p class="tp-eb">Công ty TNHH AIOTI</p><h4>Công nghệ · An ninh · <span>Năng lượng</span></h4>
-              <p>Khảo sát, thiết kế, thi công điện mặt trời và camera an ninh.</p>
-              <div class="tp-acts"><span class="tp-red">Gọi ngay</span><span class="tp-ln">Xem công trình</span></div></div>
-            <div class="tp-stats"><div><b>9</b><em>năm trong nghề</em></div><div><b>1.000+</b><em>thiết bị</em></div><div><b>100+</b><em>kWp</em></div></div>
-            <div class="tp-light"><p class="tp-eb">Dịch vụ</p><h5>Sản phẩm và dịch vụ</h5><p class="m">Làm trọn gói từ bản vẽ đến nghiệm thu.</p>
-              <div class="tp-card"><div><small>Hộ gia đình · Doanh nghiệp</small><b>Điện mặt trời</b><ul><li>Hòa lưới, có lưu trữ</li><li>Bảo hành rõ ràng</li></ul></div><span><i>NHÓM 01</i></span></div></div>
-            <div class="tp-dark"><p class="tp-eb">Công trình</p><h5>Công trình đã làm</h5><p class="m">Ảnh thực tế tại công trình.</p>
-              <div class="tp-filt"><span class="on">Tất cả</span><span>Điện mặt trời</span><span>Camera</span></div>
-              <div class="tp-shots"><i></i><i></i><i></i><i></i></div></div>
-            <div class="tp-ct"><span class="tp-hot"><small>HOTLINE · ZALO</small><b>0978 113 762</b></span><a>aiotigroup@gmail.com</a></div>
-            <div class="tp-ft"><span>© AIOTI</span><a>Nhắn Zalo</a></div>
-          </div>
-          <p class="hint" style="margin-top:10px">Logo, hình đại bàng và biểu tượng camera là ảnh nên giữ nguyên màu. Đổi màu xong bấm <b>Đăng lên web</b> để áp dụng.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SAO LƯU -->
-  <section id="vBackup" class="hide">
-    <div class="card">
-      <h2>Tải bản sao lưu về máy</h2>
-      <p class="sub">Tải toàn bộ web đang chạy (chữ, ảnh, video, bảng giá, màu sắc, logo, công cụ quản lý) thành một file <b>.zip</b>. Dùng để khôi phục khi web bị lỗi, bị hack, hoặc mất tài khoản GitHub.</p>
-      <button class="btn btn-sun btn-w" id="bkDown" type="button">⬇ Tải bản sao lưu (.zip)</button>
-      <p class="bk-last" id="bkLast"></p>
-      <p class="hint" style="margin-top:6px">Nên tải sau mỗi đợt thay đổi lớn. Cất 1 bản trên máy tính + 1 bản trên NAS / ổ cứng ngoài.</p>
-    </div>
-    <div class="card">
-      <h2>Lịch sử các lần đăng</h2>
-      <p class="sub">Mỗi lần bấm <b>Đăng lên web</b>, GitHub tự lưu lại một bản. Bấm <b>Xem</b> để xem lại web lúc đó, <b>Khôi phục</b> để đưa web về bản đó — bản hiện tại vẫn giữ trong lịch sử.</p>
-      <div id="bkHist"><button class="btn btn-line btn-w" id="bkHistLoad" type="button">Xem lịch sử</button></div>
-    </div>
-    <div class="card">
-      <h2>Khôi phục từ file sao lưu</h2>
-      <p class="sub">Chọn file <b>.zip</b> đã tải về trước đây (hoặc file "Download ZIP" của GitHub). Toàn bộ web sẽ về đúng như trong file.</p>
-      <button class="btn btn-line btn-w" id="bkZip" type="button">Chọn file sao lưu (.zip)…</button>
-    </div>
   </section>
 
   <!-- LIÊN HỆ -->
@@ -670,13 +412,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=320"></script>
+<script src="render.js?v=39"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="3.20";
+const APP_VER="3.9";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -702,7 +444,7 @@ async function gh(path,opt={}){
 function friendly(e){
   if(e.status===401) return "Mã khóa sai hoặc đã hết hạn. Hãy tạo mã mới và kết nối lại.";
   if(e.status===403) return "Mã khóa không đủ quyền. Kiểm tra quyền Contents: Read and write cho đúng kho.";
-  if(e.status===404) return "Không tìm thấy kho hoặc file. Kiểm tra tên tài khoản / kho, và mã khóa đã chọn đúng kho website chưa (Đăng nhập → Nâng cao).";
+  if(e.status===404) return "Không tìm thấy kho hoặc file. Kiểm tra tên tài khoản / kho, và mã khóa đã chọn đúng kho website-aioti chưa.";
   if(e.status===409||e.status===422) return "GitHub từ chối thay đổi ("+e.message+"). Hãy bấm Tải lại rồi thử lại.";
   if(e instanceof TypeError) return "Không kết nối được mạng. Kiểm tra internet rồi thử lại.";
   return e.message||String(e);
@@ -713,15 +455,13 @@ const raw=p=>`https://raw.githubusercontent.com/${cfg.owner}/${cfg.repo}/${base.
 
 async function load(){
   show("vLoad"); $("loadMsg").textContent="Đang tải website từ GitHub…";
-  let ref;
-  try{ ref=await gh(`/git/ref/heads/${cfg.branch}`); }
-  catch(e){ if(e.status===409||e.status===404){ const x=new Error("Kho GitHub đang trống hoặc không tìm thấy nhánh "+cfg.branch+". Nếu có file sao lưu, mở mục \"Khôi phục web từ file sao lưu\" bên dưới."); x.status=0; throw x; } throw e; }
+  const ref=await gh(`/git/ref/heads/${cfg.branch}`);
   const commit=ref.object.sha;
   const c=await gh(`/git/commits/${commit}`);
   const tree=await gh(`/git/trees/${c.tree.sha}?recursive=1`);
   const paths=new Set(tree.tree.filter(t=>t.type==="blob").map(t=>t.path));
   const dj=tree.tree.find(t=>t.path==="data.json");
-  if(!dj){ const e=new Error("Chưa có file data.json trên GitHub. Hãy upload bộ file khởi tạo trước (xem hướng dẫn), hoặc dùng mục \"Khôi phục web từ file sao lưu\" bên dưới."); throw e; }
+  if(!dj){ const e=new Error("Chưa có file data.json trên GitHub. Hãy upload bộ file khởi tạo trước (xem hướng dẫn)."); throw e; }
   const blob=await gh(`/git/blobs/${dj.sha}`);
   const data=JSON.parse(b64ToText(blob.content));
   data.gallery=data.gallery||[]; data.prices=data.prices||[];
@@ -730,10 +470,7 @@ async function load(){
   const dft=(o,k,v)=>{ if(o&&(o[k]==null||o[k]==="")) o[k]=v; };
   data.video=data.video||{};
   dft(data.stats,"labelYear","Trong nghề từ {năm}"); dft(data.stats,"labelDevices","Thiết bị an ninh đã lắp đặt"); dft(data.stats,"labelKwp","Điện mặt trời đã hòa lưới");
-  // đơn vị con số: chỉ điền mặc định khi chưa có (để trống = cố ý ẩn đơn vị)
-  if(data.stats.unitYear===undefined) data.stats.unitYear="năm";
-  if(data.stats.unitDevices===undefined) data.stats.unitDevices="";
-  if(data.stats.unitKwp===undefined) data.stats.unitKwp="kWp";
+  if(data.stats.unitYear==null) data.stats.unitYear="năm"; if(data.stats.unitDevices==null) data.stats.unitDevices=""; if(data.stats.unitKwp==null) data.stats.unitKwp="kWp";
   dft(data.works,"eyebrow","Công trình"); dft(data.services,"eyebrow","Dịch vụ");
   dft(data.video,"eyebrow","Video"); dft(data.video,"title","Video công trình");
   dft(data.pricing,"eyebrow","Bảng giá"); dft(data.contact,"eyebrow","Liên hệ"); dft(data.contact,"title","Gọi AIOTI");
@@ -743,36 +480,20 @@ async function load(){
   D=data; newFiles=new Map(); junk=[];
   sel=new Set(); undo=null; if($("wMsg")){$("wMsg").innerHTML="";$("dupOut").innerHTML="";}
   $("acctInfo").innerHTML=`Kho: <b>${esc(cfg.owner)}/${esc(cfg.repo)}</b> · nhánh <b>${esc(cfg.branch)}</b><br>Phiên bản đang sửa: <code>${commit.slice(0,7)}</code><br>Công cụ quản lý: <b>v${APP_VER}</b>`;
-  // địa chỉ web: công cụ quản lý nằm ở <web>/admin/ → tự nhận ra địa chỉ web thật (khi đổi tài khoản / kho / tên miền)
-  let urlMoved="";
-  if(location.protocol==="https:"&&/\/admin\/(index\.html)?$/.test(location.pathname)){
-    const here=location.origin+location.pathname.replace(/admin\/(index\.html)?$/,"");
-    D.site=D.site||{};
-    if(D.site.url!==here){ urlMoved=D.site.url||"(chưa có)"; D.site.url=here; }
-  }
   $("viewSite").href=D.site&&D.site.url?D.site.url:"../";
-  buildForms(); setView(wView); renderVideos(); renderPrices(); renderTheme(); updateBar(); histReset();
-  if(urlMoved){
-    const o=dialog(`<h3>Địa chỉ website đã đổi</h3>
-      <p>Địa chỉ cũ: <code>${esc(urlMoved)}</code><br>Địa chỉ mới: <code>${esc(D.site.url)}</code></p>
-      <div class="msg warn">Bấm <b>Đăng lên web</b> một lần để cập nhật địa chỉ mới cho nút "Xem web", ảnh chia sẻ Zalo/Facebook và Google.</div>
-      <div class="row"><button class="btn btn-red" id="mvOk">Đã hiểu</button></div>`);
-    o.querySelector("#mvOk").onclick=()=>o.remove();
-  }
-  if(typeof hist!=="undefined"){ hist=[]; $("bkHist").innerHTML='<button class="btn btn-line btn-w" id="bkHistLoad2" type="button" onclick="loadHistory(false)">Xem lịch sử</button>'; }
-  $("tabs").classList.remove("hide"); $("bar").classList.remove("hide"); setTopH();
+  buildForms(); setView(wView); renderVideos(); renderPrices(); updateBar(); histReset();
+  $("tabs").classList.remove("hide"); $("bar").classList.remove("hide");
   switchTab(curTab||"works");
 }
 
 /* ======================= GIAO DIỆN CHUNG ======================= */
-const VIEWS=["vLogin","vLoad","vWorks","vVideos","vPrices","vContent","vTheme","vContact","vBackup"];
+const VIEWS=["vLogin","vLoad","vWorks","vVideos","vPrices","vContent","vContact"];
 function show(v){VIEWS.forEach(x=>$(x).classList.toggle("hide",x!==v));}
 let curTab="works";
 function switchTab(t){
   curTab=t;
   document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
-  show({works:"vWorks",videos:"vVideos",prices:"vPrices",content:"vContent",theme:"vTheme",contact:"vContact",backup:"vBackup"}[t]);
-  if(t==="backup"&&typeof renderBackup==="function"){ renderBackup(); if(!hist.length&&D) loadHistory(false); }
+  show({works:"vWorks",videos:"vVideos",prices:"vPrices",content:"vContent",contact:"vContact"}[t]);
   window.scrollTo(0,0);
 }
 $("tabs").addEventListener("click",e=>{const b=e.target.closest(".tab"); if(b) switchTab(b.dataset.t);});
@@ -790,7 +511,7 @@ const H={stack:[],i:-1,lastT:0,lastEl:null,restoring:false,MAX:200};
 const hSnap=()=>({d:JSON.stringify(D),files:[...newFiles],junk:junk.slice()});
 const hSame=(x,y)=>x.d===y.d&&x.junk.join("\n")===y.junk.join("\n")&&x.files.length===y.files.length&&x.files.every(([k],j)=>y.files[j][0]===k);
 function hRevokeAll(){
-  const urls=new Set(); H.stack.forEach(s=>s.files.forEach(([,v])=>urls.add(v.url))); newFiles.forEach(v=>{urls.add(v.url); if(v.thumb) urls.add(v.thumb);}); H.stack.forEach(st=>st.files.forEach(([,v])=>{ if(v.thumb) urls.add(v.thumb); }));
+  const urls=new Set(); H.stack.forEach(s=>s.files.forEach(([,v])=>urls.add(v.url))); newFiles.forEach(v=>urls.add(v.url));
   urls.forEach(u=>{ try{URL.revokeObjectURL(u);}catch(_){ } });
 }
 function histReset(){ H.stack=[hSnap()]; H.i=0; H.lastEl=null; hBtns(); }
@@ -815,8 +536,7 @@ function hRestore(s){
   H.restoring=true;
   D=JSON.parse(s.d); newFiles=new Map(s.files); junk=s.junk.slice();
   for(const id of [...sel]) if(!D.gallery.some(p=>p.id===id)) sel.delete(id);
-  Object.keys(imgMsg).forEach(k=>delete imgMsg[k]);
-  buildForms(); renderWorks(); renderVideos(); renderPrices(); renderTheme(); updateBar();
+  buildForms(); renderWorks(); renderVideos(); renderPrices(); updateBar();
   H.restoring=false; H.lastEl=null; hBtns();
 }
 function histUndo(){ if(H.i>0&&!document.querySelector(".ov")){ H.i--; hRestore(H.stack[H.i]); hNote("Đã hoàn tác"); } }
@@ -833,7 +553,6 @@ document.addEventListener("keydown",e=>{
 
 function updateBar(){
   if(!D) return;
-  requestAnimationFrame(()=>{ const b=$("bar"); if(b&&b.offsetHeight) document.documentElement.style.setProperty("--barh",b.offsetHeight+"px"); });
   $("cWorks").textContent=D.gallery.length; $("cPrices").textContent=D.prices.length; $("cVideos").textContent=D.videos.length;
   const changed=JSON.stringify(D)!==base.snap||newFiles.size||junk.length;
   const nNew=[...newFiles.values()];
@@ -841,18 +560,14 @@ function updateBar(){
   const nw=nNew.filter(f=>f.kind==="anh").length, np=nNew.filter(f=>f.kind==="gia").length;
   if(nw) parts.push(`${nw} ảnh công trình mới`);
   if(np) parts.push(`${np} ảnh bảng giá mới`);
-  const ni=nNew.filter(f=>f.kind==="img").length; if(ni) parts.push(`${ni} logo / hình ảnh mới`);
   const bv=new Set((base.data.videos||[]).map(v=>v.id)); const nv=D.videos.filter(v=>!bv.has(v.id)).length;
   if(nv) parts.push(`${nv} video mới`);
-  if(JSON.stringify(D.theme||null)!==JSON.stringify(base.data.theme||null)) parts.push("đổi màu web");
   if(junk.length) parts.push(`xóa ${junk.length} file rác`);
   $("barSt").innerHTML=changed?`<b>Có thay đổi chưa đăng</b>${parts.length?"<br>"+parts.join(" · "):""}`:"Không có thay đổi";
-  $("btnPublish").disabled=!changed||!!(typeof PUB!=="undefined"&&PUB);
-  $("btnPublish").textContent=(typeof PUB!=="undefined"&&PUB)?"Đang đăng…":"Đăng lên web";
+  $("btnPublish").disabled=!changed;
   histTrack();
 }
 window.addEventListener("beforeunload",e=>{
-  if(typeof PUB!=="undefined"&&PUB){e.preventDefault();e.returnValue="";return;}
   if(D&&(JSON.stringify(D)!==base.snap||newFiles.size||junk.length)){e.preventDefault();e.returnValue="";}
 });
 
@@ -895,31 +610,18 @@ async function browserReads(f){
   if(!window.createImageBitmap) return false;
   try{ const b=await createImageBitmap(f); if(b.close) b.close(); return true; }catch(_){ return false; }
 }
-/* đọc vài byte đầu để biết ảnh thật sự là gì (tên file có thể ghi .jpg nhưng ruột là HEIC) */
-async function sniff(f){
-  try{
-    const b=new Uint8Array(await f.slice(0,16).arrayBuffer());
-    const s=String.fromCharCode(...b.slice(4,12));
-    if(/^ftyp(heic|heix|hevc|heim|heis|mif1|msf1)/.test(s)) return "heic";
-    if(b[0]===0xFF&&b[1]===0xD8) return "jpg";
-    if(b[0]===0x89&&b[1]===0x50) return "png";
-    return "";
-  }catch(_){ return ""; }
-}
 async function normalizeFiles(list,say){
   const out=[], failed=[];
-  for(const f of list) if(!isHeic(f)&&await sniff(f)==="heic") f._heic=true;   // HEIC mang đuôi .jpg
-  const isH=f=>isHeic(f)||f._heic;
-  const heic=list.filter(isH);
+  const heic=list.filter(isHeic);
   let k=0;
   for(const f of list){
-    if(!isH(f)||await browserReads(f)){ out.push(f); continue; }
+    if(!isHeic(f)||await browserReads(f)){ out.push(f); continue; }
     k++; if(say) say(`Đang chuyển ảnh HEIC sang JPG ${k}/${heic.length}… (lần đầu chờ tải công cụ chuyển đổi)`);
     try{
       const conv=await loadHeicLib();
       let b=await conv({blob:f,toType:"image/jpeg",quality:.92});
       if(Array.isArray(b)) b=b[0];
-      out.push(new File([b],(f.name||"anh").replace(/\.(hei[cf]|jpe?g)$/i,"")+".jpg",{type:"image/jpeg"}));
+      out.push(new File([b],(f.name||"anh").replace(/\.hei[cf]$/i,"")+".jpg",{type:"image/jpeg"}));
     }catch(e){ console.error(e); failed.push(f.name||"ảnh"); }
   }
   return {files:out,failed};
@@ -933,40 +635,22 @@ async function addWorkFiles(list){
   let fs=list.filter(isImg);
   if(!fs.length) return 0;
   const say=t=>{ $("wMsg").innerHTML=`<div class="msg warn">${esc(t)}</div>`; };
-  const r=await normalizeFiles(fs, say);
+  const r=await normalizeFiles(fs, fs.some(isHeic)?say:null);
   fs=r.files; heicNote=heicFailMsg(r.failed);
   if(r.failed.length) $("wMsg").innerHTML=`<div class="msg bad">${heicFailMsg(r.failed).trim()}</div>`;
   else if(list.some(isHeic)) $("wMsg").innerHTML="";
   if(!fs.length) return 0;
-  const added=fs.map(()=>({id:"",cat:wCat,cap:""})), thumbs=new Array(fs.length);
-  let next=0, done=0;
-  const work=async()=>{ while(next<fs.length){ const i=next++; thumbs[i]=await makeThumb(fs[i]); done++; if(fs.length>8&&done%4===0) say(`Đang chuẩn bị ảnh ${done}/${fs.length}…`); } };
-  await Promise.all([work(),work(),work()]);       // làm 3 ảnh cùng lúc cho nhanh
-  fs.forEach((f,i)=>{ const id=uid(); added[i].id=id; newFiles.set(id,{file:f,kind:"anh",url:URL.createObjectURL(f),thumb:thumbs[i]}); });
-  if(fs.length>8) $("wMsg").innerHTML="";
+  const added=fs.map(f=>{const id=uid();newFiles.set(id,{file:f,kind:"anh",url:URL.createObjectURL(f)});return {id,cat:wCat,cap:""};});
   D.gallery=added.concat(D.gallery);          // ảnh mới lên đầu
   if(wFilter!=="all"&&wFilter!==wCat){ wFilter="all"; $("wFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.c==="all")); }
-  sel=new Set(added.map(a=>a.id));            // chọn sẵn ảnh vừa thêm → ghi chú thích hàng loạt ngay
   renderWorks(); updateBar();
-  if(added.length>1&&!r.failed.length) $("wMsg").innerHTML=`<div class="msg good" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span style="flex:1">Đã thêm <b>${added.length}</b> ảnh vào ${esc(CATS[wCat])} — đang chọn sẵn.</span><button class="ib cap" type="button" onclick="bulkCaption([...sel])" style="background:#FFF6DC;border-color:var(--sun)">✎ Ghi chú thích chung</button></div>`;
   scanDup(true);      // tự cảnh báo nếu ảnh vừa thêm trùng ảnh đã có
   return fs.length;
 }
 
-/* ảnh thu nhỏ ~360px cho danh sách: ảnh điện thoại 4000px mà hiện cả trăm tấm sẽ làm treo trình duyệt */
-async function makeThumb(f){
-  try{
-    let bm;
-    try{ bm=await createImageBitmap(f,{resizeWidth:360,resizeQuality:"medium",imageOrientation:"from-image"}); }
-    catch(_){ const b0=await createImageBitmap(f); const s=Math.min(1,360/b0.width); const c0=document.createElement("canvas"); c0.width=Math.round(b0.width*s); c0.height=Math.round(b0.height*s); c0.getContext("2d").drawImage(b0,0,0,c0.width,c0.height); b0.close&&b0.close(); bm=c0; }
-    const c=document.createElement("canvas"); c.width=bm.width; c.height=bm.height; c.getContext("2d").drawImage(bm,0,0); if(bm.close) bm.close();
-    const b=await new Promise(r=>c.toBlob(r,"image/jpeg",.8));
-    return b?URL.createObjectURL(b):null;
-  }catch(_){ return null; }                     // không đọc được → dùng file gốc (lúc đăng sẽ tự bỏ qua nếu hỏng)
-}
 function thumbOf(it,kind){
   const nf=newFiles.get(it.id);
-  if(nf) return nf.thumb||nf.url;              // ảnh mới: dùng bản thu nhỏ cho nhẹ (bản gốc chỉ dùng khi đăng / xem lớn)
+  if(nf) return nf.url;
   return raw(kind==="gia"?`gia/t-${it.id}.jpg`:`anh/t-${it.id}.jpg`);
 }
 let wView=(()=>{ try{ return localStorage.getItem("aioti_wview")||"list"; }catch(_){ return "list"; } })();
@@ -1085,7 +769,7 @@ async function addByTab(files){
   }
   if(curTab!=="works") switchTab("works");
   const n=await addWorkFiles(files);
-  if(heicNote||n===1) toast((n?`Đã thêm ${n} ảnh vào ${CATS[wCat]}.`:"")+heicNote, !!heicNote); else if(!n&&!anyImg) toast("Không có file ảnh nào",true);   // ≥2 ảnh: giữ thông báo "Ghi chú thích chung"
+  if(n||heicNote) toast((n?`Đã thêm ${n} ảnh vào ${CATS[wCat]}.`:"")+heicNote, !!heicNote); else if(!anyImg) toast("Không có file ảnh nào",true);
 }
 function toast(t,bad){
   const html=`<div class="msg ${bad?"bad":"good"}">${esc(t.trim())}</div>`;
@@ -1127,11 +811,6 @@ function updTools(nVis){
   t.querySelector('[data-t="all"]').disabled=!nv;
   t.querySelector('[data-t="delall"]').disabled=!nv;
   t.querySelector('[data-t="dup"]').disabled=D.gallery.length<2;
-  const nNew=D.gallery.filter(p=>newFiles.has(p.id)).length;
-  t.querySelector('[data-t="selnew"]').textContent=`Chọn ảnh mới (${nNew})`;
-  t.querySelector('[data-t="selnew"]').disabled=!nNew;
-  t.querySelector('[data-t="bulkcap"]').textContent=`✎ Chú thích hàng loạt (${n})`;
-  t.querySelector('[data-t="bulkcap"]').disabled=!n;
 }
 function removeIds(ids,silent){
   ids=ids.filter(id=>D.gallery.some(p=>p.id===id));
@@ -1164,64 +843,7 @@ $("wTools").addEventListener("click",e=>{
       removeIds(vis.map(i=>D.gallery[i].id));
   }
   if(t==="dup") scanDup(false);
-  if(t==="selnew"){ sel=new Set(D.gallery.filter(p=>newFiles.has(p.id)).map(p=>p.id)); if(wFilter!=="all"){ wFilter="all"; $("wFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.c==="all")); } renderWorks(); }
-  if(t==="bulkcap") bulkCaption([...sel]);
 });
-
-/* ---- CHÚ THÍCH HÀNG LOẠT: ghi một chú thích (và/hoặc ngành) cho nhiều ảnh cùng lúc ---- */
-let bcLast={mode:"empty",text:""};
-function bulkCaption(ids){
-  const items=D.gallery.filter(p=>ids.includes(p.id));
-  if(!items.length) return;
-  const nEmpty=items.filter(p=>!String(p.cap||"").trim()).length;
-  const used=[...new Set(D.gallery.map(p=>String(p.cap||"").trim()).filter(Boolean))].slice(0,4);
-  const o=dialog(`<h3>Chú thích hàng loạt — ${items.length} ảnh</h3>
-    <div class="bc-th">${items.slice(0,10).map(p=>`<img src="${esc(thumbOf(p,"anh"))}" alt="">`).join("")}${items.length>10?`<span>+${items.length-10} ảnh</span>`:""}</div>
-    <div class="fld"><label for="bcText">Chú thích chung</label>
-      <textarea id="bcText" placeholder="Ví dụ: Hệ 10kWp hòa lưới — 18 tấm 550W, inverter Huawei, mái tôn nhà xưởng Bình Dương"></textarea></div>
-    ${used.length?`<div class="bc-sug"><span class="hint" style="margin:0;align-self:center">Dùng lại:</span>${used.map(u=>`<button type="button" data-u="${esc(u)}">${esc(u.length>38?u.slice(0,36)+"…":u)}</button>`).join("")}</div>`:""}
-    <div class="bc-modes">
-      <label><input type="radio" name="bcMode" value="empty"><span><b>Chỉ ghi cho ảnh chưa có chú thích</b><small>${nEmpty} / ${items.length} ảnh chưa có — ảnh đã có chú thích giữ nguyên</small></span></label>
-      <label><input type="radio" name="bcMode" value="replace"><span><b>Thay toàn bộ</b><small>Ghi đè chú thích cũ của cả ${items.length} ảnh</small></span></label>
-      <label><input type="radio" name="bcMode" value="append"><span><b>Thêm vào cuối chú thích cũ</b><small>Ví dụ thêm "— nghiệm thu 10/2026"</small></span></label>
-      <label><input type="radio" name="bcMode" value="number"><span><b>Thay toàn bộ + đánh số</b><small>Chú thích (1/${items.length}), (2/${items.length})… theo thứ tự trên web</small></span></label>
-    </div>
-    <div class="fld"><label for="bcCat">Đổi ngành cho các ảnh này</label>
-      <select id="bcCat"><option value="">Giữ nguyên ngành</option>${Object.entries(CATS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select></div>
-    <p class="bc-prev" id="bcPrev"></p>
-    <div class="row"><button class="btn btn-line" id="bcNo" type="button">Thôi</button><button class="btn btn-red" id="bcOk" type="button">Áp dụng</button></div>`);
-  o.querySelector(".dlg").style.maxWidth="640px";
-  const q=x=>o.querySelector(x), txt=q("#bcText");
-  const mode0=nEmpty&&nEmpty<items.length?"empty":(bcLast.mode==="empty"?"replace":bcLast.mode);
-  q(`input[name=bcMode][value=${nEmpty===items.length&&mode0==="append"?"replace":mode0}]`).checked=true;
-  const mode=()=>q("input[name=bcMode]:checked").value;
-  const newCap=(p,k,t)=>{
-    const old=String(p.cap||"").trim(), m=mode();
-    if(m==="empty") return old?old:t;
-    if(m==="append") return t?(old?`${old} — ${t}`:t):old;
-    if(m==="number") return t?`${t} (${k+1}/${items.length})`:old;
-    return t;
-  };
-  const preview=()=>{
-    const t=txt.value.trim(), cat=q("#bcCat").value;
-    const ch=items.filter((p,k)=>newCap(p,k,t)!==String(p.cap||"").trim()).length;
-    const ex=items.find((p,k)=>newCap(p,k,t)!==String(p.cap||"").trim());
-    q("#bcPrev").innerHTML=(t||cat)?`Sẽ đổi chú thích <b>${ch}</b> / ${items.length} ảnh${cat?` · đổi ngành sang <b>${esc(CATS[cat])}</b>`:""}.${ex?`<br>Ví dụ: “${esc(newCap(ex,items.indexOf(ex),t))}”`:""}`:"Gõ chú thích hoặc chọn ngành để áp dụng.";
-    q("#bcOk").disabled=!(t||cat)||(!ch&&!cat);
-  };
-  o.addEventListener("input",preview); o.addEventListener("change",preview);
-  o.querySelectorAll(".bc-sug button").forEach(b=>b.onclick=()=>{ txt.value=b.dataset.u; preview(); txt.focus(); });
-  q("#bcNo").onclick=()=>o.remove();
-  q("#bcOk").onclick=()=>{
-    const t=txt.value.trim(), cat=q("#bcCat").value;
-    let n=0;
-    items.forEach((p,k)=>{ const c=newCap(p,k,t); if(c!==String(p.cap||"").trim()){ p.cap=c; n++; } if(cat&&p.cat!==cat){ p.cat=cat; if(p.cover) D.gallery.forEach(x=>{ if(x!==p&&x.cat===cat) delete x.cover; }); } });
-    bcLast={mode:mode(),text:t};
-    o.remove(); renderWorks(); updateBar();
-    $("wMsg").innerHTML=`<div class="msg good">Đã ghi chú thích cho <b>${n}</b> ảnh${cat?` và đổi ngành ${items.length} ảnh sang ${esc(CATS[cat])}`:""}. Sai thì bấm <b>Hoàn tác</b> (Ctrl+Z).</div>`;
-  };
-  preview(); setTimeout(()=>txt.focus(),50);
-}
 $("wList").addEventListener("change",e=>{
   if(e.target.dataset.sel===undefined) return;
   const row=e.target.closest(".it"), id=D.gallery[+row.dataset.i].id;
@@ -1437,11 +1059,8 @@ function hashOf(src){
     im.src=src;
   });
 }
-const fpHex=b=>b.match(/.{4}/g).map(x=>parseInt(x,2).toString(16)).join("");
-const fpBits=h=>[...h].map(c=>parseInt(c,16).toString(2).padStart(4,"0")).join("");
 const ham=(a,b)=>{let n=0;for(let i=0;i<64;i++) if(a[i]!==b[i]) n++;return n;};
 async function hashItem(p){
-  if(p.fp&&/^[0-9a-f]{16}$/.test(p.fp)) return fpBits(p.fp);   // vân tay đã lưu trong data.json — khỏi tải ảnh để so
   const key=p.id+(newFiles.has(p.id)?"@new":"");
   if(hashCache.has(key)) return hashCache.get(key);
   const h=await hashOf(thumbOf(p,"anh")); hashCache.set(key,h); return h;
@@ -1453,10 +1072,7 @@ async function scanDup(onlyNew){
   if(items.length<2){ if(!onlyNew) out.innerHTML='<div class="msg good">Chưa đủ ảnh để so sánh.</div>'; return; }
   if(!onlyNew) out.innerHTML=`<div class="msg warn">Đang so sánh ${items.length} ảnh… <span id="dupPg">0</span>/${items.length}</div>`;
   const hs=[];
-  const need=items.filter(p=>!(p.fp||hashCache.has(p.id+(newFiles.has(p.id)?"@new":"")))).length;
-  if(onlyNew&&need>30) out.innerHTML=`<div class="msg warn">Đang kiểm tra ảnh trùng… <span id="dupPg">0</span>/${items.length}</div>`;
-  for(let i=0;i<items.length;i++){ hs.push(await hashItem(items[i])); const pg=$("dupPg"); if(pg&&(i%10===0||i===items.length-1)) pg.textContent=i+1; }
-  if(onlyNew&&need>30) out.innerHTML="";
+  for(let i=0;i<items.length;i++){ hs.push(await hashItem(items[i])); const pg=$("dupPg"); if(pg) pg.textContent=i+1; }
   // gom nhóm các ảnh giống nhau
   const par=items.map((_,i)=>i), f=i=>par[i]===i?i:(par[i]=f(par[i]));
   for(let i=0;i<items.length;i++) for(let j=i+1;j<items.length;j++)
@@ -1472,18 +1088,17 @@ async function scanDup(onlyNew){
   const extra=groups.reduce((s,x)=>s+x.length-1,0);
   out.innerHTML=`<div class="dup"><h3>${onlyNew?"Ảnh vừa thêm có vẻ đã có sẵn":"Tìm thấy ảnh trùng"}</h3>
     <p class="hint">${groups.length} nhóm ảnh giống nhau. Ảnh <b style="color:var(--ok)">GIỮ</b> được chọn sẵn là ảnh có chú thích / ảnh đại diện. Bấm vào ảnh để đổi lựa chọn.</p>
-    <div class="dup-acts">
-      <button class="btn btn-line" id="dupClose" type="button" style="flex:1" title="Đóng, lần sau vẫn nhắc">Để sau</button>
-      <button class="btn btn-line" id="dupKeep" type="button" style="flex:1.4" title="Giữ hết các ảnh này, không nhắc lại">Giữ tất cả, không hỏi lại</button>
-      <button class="btn btn-red" id="dupDel" type="button" style="flex:1.6">Xóa ${extra} ảnh trùng</button>
-    </div>
     ${groups.map((x,gi)=>{
       const keep=x.slice().sort((a,b)=>keepScore(items[b],b)-keepScore(items[a],a))[0];
       return `<div class="dgrp"><p>Nhóm ${gi+1} · ${x.length} ảnh giống nhau</p><div class="dth">
         ${x.map(i=>{ const p=items[i], del=i!==keep;
           return `<label class="${del?"x":""}"><img src="${esc(thumbOf(p,"anh"))}" alt=""><input type="checkbox" data-dup="${esc(p.id)}"${del?" checked":""}><span>${del?"XÓA":"GIỮ"} · ${String(i+1).padStart(2,"0")}</span></label>`;}).join("")}
       </div></div>`;}).join("")}
-</div>`;
+    <div class="row" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+      <button class="btn btn-line" id="dupClose" type="button" style="flex:1" title="Đóng, lần sau vẫn nhắc">Để sau</button>
+      <button class="btn btn-line" id="dupKeep" type="button" style="flex:1.4" title="Giữ hết các ảnh này, không nhắc lại">Giữ tất cả, không hỏi lại</button>
+      <button class="btn btn-red" id="dupDel" type="button" style="flex:1.6">Xóa ${extra} ảnh trùng</button>
+    </div></div>`;
   const cnt=()=>{ const n=out.querySelectorAll("input[data-dup]:checked").length; $("dupDel").textContent=`Xóa ${n} ảnh trùng`; $("dupDel").disabled=!n; };
   out.querySelectorAll("input[data-dup]").forEach(ip=>ip.addEventListener("change",()=>{
     const l=ip.closest("label"); l.classList.toggle("x",ip.checked); l.querySelector("span").textContent=(ip.checked?"XÓA":"GIỮ")+l.querySelector("span").textContent.slice(3); cnt();
@@ -1504,13 +1119,7 @@ async function scanDup(onlyNew){
 }
 
 /* ======================= VIDEO ======================= */
-let vCat="solar", vFilter="all";
-$("vFilter").addEventListener("click",e=>{
-  const b=e.target.closest(".pill"); if(!b) return;
-  vFilter=b.dataset.c;
-  $("vFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p===b));
-  renderVideos();
-});
+let vCat="solar";
 function parseYT(u){
   u=String(u||"").trim(); if(!u) return null;
   if(/^[A-Za-z0-9_-]{11}$/.test(u)) return {id:u,short:false};
@@ -1529,7 +1138,6 @@ function addVideo(){
   if(!r){ msg.innerHTML='<div class="msg bad">Link chưa đúng. Trên YouTube bấm <b>Chia sẻ → Sao chép đường liên kết</b> rồi dán lại.</div>'; return; }
   if(D.videos.some(v=>v.id===r.id)){ msg.innerHTML='<div class="msg warn">Video này đã có trong danh sách.</div>'; return; }
   D.videos.unshift({id:r.id,cat:vCat,cap:"",short:r.short||undefined});
-  if(vFilter!=="all"&&vFilter!==vCat){ vFilter="all"; $("vFilter").querySelectorAll(".pill").forEach(p=>p.classList.toggle("on",p.dataset.c==="all")); }
   $("vUrl").value="";
   msg.innerHTML='<div class="msg good">Đã thêm'+(r.short?" (Shorts)":"")+'. Viết chú thích bên dưới rồi bấm <b>Đăng lên web</b>.</div>';
   renderVideos(); updateBar();
@@ -1538,27 +1146,19 @@ $("vAdd").addEventListener("click",addVideo);
 $("vUrl").addEventListener("keydown",e=>{ if(e.key==="Enter"){ e.preventDefault(); addVideo(); } });
 function renderVideos(){
   const L=$("vList");
-  // số video từng ngành hiện trên nút lọc
-  const cnt={all:D.videos.length}; D.videos.forEach(v=>{cnt[v.cat]=(cnt[v.cat]||0)+1;});
-  $("vFilter").querySelectorAll(".pill").forEach(p=>{
-    const n=cnt[p.dataset.c]||0, lb={all:"Tất cả",solar:"Điện mặt trời",camera:"Camera",smart:"Nhà thông minh"}[p.dataset.c];
-    p.innerHTML=`${lb} <span style="opacity:.65">${n}</span>`;
-  });
   if(!D.videos.length){ L.innerHTML='<div class="empty">Chưa có video nào — mục Video đang ẩn trên web.</div>'; return; }
-  const vis=D.videos.map((v,i)=>i).filter(i=>vFilter==="all"||D.videos[i].cat===vFilter);
-  if(!vis.length){ L.innerHTML='<div class="empty">Chưa có video nào trong ngành này.</div>'; return; }
   const bv=new Set((base.data.videos||[]).map(v=>v.id));
-  L.innerHTML=vis.map((i,k)=>{
-    const v=D.videos[i], isNew=!bv.has(v.id);
+  L.innerHTML=D.videos.map((v,i)=>{
+    const isNew=!bv.has(v.id);
     return `<div class="it${isNew?" new":""}" data-i="${i}">
       <div class="th vid"><img src="https://i.ytimg.com/vi/${esc(v.id)}/mqdefault.jpg" alt="" loading="lazy"><span class="no">${String(i+1).padStart(2,"0")}</span><span class="yt">${v.short?"SHORTS":"▶"}</span></div>
       <div class="flds">
-        <select data-f="cat">${Object.entries(CATS).map(([c,n])=>`<option value="${c}"${v.cat===c?" selected":""}>${n}</option>`).join("")}</select>
+        <select data-f="cat">${Object.entries(CATS).map(([k,n])=>`<option value="${k}"${v.cat===k?" selected":""}>${n}</option>`).join("")}</select>
         <textarea data-f="cap" placeholder="Chú thích — ví dụ: Lắp 24 tấm pin trên mái tôn nhà xưởng Bình Dương">${esc(v.cap)}</textarea>
       </div>
       <div class="acts">
-        <button class="ib" data-a="up" ${k===0?"disabled":""}>↑</button>
-        <button class="ib" data-a="down" ${k===vis.length-1?"disabled":""}>↓</button>
+        <button class="ib" data-a="up" ${i===0?"disabled":""}>↑</button>
+        <button class="ib" data-a="down" ${i===D.videos.length-1?"disabled":""}>↓</button>
         <a class="ib" style="display:inline-flex;align-items:center;text-decoration:none" href="https://youtu.be/${esc(v.id)}" target="_blank" rel="noopener">Xem ↗</a>
         ${isNew?'<span class="tag new">MỚI</span>':""}
         <button class="ib del" data-a="del">Xóa</button>
@@ -1571,14 +1171,13 @@ $("vList").addEventListener("input",e=>{
 });
 $("vList").addEventListener("change",e=>{
   const row=e.target.closest(".it"); if(!row||e.target.dataset.f!=="cat") return;
-  D.videos[+row.dataset.i].cat=e.target.value; renderVideos(); updateBar();
+  D.videos[+row.dataset.i].cat=e.target.value; updateBar();
 });
 $("vList").addEventListener("click",e=>{
   const b=e.target.closest("button[data-a]"); if(!b) return;
   const i=+b.closest(".it").dataset.i, V=D.videos, act=b.dataset.a;
-  const vis=V.map((_,j)=>j).filter(j=>vFilter==="all"||V[j].cat===vFilter), k=vis.indexOf(i);   // đổi chỗ trong danh sách đang lọc
-  if(act==="up"&&k>0){ const j=vis[k-1]; [V[j],V[i]]=[V[i],V[j]]; }
-  if(act==="down"&&k<vis.length-1){ const j=vis[k+1]; [V[j],V[i]]=[V[i],V[j]]; }
+  if(act==="up"&&i>0)[V[i-1],V[i]]=[V[i],V[i-1]];
+  if(act==="down"&&i<V.length-1)[V[i+1],V[i]]=[V[i],V[i+1]];
   if(act==="del"){ if(!confirm("Xóa video này khỏi web? (Video trên YouTube không bị ảnh hưởng)")) return; V.splice(i,1); }
   renderVideos(); updateBar();
 });
@@ -1671,14 +1270,13 @@ function buildForms(){
   </div></details>
   <details class="grp"><summary>Con số năng lực</summary><div>
     <p class="sep-t">Ô 1 · Số năm</p>
-    ${F("Năm bắt đầu làm nghề","stats.fromYear","num","Số năm trong nghề tự tăng mỗi năm.")}
-    ${F("Đơn vị sau số năm","stats.unitYear",null,"Ví dụ: <i>năm</i>, <i>năm kinh nghiệm</i>. Để trống thì không hiện đơn vị.")}
+    <div class="g2">${F("Năm bắt đầu làm nghề","stats.fromYear","num","Số năm trong nghề tự tăng mỗi năm.")}${F("Đơn vị","stats.unitYear",null,"Ví dụ: năm. Để trống nếu không cần.")}</div>
     ${F("Dòng chữ dưới số năm","stats.labelYear",null,"Viết <b>{năm}</b> ở đâu thì web tự điền năm bắt đầu vào đó. Ví dụ: <i>Trong nghề từ {năm}</i> → Trong nghề từ 2017.")}
     <div class="sep"></div><p class="sep-t">Ô 2 · Thiết bị an ninh</p>
-    <div class="g2">${F("Con số","stats.devices")}${F("Đơn vị (chữ nhỏ sau con số)","stats.unitDevices",null,"Ví dụ: <i>thiết bị</i>, <i>camera</i>. Để trống thì không hiện.")}</div>
+    <div class="g2">${F("Con số","stats.devices")}${F("Đơn vị","stats.unitDevices",null,"Để trống nếu không cần.")}</div>
     ${F("Dòng chữ bên dưới","stats.labelDevices")}
     <div class="sep"></div><p class="sep-t">Ô 3 · Điện mặt trời</p>
-    <div class="g2">${F("Con số","stats.kwp")}${F("Đơn vị (chữ nhỏ sau con số)","stats.unitKwp",null,"Ví dụ: <i>kWp</i>, <i>MWp</i>, <i>công trình</i>. Để trống thì không hiện.")}</div>
+    <div class="g2">${F("Con số","stats.kwp")}${F("Đơn vị","stats.unitKwp",null,"Ví dụ: kWp hoặc kWh.")}</div>
     ${F("Dòng chữ bên dưới","stats.labelKwp")}
   </div></details>
   <details class="grp"><summary>Dịch vụ</summary><div>
@@ -1702,9 +1300,6 @@ function buildForms(){
   <details class="grp ttl"><summary>✎ Sửa tiêu đề mục Liên hệ</summary><div>
     ${F("Dòng chữ nhỏ phía trên","contact.eyebrow")}
     ${F("Tiêu đề lớn","contact.title")}
-  </div></details>
-  <details class="grp"><summary>Địa chỉ website</summary><div>
-    ${F("Địa chỉ web cho khách xem","site.url",null,"Công cụ tự điền theo nơi đang chạy (ví dụ https://aiotigroup.github.io/). Chỉ sửa tay khi dùng tên miền riêng, ví dụ https://aioti.vn/ — nhớ có dấu / ở cuối.")}
   </div></details>
   <details class="grp" open><summary>Điện thoại · Zalo · Email</summary><div>
     <div class="g2">${F("Số gọi (viết liền)","contact.phone")}${F("Số hiển thị","contact.phoneDisplay")}</div>
@@ -1742,223 +1337,11 @@ document.addEventListener("click",e=>{
   if(d!==undefined){ if(!confirm("Xóa cam kết này?")) return; D.why.items.splice(+d,1); $("whyItems").innerHTML=whyItems(); updateBar(); }
 });
 
-/* ======================= MÀU SẮC ======================= */
-const R=AIOTIRender, TKEYS=[
-  {k:"brand",n:"Màu chủ đạo",d:"Thanh menu, nút Gọi, tiêu đề nhỏ, con số, dải màu đầu trang."},
-  {k:"sun",n:"Màu nhấn",d:"Nút Zalo / số điện thoại, chữ nổi bật ở đầu trang, nút lọc đang chọn."},
-  {k:"sky",n:"Màu phụ",d:"Nền nhạt dải con số, mục Cam kết, mục Liên hệ — làm dịu mắt."},
-  {k:"ink",n:"Màu nền tối",d:"Nền mục Công trình, Video và chân trang. Nên chọn màu rất đậm."}
-];
-const curTheme=()=>R.normTheme(D&&D.theme);
-function presetOf(t){ return R.PRESETS.find(p=>TKEYS.every(x=>p[x.k].toUpperCase()===t[x.k])); }
-function setTheme(t){
-  t=R.normTheme(t);
-  if(R.isDefaultTheme(t)) delete D.theme;          // màu gốc → không lưu gì, web dùng nguyên style.css
-  else D.theme={preset:t.preset,brand:t.brand,sun:t.sun,sky:t.sky,ink:t.ink};
-  renderTheme(true); updateBar();
-}
-function renderTheme(keepPickers){
-  if(!D) return;
-  const t=curTheme(), exact=presetOf(t), basePre=R.PRESETS.find(p=>p.id===t.preset)||R.PRESETS[0];
-  // ô bộ màu mẫu, xếp theo nhóm
-  if(!$("thPresets").childElementCount){
-    const groups=[...new Set(R.PRESETS.map(p=>p.group))];
-    $("thPresets").innerHTML=groups.map(g=>`<p class="th-grp">${esc(g)}</p><div class="th-sw">${R.PRESETS.filter(p=>p.group===g).map(p=>{
-      const v=R.themeVars(p);
-      return `<button class="sw" type="button" data-p="${p.id}" title="${esc(p.name)}">
-        <span class="sw-g" style="background:linear-gradient(120deg,${v["hz-1"]},${v["hz-2"]} 30%,${v["hz-4"]} 55%,${v["hz-6"]} 78%,${v["hz-8"]})"></span>
-        <span class="sw-d">${TKEYS.map(x=>`<i style="background:${p[x.k]}"></i>`).join("")}</span>
-        <span class="sw-n">${esc(p.name)}</span></button>`;}).join("")}</div>`).join("");
-  }
-  $("thPresets").querySelectorAll(".sw").forEach(b=>b.classList.toggle("on",!!exact&&b.dataset.p===exact.id));
-  // 4 ô chọn màu
-  if(!$("thPick").childElementCount){
-    $("thPick").innerHTML=TKEYS.map(x=>`<div class="pk" data-k="${x.k}"><b>${x.n}</b>
-      <div class="pc"><input type="color" aria-label="${x.n}"><input type="text" maxlength="7" spellcheck="false" aria-label="Mã màu ${x.n}"></div>
-      <p>${x.d} <button class="rs" type="button" hidden>về màu của bộ mẫu</button></p></div>`).join("");
-  }
-  $("thPick").querySelectorAll(".pk").forEach(row=>{
-    const k=row.dataset.k, c=row.querySelector("input[type=color]"), tx=row.querySelector("input[type=text]");
-    if(document.activeElement!==c) c.value=t[k].toLowerCase();
-    if(document.activeElement!==tx){ tx.value=t[k]; tx.classList.remove("bad"); }
-    row.querySelector(".rs").hidden=!!exact||basePre[k].toUpperCase()===t[k];
-  });
-  // tên bộ đang dùng
-  $("thNow").innerHTML=exact?`Đang dùng: <b>${esc(exact.name)}</b>`:`Đang dùng: <b>Tùy chỉnh</b> — dựa trên bộ ${esc(basePre.name)}`;
-  // xem thử
-  const v=R.themeVars(t);
-  $("thPrev").style.cssText=Object.keys(v).map(k=>`--${k}:${v[k]}`).join(";");
-  $("thImgs").style.cssText=`--pv1:${v["brand-deep"]};--pv2:${v.brand}`;     // nền xem ảnh trắng theo màu web đang chọn
-  // cảnh báo dễ đọc
-  const w=R.themeChecks(t);
-  $("thWarn").innerHTML=w.length?w.map(x=>`<div class="msg warn">⚠ ${esc(x.txt)}</div>`).join(""):'<div class="msg good">✓ Màu chữ và nền đều dễ đọc.</div>';
-  $("thReset").disabled=R.isDefaultTheme(t);
-  renderImgs();
-}
-$("thPresets").addEventListener("click",e=>{
-  const b=e.target.closest(".sw"); if(!b) return;
-  const p=R.PRESETS.find(x=>x.id===b.dataset.p);
-  setTheme({preset:p.id,brand:p.brand,sun:p.sun,sky:p.sky,ink:p.ink});
-});
-$("thPick").addEventListener("input",e=>{
-  const row=e.target.closest(".pk"); if(!row) return;
-  let val=e.target.value.trim();
-  if(e.target.type==="text"){
-    if(val&&val[0]!=="#") val="#"+val;
-    const ok=/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(val);
-    e.target.classList.toggle("bad",!ok);
-    if(!ok) return;
-  }
-  const t=curTheme(); t[row.dataset.k]=val; setTheme(t);
-});
-$("thPick").addEventListener("click",e=>{
-  const b=e.target.closest(".rs"); if(!b) return;
-  const k=b.closest(".pk").dataset.k, t=curTheme(), p=R.PRESETS.find(x=>x.id===t.preset)||R.PRESETS[0];
-  t[k]=p[k]; setTheme(t);
-});
-$("thReset").addEventListener("click",()=>{ setTheme(R.THEME_DEFAULT); });
-
-/* ---------- LOGO & HÌNH ẢNH ---------- */
-const imgMsg={};                                   // cảnh báo tạm theo từng ô ảnh
-const siteUrl=p=>"../"+p;                          // ảnh có sẵn trên web (cùng trang với công cụ quản lý)
-const newImg=k=>{ for(const [id,v] of newFiles) if(v.kind==="img"&&v.slot===k) return [id,v]; return null; };
-const canvasBlob=(cv,type,q)=>new Promise((res,rej)=>cv.toBlob(b=>b?res(b):rej(new Error("Xử lý ảnh thất bại")),type,q));
-async function fetchBitmap(src){
-  const r=await fetch(src,{cache:"no-store"}); if(!r.ok) throw new Error("Không tải được ảnh "+src);
-  return await createImageBitmap(await r.blob());
-}
-/* Tự đổi màu ảnh đỏ (đại bàng nhỏ, biểu tượng web) sang màu chủ đạo, giữ nguyên phần trắng và độ đậm nhạt */
-const recCache=new Map();
-function recolorBlob(src,hex,size){
-  const key=src+"|"+hex+"|"+size;
-  if(!recCache.has(key)) recCache.set(key,(async()=>{
-    const bm=await fetchBitmap(siteUrl(src));
-    const w=size||bm.width, h=size||bm.height;
-    const cv=document.createElement("canvas"); cv.width=w; cv.height=h;
-    const c=cv.getContext("2d"); c.imageSmoothingQuality="high"; c.drawImage(bm,0,0,w,h);
-    const im=c.getImageData(0,0,w,h), d=im.data;
-    // màu đỏ chuẩn của ảnh gốc = trung bình các điểm đỏ đậm nhất
-    let mx=0; for(let i=0;i<d.length;i+=4) if(d[i+3]>200) mx=Math.max(mx,d[i]-d[i+1]);
-    let sr=0,sg=0,n=0; for(let i=0;i<d.length;i+=4) if(d[i+3]>200&&d[i]-d[i+1]>mx*.7){sr+=d[i];sg+=d[i+1];n++;}
-    const rr=n?sr/n:180, rg=n?sg/n:30, span=Math.max(1,rr-rg);
-    const B=[0,2,4].map(i=>parseInt(hex.slice(i,i+2),16));
-    for(let i=0;i<d.length;i+=4){
-      if(!d[i+3]) continue;
-      const u=Math.max(0,Math.min(1.4,(d[i]-d[i+1])/span));          // lượng "đỏ"
-      const a=Math.max(0,Math.min(1,(255-d[i+1]+u*rg)/255));           // phần không phải trắng
-      for(let j=0;j<3;j++) d[i+j]=Math.max(0,Math.min(255,Math.round(255*(1-a)+u*B[j])));
-    }
-    c.putImageData(im,0,0);
-    return await canvasBlob(cv,"image/png");
-  })());
-  return recCache.get(key);
-}
-/* ảnh đang dùng của một ô → đường dẫn để xem trong công cụ quản lý */
-async function slotView(k){
-  const n=newImg(k); if(n&&D.images&&D.images[k]===n[1].path) return n[1].url;
-  const p=R.imgPath(D,k), sl=R.IMG_SLOTS.find(x=>x.k===k);
-  if(p.startsWith("img/u/")){
-    if(base.paths.has(p)) return raw(p);
-    const need=R.recolorNeeds(D).find(x=>x.path===p);
-    if(need) return URL.createObjectURL(await recolorBlob(need.src,p.match(/-([0-9A-F]{6})/)[1],need.size));
-  }
-  return siteUrl(sl.file);
-}
-function renderImgs(){
-  if(!D) return;
-  const L=$("thImgs");
-  if(!L.childElementCount){
-    L.innerHTML=R.IMG_SLOTS.map(s=>`<div class="im" data-k="${s.k}">
-      <div class="im-v ${s.white?"dark":s.square?"light fav":s.jpg?"light share":"light"}"><img alt=""><span class="im-st"></span></div>
-      <div class="im-b"><b>${esc(s.name)}</b><p>${esc(s.hint)}</p>
-        <div class="im-a"><label class="btn btn-sun addbtn">Tải ảnh mới<input type="file" accept="image/*"></label>
-          <button class="btn btn-line" type="button" data-reset>Về ảnh gốc</button></div>
-        <div class="im-m"></div></div></div>`).join("");
-  }
-  const autoOn=D.theme&&!R.isDefaultTheme(D.theme);
-  L.querySelectorAll(".im").forEach(card=>{
-    const k=card.dataset.k, sl=R.IMG_SLOTS.find(x=>x.k===k), custom=!!(D.images&&D.images[k]), n=newImg(k);
-    const st=card.querySelector(".im-st");
-    if(custom&&n){ st.textContent="Ảnh mới · chưa đăng"; st.className="im-st new"; }
-    else if(custom){ st.textContent="Ảnh đã tải lên"; st.className="im-st up"; }
-    else if(sl.recolor&&autoOn){ st.textContent="Tự đổi theo màu chủ đạo"; st.className="im-st auto"; }
-    else { st.textContent="Ảnh gốc"; st.className="im-st"; }
-    card.querySelector("[data-reset]").hidden=!custom;
-    card.querySelector(".im-m").innerHTML=imgMsg[k]||"";
-    const img=card.querySelector(".im-v img"), tok=Math.random(); img.dataset.tok=tok;
-    slotView(k).then(u=>{ if(img.dataset.tok==tok) img.src=u; }).catch(()=>{});
-  });
-  slotView("logo").then(u=>{ $("topLogo").src=u; $("tpLogo").src=u; }).catch(()=>{});
-}
-async function processSlotImage(sl,file){
-  const bm=await loadImg(file);
-  const W=bm.width,H=bm.height, warns=[];
-  // kiểm tra nền trắng / hình tối trên ảnh gốc
-  const t=document.createElement("canvas"), tw=Math.min(200,W), th=Math.max(1,Math.round(H*tw/W)); t.width=tw; t.height=th;
-  const tc=t.getContext("2d"); tc.drawImage(bm,0,0,tw,th); const px=tc.getImageData(0,0,tw,th).data;
-  const at=(x,y)=>{ const i=(y*tw+x)*4; return [px[i],px[i+1],px[i+2],px[i+3]]; };
-  const corners=[at(1,1),at(tw-2,1),at(1,th-2),at(tw-2,th-2)];
-  const opaqueLight=corners.filter(c=>c[3]>230&&(c[0]+c[1]+c[2])/3>230).length;
-  const opaque=corners.filter(c=>c[3]>230).length;
-  if(!sl.jpg&&!sl.square){
-    if(opaqueLight>=3) warns.push("Ảnh có <b>nền trắng</b> — trên web sẽ hiện thành một khung trắng. Nên dùng ảnh PNG nền trong suốt.");
-    else if(opaque>=3) warns.push("Ảnh có nền liền (không trong suốt) — trên web sẽ hiện thành một khung. Nên dùng ảnh PNG nền trong suốt.");
-  }
-  if(sl.white&&opaqueLight<3){
-    let s=0,n=0; for(let i=0;i<px.length;i+=4) if(px[i+3]>160){ s+=(px[i]+px[i+1]+px[i+2])/3; n++; }
-    if(n&&s/n<110) warns.push("Hình khá <b>tối</b> — ô này nằm trên nền màu đậm nên sẽ khó thấy. Nên dùng hình màu trắng.");
-  }
-  const draw=(w,h,sx,sy,sw,sh,bg)=>{ const c=document.createElement("canvas"); c.width=w; c.height=h; const x=c.getContext("2d");
-    x.imageSmoothingQuality="high"; if(bg){x.fillStyle=bg;x.fillRect(0,0,w,h);} x.drawImage(bm,sx,sy,sw,sh,0,0,w,h); return c; };
-  let out={};
-  if(sl.square){                                    // biểu tượng web: cắt vuông giữa ảnh
-    const m=Math.min(W,H), sx=(W-m)/2, sy=(H-m)/2;
-    out.file=await canvasBlob(draw(180,180,sx,sy,m,m),"image/png");
-    out.file64=await canvasBlob(draw(64,64,sx,sy,m,m),"image/png");
-  }else if(sl.jpg){                                 // ảnh chia sẻ: cắt vừa khung ngang 1200×630
-    const r=sl.w/sl.h; let sw=W,sh=W/r; if(sh>H){ sh=H; sw=H*r; }
-    out.file=await canvasBlob(draw(sl.w,sl.h,(W-sw)/2,(H-sh)/2,sw,sh,"#fff"),"image/jpeg",.86);
-    if(W<900) warns.push("Ảnh hơi nhỏ ("+W+"px) — khi chia sẻ có thể bị mờ. Nên dùng ảnh ngang từ 1200px.");
-  }else{
-    const s=Math.min(1,sl.w/W), w=Math.round(W*s), h=Math.round(H*s);
-    out.file=await canvasBlob(draw(w,h,0,0,W,H),"image/png");
-  }
-  if(bm.close) bm.close();
-  return {out,warns};
-}
-$("thImgs").addEventListener("change",async e=>{
-  const inp=e.target; if(inp.type!=="file") return;
-  const k=inp.closest(".im").dataset.k, sl=R.IMG_SLOTS.find(x=>x.k===k);
-  let fs=[...inp.files].filter(isImg); inp.value="";
-  if(!fs.length) return;
-  imgMsg[k]='<div class="msg warn">Đang xử lý ảnh…</div>'; renderImgs();
-  try{
-    const nr=await normalizeFiles(fs.slice(0,1)); if(!nr.files.length) throw new Error("Không đọc được ảnh HEIC — hãy lưu lại dạng JPG hoặc PNG rồi thử lại.");
-    const {out,warns}=await processSlotImage(sl,nr.files[0]);
-    const old=newImg(k); if(old) newFiles.delete(old[0]);
-    const id=uid(), path=sl.square?`img/u/up-${k}-${id}-180.png`:`img/u/up-${k}-${id}.${sl.jpg?"jpg":"png"}`;
-    newFiles.set(id,{kind:"img",slot:k,path,file:out.file,file64:out.file64||null,url:URL.createObjectURL(out.file),url64:out.file64?URL.createObjectURL(out.file64):null});
-    D.images=D.images||{}; D.images[k]=path;
-    imgMsg[k]=warns.length?warns.map(w=>`<div class="msg warn">⚠ ${w}</div>`).join(""):'<div class="msg good">Đã thay ảnh. Bấm <b>Đăng lên web</b> để áp dụng.</div>';
-  }catch(err){ imgMsg[k]=`<div class="msg bad">${esc(err.message||String(err))}</div>`; }
-  renderImgs(); updateBar();
-});
-$("thImgs").addEventListener("click",e=>{
-  const b=e.target.closest("[data-reset]"); if(!b) return;
-  const k=b.closest(".im").dataset.k;
-  const old=newImg(k); if(old) newFiles.delete(old[0]);
-  if(D.images){ delete D.images[k]; if(!Object.keys(D.images).length) delete D.images; }
-  imgMsg[k]='<div class="msg good">Đã về ảnh gốc.</div>';
-  renderImgs(); updateBar();
-});
-$("thFull").addEventListener("click",()=>$("btnPreview").click());
-
 /* ======================= DỌN FILE RÁC ======================= */
 function usedPaths(data){
   const u=new Set();
   data.gallery.forEach(p=>{u.add(`anh/ct-${p.id}.jpg`);u.add(`anh/t-${p.id}.jpg`);});
   data.prices.forEach(p=>{u.add(`gia/${p.id}.jpg`);u.add(`gia/t-${p.id}.jpg`);});
-  R.imgUsed(data).forEach(p=>u.add(p));        // logo & hình ảnh đang dùng (img/u/…)
   return u;
 }
 $("btnScan").addEventListener("click",()=>{
@@ -1976,14 +1359,9 @@ $("btnScan").addEventListener("click",()=>{
 async function loadImg(file){
   try{ return await createImageBitmap(file,{imageOrientation:"from-image"}); }
   catch(_){
-    try{
-      return await new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);im.onerror=rej;im.src=URL.createObjectURL(file);});
-    }catch(_){
-      if(await sniff(file)==="heic"){                 // ảnh HEIC đặt đuôi .jpg → chuyển rồi đọc lại
-        try{ const conv=await loadHeicLib(); let b=await conv({blob:file,toType:"image/jpeg",quality:.92}); if(Array.isArray(b)) b=b[0]; return await createImageBitmap(b); }catch(_){}
-      }
-      throw new Error("Không đọc được ảnh "+(file.name||"")+". Hãy mở ảnh trên máy, lưu lại dạng JPG rồi thêm lại.");
-    }
+    return await new Promise((res,rej)=>{const im=new Image();im.onload=()=>res(im);
+      im.onerror=()=>rej(new Error("Không đọc được ảnh "+file.name+". Hãy mở ảnh trên máy, lưu lại dạng JPG rồi thêm lại."));
+      im.src=URL.createObjectURL(file);});
   }
 }
 function resize(img,max,q){
@@ -2002,75 +1380,37 @@ const SIZES={anh:{full:[1400,.80],th:[700,.76]}, gia:{full:[2000,.86],th:[700,.7
 /* ======================= XEM TRƯỚC ======================= */
 $("btnUndoH").addEventListener("click",histUndo);
 $("btnRedoH").addEventListener("click",histRedo);
-$("btnPreview").addEventListener("click",async()=>{
-  const w=window.open("","_blank");                // mở ngay để trình duyệt không chặn
-  if(!w){ alert("Trình duyệt chặn cửa sổ mới. Hãy cho phép mở cửa sổ bật lên cho trang này."); return; }
-  try{ w.document.write('<p style="font:16px sans-serif;padding:20px">Đang dựng bản xem trước…</p>'); }catch(_){}
+$("btnPreview").addEventListener("click",()=>{
   let html=AIOTIRender.renderSite(D);
   const site=(D.site&&D.site.url)||"../";
   html=html.replace("<head>",`<head><base href="${site}">`);
-  const swap=(p,u)=>{ html=html.split(`"${p}"`).join(`"${u}"`).split(`${site}${p}"`).join(`${u}"`); };
   newFiles.forEach((v,id)=>{
-    if(v.kind==="img"){ swap(v.path,v.url); if(v.url64) swap(R.favSmall(v.path),v.url64); return; }
     const pre=v.kind==="gia"?"gia/":"anh/";
     const full=v.kind==="gia"?`${pre}${id}.jpg`:`${pre}ct-${id}.jpg`;
     html=html.split(`"${pre}t-${id}.jpg"`).join(`"${v.url}"`).split(`"${full}"`).join(`"${v.url}"`);
   });
-  for(const n of R.recolorNeeds(D)){                // ảnh tự đổi màu chưa có trên web → tạo tạm
-    if(base.paths.has(n.path)) continue;
-    try{ swap(n.path,URL.createObjectURL(await recolorBlob(n.src,n.path.match(/-([0-9A-F]{6})/)[1],n.size))); }catch(_){}
-  }
   html=html.replace("<body>",'<body><div style="position:sticky;top:0;z-index:999;background:#FFB300;color:#3E2200;font:600 14px sans-serif;padding:8px 12px;text-align:center">XEM TRƯỚC — chưa đăng lên web</div>');
-  w.location=URL.createObjectURL(new Blob([html],{type:"text/html"}));
+  const w=window.open(URL.createObjectURL(new Blob([html],{type:"text/html"})),"_blank");
+  if(!w) alert("Trình duyệt chặn cửa sổ mới. Hãy cho phép mở cửa sổ bật lên cho trang này.");
 });
 
 /* ======================= ĐĂNG LÊN WEB ======================= */
 function dialog(html){ const o=document.createElement("div"); o.className="ov"; o.innerHTML=`<div class="dlg">${html}</div>`; document.body.appendChild(o); return o; }
 
-/* ======================= ĐĂNG LÊN WEB (chạy nền) =======================
-   Đăng từ một BẢN CHỤP dữ liệu lúc bấm nút → trong lúc đăng anh vẫn xem, sửa, thêm ảnh bình thường.
-   Những gì sửa trong lúc đăng sẽ nằm lại thành "thay đổi chưa đăng" cho lần đăng sau. */
-let PUB=null;                                   // đang đăng: {cancel, lock}
-const PUB_CANCEL=new Error("cancel");
-function pubBusy(){ if(PUB){ alert("Đang đăng lên web — đợi đăng xong hoặc bấm Dừng đăng."); return true; } return false; }
-function pubBox(){
-  let b=$("pubBox");
-  if(!b){ b=document.createElement("div"); b.id="pubBox"; b.className="pubbox"; document.body.appendChild(b); }
-  return b;
-}
-function pubTidy(x){                             // chuẩn hóa dữ liệu trước khi lưu (làm giống nhau cho bản chụp và bản đang sửa)
-  x.gallery.forEach(p=>{ if(p.cover===false) delete p.cover; });
-  if(x.dupOk){ const ids=new Set(x.gallery.map(p=>p.id)); x.dupOk=x.dupOk.filter(k=>k.split("|").every(i=>ids.has(i))); if(!x.dupOk.length) delete x.dupOk; }
-}
 $("btnPublish").addEventListener("click",async()=>{
-  if(PUB) return;
   const miss=D.gallery.filter(p=>!String(p.cap||"").trim()).length;
   if(miss && !confirm(`${miss} ảnh công trình chưa có chú thích (web sẽ hiện tên ngành thay thế). Vẫn đăng?`)) return;
 
-  // bản chụp để đăng
-  const S=JSON.parse(JSON.stringify(D)), F=new Map(newFiles), J=junk.slice(), B=base;
-  PUB={cancel:false,lock:false};
-  const box=pubBox(); box.className="pubbox"; box.innerHTML=`<div class="pb-h"><b>Đang đăng lên web</b><button class="pb-min" type="button" title="Thu nhỏ / mở rộng">–</button></div>
-    <div class="prog"><i id="pgI"></i></div><p class="plog" id="pgLog">Chuẩn bị…</p>
-    <p class="pb-note">Anh vẫn xem và sửa tiếp được. Những gì sửa trong lúc này sẽ đăng ở lần sau.</p>
-    <div class="pb-row"><button class="btn btn-line" id="pgStop" type="button">■ Dừng đăng</button></div>`;
-  box.querySelector(".pb-min").onclick=()=>box.classList.toggle("mini");
-  box.querySelector("#pgStop").onclick=()=>{
-    if(PUB.lock) return;
-    if(!confirm("Dừng đăng?\n\nWeb sẽ giữ nguyên như trước khi đăng. Ảnh đã tải lên GitHub không phải tải lại ở lần đăng sau.")) return;
-    PUB.cancel=true; const b=box.querySelector("#pgStop"); b.disabled=true; b.textContent="Đang dừng…";
-  };
-  const chk=()=>{ if(PUB.cancel&&!PUB.lock) throw PUB_CANCEL; };
-  let pct=0;
-  const log=(t,cls)=>{ chk(); const e=box.querySelector("#pgLog"); if(e){ e.textContent=t; e.className="plog"+(cls?" "+cls:""); } };
-  const bar=p=>{ pct=Math.round(p*100); const i=box.querySelector("#pgI"); if(i) i.style.width=pct+"%"; const h=box.querySelector(".pb-h b"); if(h&&!PUB.done) h.textContent=`Đang đăng lên web · ${pct}%`; };
-  updateBar();
+  const ov=dialog(`<h3>Đang đăng lên web</h3><p>Giữ màn hình mở cho tới khi xong.</p>
+    <div class="prog"><i id="pgI"></i></div><p class="plog" id="pgLog">Chuẩn bị…</p>`);
+  const log=(t,cls)=>{const e=ov.querySelector("#pgLog"); e.textContent=t; e.className="plog"+(cls?" "+cls:"");};
+  const bar=p=>{ov.querySelector("#pgI").style.width=Math.round(p*100)+"%";};
   try{
     // 1. kiểm tra có ai đăng chen giữa không
     log("Kiểm tra phiên bản trên GitHub…");
     const ref=await gh(`/git/ref/heads/${cfg.branch}`);
-    if(ref.object.sha!==B.commit){
-      PUB=null; box.remove(); updateBar();
+    if(ref.object.sha!==base.commit){
+      ov.remove();
       const o2=dialog(`<h3>Web vừa được sửa ở nơi khác</h3>
         <div class="msg bad">Có máy hoặc điện thoại khác đã đăng thay đổi sau khi anh mở công cụ này. Đăng đè sẽ làm mất thay đổi đó.</div>
         <p>Hãy tải lại bản mới nhất rồi làm lại thao tác.</p>
@@ -2080,146 +1420,78 @@ $("btnPublish").addEventListener("click",async()=>{
       return;
     }
     const entries=[];
-    const total=F.size*2+3; let done=0; const step=()=>bar(++done/total);
+    const total=newFiles.size*2+3; let done=0; const step=()=>bar(++done/total);
 
-    // 2. nén + tải ảnh mới — ảnh nào lỗi thì bỏ qua, đăng tiếp ảnh khác, báo lại ở cuối
+    // 2. nén + tải ảnh mới
     let k=0;
-    const failedImgs=[];
-    const upBlob=async(blob,label)=>{
-      const u8=new Uint8Array(await blob.arrayBuffer()), sha=await gitSha(u8);
-      chk();
-      try{ const r=await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/git/blobs/${sha}`,{method:"HEAD",headers:{Authorization:"Bearer "+cfg.token}}); if(r.ok) return {sha}; }catch(_){}
-      const r=await ghRetry("/git/blobs",{method:"POST",body:{content:u8ToB64(u8),encoding:"base64"}},log,label);
-      if(F.size>30) await sleep(600);
-      return r;
-    };
-    for(const [id,nf] of F){
-      k++; log(`Nén và tải ảnh ${k}/${F.size}…${failedImgs.length?` (bỏ qua ${failedImgs.length} ảnh lỗi)`:""}`);
-      try{
-      if(nf.kind==="img"){
-        if(!(S.images&&S.images[nf.slot]===nf.path)){ step(); step(); continue; }
-        const b1=await upBlob(nf.file,`(ảnh ${k}/${F.size})`); step();
-        entries.push({path:nf.path,mode:"100644",type:"blob",sha:b1.sha});
-        if(nf.file64){ const b2=await upBlob(nf.file64,`(ảnh ${k}/${F.size})`);
-          entries.push({path:R.favSmall(nf.path),mode:"100644",type:"blob",sha:b2.sha}); }
-        step(); continue;
-      }
+    for(const [id,nf] of newFiles){
+      k++; log(`Nén và tải ảnh ${k}/${newFiles.size}…`);
       const img=await loadImg(nf.file);
-      const SZ=SIZES[nf.kind];
-      const full=await resize(img,SZ.full[0],SZ.full[1]);
-      const th=await resize(img,SZ.th[0],SZ.th[1]);
+      const S=SIZES[nf.kind];
+      const full=await resize(img,S.full[0],S.full[1]);
+      const th=await resize(img,S.th[0],S.th[1]);
       if(img.close) img.close();
       const fullPath=nf.kind==="gia"?`gia/${id}.jpg`:`anh/ct-${id}.jpg`;
       const thPath=nf.kind==="gia"?`gia/t-${id}.jpg`:`anh/t-${id}.jpg`;
-      const b1=await upBlob(full.blob,`(ảnh ${k}/${F.size})`); step();
-      const b2=await upBlob(th.blob,`(ảnh ${k}/${F.size})`); step();
+      const b1=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(full.blob),encoding:"base64"}}); step();
+      const b2=await gh("/git/blobs",{method:"POST",body:{content:await blobToB64(th.blob),encoding:"base64"}}); step();
       entries.push({path:fullPath,mode:"100644",type:"blob",sha:b1.sha},{path:thPath,mode:"100644",type:"blob",sha:b2.sha});
-      const rec=(nf.kind==="gia"?S.prices:S.gallery).find(x=>x.id===id);
-      if(rec){rec.w=full.w;rec.h=full.h; const fp=hashCache.get(id+"@new"); if(fp) rec.fp=fpHex(fp);}
-      }catch(err){
-        if(err===PUB_CANCEL) throw err;
-        if(err&&(err.status===401||err.status===404||(err.status===403&&!/rate limit|abuse|secondary/i.test(err.message||"")))) throw err;
-        console.error(err);
-        failedImgs.push({id,kind:nf.kind,slot:nf.slot,name:(nf.file&&nf.file.name)||"ảnh"});
-        step(); step();
-      }
-    }
-    S.gallery.forEach(p=>{ if(!p.fp&&!F.has(p.id)){ const h=hashCache.get(p.id); if(h) p.fp=fpHex(h); } });
-    const failedSet=new Set(failedImgs.map(f=>f.id));
-    const dropFailed=x=>{
-      if(!failedSet.size) return;
-      x.gallery=x.gallery.filter(p=>!failedSet.has(p.id)); x.prices=x.prices.filter(p=>!failedSet.has(p.id));
-      failedImgs.filter(f=>f.kind==="img").forEach(f=>{ if(x.images&&F.get(f.id)&&x.images[f.slot]===F.get(f.id).path){ delete x.images[f.slot]; if(!Object.keys(x.images).length) delete x.images; } });
-    };
-    dropFailed(S);
-
-    // 2b. ảnh tự đổi màu theo màu chủ đạo
-    for(const n of R.recolorNeeds(S)){
-      if(B.paths.has(n.path)) continue;
-      log("Tạo ảnh theo màu mới…");
-      const blob=await recolorBlob(n.src,n.path.match(/-([0-9A-F]{6})/)[1],n.size);
-      const b=await upBlob(blob,"");
-      entries.push({path:n.path,mode:"100644",type:"blob",sha:b.sha});
+      const rec=(nf.kind==="gia"?D.prices:D.gallery).find(x=>x.id===id);
+      if(rec){rec.w=full.w;rec.h=full.h;}
     }
 
     // 3. file bị xóa
-    const before=usedPaths(B.data), after=usedPaths(S);
+    const before=usedPaths(base.data), after=usedPaths(D);
     const del=new Set([...before].filter(p=>!after.has(p)));
-    J.forEach(p=>del.add(p));
-    del.forEach(p=>{ if(B.paths.has(p)) entries.push({path:p,mode:"100644",type:"blob",sha:null}); });
+    junk.forEach(p=>del.add(p));
+    del.forEach(p=>{ if(base.paths.has(p)) entries.push({path:p,mode:"100644",type:"blob",sha:null}); });
 
     // 4. dữ liệu + trang
     log("Dựng lại trang web…");
-    pubTidy(S);
-    entries.push({path:"index.html",mode:"100644",type:"blob",content:AIOTIRender.renderSite(S)});
-    entries.push({path:"data.json",mode:"100644",type:"blob",content:JSON.stringify(S,null,1)});
+    D.gallery.forEach(x=>{ if(x.cover===false) delete x.cover; });
+    if(D.dupOk){ const ids=new Set(D.gallery.map(p=>p.id)); D.dupOk=D.dupOk.filter(k=>k.split("|").every(i=>ids.has(i))); if(!D.dupOk.length) delete D.dupOk; }
+    const html=AIOTIRender.renderSite(D);
+    entries.push({path:"index.html",mode:"100644",type:"blob",content:html});
+    entries.push({path:"data.json",mode:"100644",type:"blob",content:JSON.stringify(D,null,1)});
     step();
 
     // 5. tạo bản cập nhật
     log("Lưu lên GitHub…");
-    const tree={sha:await buildTree(entries,log,B.tree)}; step();
-    const nwAll=F.size;
-    const nw=[...F.entries()].filter(([id])=>!failedSet.has(id)).map(([,v])=>v);
+    const tree=await gh("/git/trees",{method:"POST",body:{base_tree:base.tree,tree:entries}}); step();
+    const nw=[...newFiles.values()];
     const sum=[];
     const a=nw.filter(f=>f.kind==="anh").length, g=nw.filter(f=>f.kind==="gia").length;
     if(a) sum.push(`+${a} ảnh công trình`); if(g) sum.push(`+${g} bảng giá`);
-    const im=nw.filter(f=>f.kind==="img").length; if(im) sum.push(`thay ${im} logo/hình ảnh`);
     const rmA=[...del].filter(p=>p.startsWith("anh/ct-")).length; if(rmA) sum.push(`-${rmA} ảnh`);
-    const bvv=new Set((B.data.videos||[]).map(v=>v.id)); const nvv=S.videos.filter(v=>!bvv.has(v.id)).length;
+    const bvv=new Set((base.data.videos||[]).map(v=>v.id)); const nvv=D.videos.filter(v=>!bvv.has(v.id)).length;
     if(nvv) sum.push(`+${nvv} video`);
-    if(JSON.stringify(S.theme||null)!==JSON.stringify(B.data.theme||null)) sum.push("đổi màu web");
-    if(J.length) sum.push(`dọn ${J.length} file rác`);
-    if(JSON.stringify(S)!==B.snap&&!sum.length) sum.push("sửa nội dung");
-    chk(); PUB.lock=true;                         // từ đây không dừng được nữa (chỉ còn vài giây)
-    box.querySelector("#pgStop").disabled=true;
-    const commit=await ghRetry("/git/commits",{method:"POST",body:{message:"Cập nhật website: "+(sum.join(", ")||"sửa nội dung"),tree:tree.sha,parents:[B.commit]}},log);
-    await ghRetry(`/git/refs/heads/${cfg.branch}`,{method:"PATCH",body:{sha:commit.sha}},log); step();
+    if(junk.length) sum.push(`dọn ${junk.length} file rác`);
+    if(JSON.stringify(D)!==base.snap&&!sum.length) sum.push("sửa nội dung");
+    const commit=await gh("/git/commits",{method:"POST",body:{message:"Cập nhật website: "+(sum.join(", ")||"sửa nội dung"),tree:tree.sha,parents:[base.commit]}});
+    await gh(`/git/refs/heads/${cfg.branch}`,{method:"PATCH",body:{sha:commit.sha}}); step();
     bar(1);
 
-    // 6. xong — ghép kết quả vào bản đang sửa (giữ nguyên những gì anh sửa trong lúc đăng)
-    const newPaths=new Set(B.paths);
+    // 6. xong
+    const newPaths=new Set(base.paths);
     del.forEach(p=>newPaths.delete(p)); entries.forEach(e=>{ if(e.sha!==null) newPaths.add(e.path); });
-    base={commit:commit.sha,tree:tree.sha,paths:newPaths,snap:JSON.stringify(S),data:JSON.parse(JSON.stringify(S))};
-    const copyBack=(dl,sl)=>{ const m=new Map(sl.map(p=>[p.id,p])); dl.forEach(p=>{ const q=m.get(p.id); if(q) ["w","h","fp"].forEach(k=>{ if(q[k]!=null&&p[k]==null) p[k]=q[k]; }); }); };
-    copyBack(D.gallery,S.gallery); copyBack(D.prices,S.prices);
-    dropFailed(D);
-    for(const [id,v] of F){ if(newFiles.get(id)===v){ newFiles.delete(id); try{ URL.revokeObjectURL(v.url); if(v.thumb) URL.revokeObjectURL(v.thumb); }catch(_){} } }
-    junk=junk.filter(p=>!J.includes(p));
-    pubTidy(D);
-    for(const id of [...sel]) if(!D.gallery.some(p=>p.id===id)) sel.delete(id);
-    Object.keys(imgMsg).forEach(k=>delete imgMsg[k]); $("scanOut").innerHTML="";
-    PUB=null;
-    const typing=document.activeElement&&/^(TEXTAREA|INPUT|SELECT)$/.test(document.activeElement.tagName);
-    if(!typing){ renderWorks(); renderVideos(); renderPrices(); renderTheme(); }
-    updateBar(); histReset();
+    hRevokeAll();
+    base={commit:commit.sha,tree:tree.sha,paths:newPaths,snap:JSON.stringify(D),data:JSON.parse(JSON.stringify(D))};
+    newFiles=new Map(); junk=[]; $("scanOut").innerHTML=""; $("vMsg").innerHTML=""; sel=new Set(); undo=null; $("wMsg").innerHTML=""; $("dupOut").innerHTML="";
+    renderWorks(); renderVideos(); renderPrices(); updateBar(); histReset();
     $("acctInfo").innerHTML=`Kho: <b>${esc(cfg.owner)}/${esc(cfg.repo)}</b> · nhánh <b>${esc(cfg.branch)}</b><br>Phiên bản đang sửa: <code>${commit.sha.slice(0,7)}</code><br>Công cụ quản lý: <b>v${APP_VER}</b>`;
-    if(typeof hist!=="undefined"){ hist=[]; }
-    const t=new Date(), still=JSON.stringify(D)!==base.snap||newFiles.size||junk.length;
-    box.classList.remove("mini"); box.classList.add("done");
-    box.innerHTML=`<div class="pb-h"><b>Đã đăng xong</b><button class="pb-min" type="button" title="Đóng" id="okX">×</button></div>
-      <div class="msg good">Đăng lúc ${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}. Web tự cập nhật sau khoảng <b>1–2 phút</b>.${nwAll?` Đã đăng <b>${nwAll-failedImgs.length}/${nwAll}</b> ảnh mới.`:""}</div>
-      ${failedImgs.length?`<div class="msg bad"><b>${failedImgs.length} ảnh bị lỗi, đã bỏ qua</b> (đã gỡ khỏi danh sách):
-        <div class="junk" style="background:#fff">${failedImgs.map(f=>esc(f.name)).join("\n")}</div>
-        Mở ảnh trên máy → lưu lại dạng <b>JPG</b> → thêm lại.</div>`:""}
-      ${still?'<div class="msg warn">Những gì anh sửa / thêm trong lúc đăng vẫn còn — bấm <b>Đăng lên web</b> lần nữa để đăng nốt.</div>':""}
-      <div class="pb-row"><a class="btn btn-line" href="${esc((S.site&&S.site.url)||"../")}" target="_blank" rel="noopener">Xem web ↗</a><button class="btn btn-line" id="okBk" type="button">⬇ Sao lưu</button><button class="btn btn-red" id="okClose" type="button">Xong</button></div>`;
-    box.querySelector("#okClose").onclick=box.querySelector("#okX").onclick=()=>box.remove();
-    box.querySelector("#okBk").onclick=()=>{ box.remove(); downloadBackup(); };
+    const t=new Date();
+    ov.querySelector(".dlg").innerHTML=`<h3>Đã đăng xong</h3>
+      <div class="msg good">Đăng lúc ${String(t.getHours()).padStart(2,"0")}:${String(t.getMinutes()).padStart(2,"0")}. Web tự cập nhật sau khoảng <b>1–2 phút</b>.</div>
+      <p>Mở web lúc đó nếu vẫn thấy bản cũ, kéo xuống để tải lại trang.</p>
+      <div class="row"><a class="btn btn-line" href="${esc((D.site&&D.site.url)||"../")}" target="_blank" rel="noopener">Xem web ↗</a><button class="btn btn-red" id="okClose">Xong</button></div>`;
+    ov.querySelector("#okClose").onclick=()=>ov.remove();
   }catch(e){
-    const cancelled=e===PUB_CANCEL;
-    if(!cancelled) console.error(e);
-    PUB=null; updateBar();
-    box.classList.remove("mini"); box.classList.add("done");
-    box.innerHTML=cancelled
-      ?`<div class="pb-h"><b>Đã dừng đăng</b><button class="pb-min" type="button" id="errX">×</button></div>
-        <div class="msg warn">Web <b>giữ nguyên</b> như trước khi đăng. Thay đổi của anh vẫn còn trên màn hình. Ảnh đã tải lên GitHub sẽ không phải tải lại ở lần đăng sau.</div>
-        <div class="pb-row"><button class="btn btn-line" id="errClose" type="button">Đóng</button></div>`
-      :`<div class="pb-h"><b>Chưa đăng được</b><button class="pb-min" type="button" id="errX">×</button></div>
-        <div class="msg bad">${esc(friendly(e))}</div>
-        <div class="msg warn">Web giữ nguyên. Thay đổi của anh vẫn còn trên màn hình — bấm Đăng lên web để thử lại (ảnh đã tải lên không phải tải lại).</div>
-        ${e.status===401?'<p class="hint">Mã khóa hết hạn: tab Liên hệ → Tài khoản → Đăng xuất, rồi kết nối lại bằng mã mới.</p>':""}
-        <div class="pb-row"><button class="btn btn-line" id="errClose" type="button">Đóng</button></div>`;
-    box.querySelector("#errClose").onclick=box.querySelector("#errX").onclick=()=>box.remove();
+    console.error(e);
+    log(friendly(e),"err");
+    ov.querySelector(".dlg").insertAdjacentHTML("beforeend",`<div class="msg bad">Chưa đăng được. Thay đổi của anh vẫn còn nguyên trên màn hình, có thể thử lại.</div>
+      <div class="row"><button class="btn btn-line" id="errClose">Đóng</button></div>`);
+    ov.querySelector("#errClose").onclick=()=>ov.remove();
+    if(e.status===401){ ov.querySelector(".dlg").insertAdjacentHTML("beforeend",'<p class="hint" style="margin-top:8px">Mã khóa hết hạn: vào tab Liên hệ → Tài khoản → Đăng xuất, rồi kết nối lại bằng mã mới. Nhớ đăng lại sau khi kết nối.</p>'); }
   }
 });
 
@@ -2227,7 +1499,7 @@ $("btnPublish").addEventListener("click",async()=>{
 $("btnLogin").addEventListener("click",async()=>{
   const token=$("inTok").value.trim();
   if(!token){$("loginMsg").innerHTML='<div class="msg bad">Hãy dán mã khóa GitHub.</div>';return;}
-  cfg={token,owner:$("inOwner").value.trim()||"aiotigroup",repo:$("inRepo").value.trim()||"aiotigroup.github.io",branch:$("inBranch").value.trim()||"main"};
+  cfg={token,owner:$("inOwner").value.trim()||"khoantm",repo:$("inRepo").value.trim()||"website-aioti",branch:$("inBranch").value.trim()||"main"};
   $("btnLogin").disabled=true; $("loginMsg").innerHTML='<div class="msg warn">Đang kiểm tra…</div>';
   try{
     await load();
@@ -2238,19 +1510,14 @@ $("btnLogin").addEventListener("click",async()=>{
   }finally{ $("btnLogin").disabled=false; }
 });
 $("btnLogout").addEventListener("click",()=>{
-  if(pubBusy()) return;
   if(!confirm("Xóa mã khóa khỏi máy này? Thay đổi chưa đăng sẽ mất.")) return;
   localStorage.removeItem(LS); location.reload();
 });
 $("btnReload").addEventListener("click",async()=>{
-  if(pubBusy()) return;
   if((JSON.stringify(D)!==base.snap||newFiles.size||junk.length)&&!confirm("Tải lại sẽ bỏ các thay đổi chưa đăng. Tiếp tục?")) return;
   try{ await load(); }catch(e){ alert(friendly(e)); }
 });
 
-function setTopH(){ const t=document.querySelector(".top"); if(t) document.documentElement.style.setProperty("--toph",t.offsetHeight+"px");
-  const b=$("bar"); if(b&&b.offsetHeight) document.documentElement.style.setProperty("--barh",b.offsetHeight+"px"); }
-window.addEventListener("resize",setTopH); setTopH();
 (async function start(){
   try{ cfg=JSON.parse(localStorage.getItem(LS)||"null"); }catch(_){ cfg=null; }
   if(!cfg||!cfg.token){ show("vLogin"); return; }
@@ -2262,6 +1529,5 @@ window.addEventListener("resize",setTopH); setTopH();
   }
 })();
 </script>
-<script src="backup.js?v=320"></script>
 </body>
 </html>
