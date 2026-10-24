@@ -5324,7 +5324,9 @@
     "t": "Hỗ trợ sau bàn giao",
     "d": "Đây là tiêu chí cốt lõi của AIOTI vì vậy dịch vụ được duy trì trọn đời sản phẩm. Hết thời gian bảo hành AIOTI vẫn hỗ trợ hướng dẫn vận hành từ xa mà không tốn thêm bất kỳ chi phí dịch vụ hàng tháng, hàng năm nào khác, dù tuổi đời sản phẩm lên tới 15, 20 hay 25 năm đi nữa quý khách vẫn được hỗ trợ hoàn toàn miển phí."
    }
-  ]
+  ],
+  "hide": true,
+  "hideMenu": false
  },
  "videos": [
   {
