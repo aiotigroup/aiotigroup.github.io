@@ -151,6 +151,9 @@ ${priceTiles}
 </section>
 ` : "";
 
+    /* Tên các nút trên thanh menu (sửa được trong công cụ quản lý); để trống = tên mặc định */
+    const NAV_DEF = { services: "Dịch vụ", works: "Công trình", video: "Video", prices: "Bảng giá", why: "Vì sao chọn AIOTI", contact: "Liên hệ" };
+    const nv = k => esc(String((D.nav || {})[k] || "").trim() || NAV_DEF[k]);
     /* Ẩn/hiện mục Vì sao: why.hide = ẩn cả mục; why.hideMenu = chỉ ẩn nút trên thanh menu */
     const W = D.why || {}, whyOn = !W.hide, whyMenu = whyOn && !W.hideMenu;
     const vows = (W.items || []).map((v, i) =>
@@ -190,9 +193,9 @@ ${priceTiles}
 <header>
   <nav class="nav wrap" id="nav">
     <a class="brand" href="#top"><img class="mark" src="img/logo-trang.png" alt="Logo AIOTI"><span><b>AIOTI</b><i>Công nghệ · An ninh · Năng lượng</i></span></a>
-    <a class="lnk" href="#dichvu">Dịch vụ</a>
-${gal.length ? `    <a class="lnk" href="#congtrinh">Công trình</a>\n` : ""}${vids.length ? `    <a class="lnk" href="#video">Video</a>\n` : ""}${prices.length ? `    <a class="lnk" href="#banggia">Bảng giá</a>\n` : ""}${whyMenu ? `    <a class="lnk" href="#visao">Vì sao chọn AIOTI</a>` : ""}
-    <a class="lnk" href="#lienhe">Liên hệ</a>
+    <a class="lnk" href="#dichvu">${nv("services")}</a>
+${gal.length ? `    <a class="lnk" href="#congtrinh">${nv("works")}</a>\n` : ""}${vids.length ? `    <a class="lnk" href="#video">${nv("video")}</a>\n` : ""}${prices.length ? `    <a class="lnk" href="#banggia">${nv("prices")}</a>\n` : ""}${whyMenu ? `    <a class="lnk" href="#visao">${nv("why")}</a>` : ""}
+    <a class="lnk" href="#lienhe">${nv("contact")}</a>
     <a class="btn btn-sun call" href="${tel}"><span>${esc(C.phoneDisplay)}</span></a>
     <button class="burger" id="burger" aria-label="Mở menu">☰</button>
   </nav>

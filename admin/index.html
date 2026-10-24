@@ -248,7 +248,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.3</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.4</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -417,13 +417,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=43"></script>
+<script src="render.js?v=44"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="4.3";
+const APP_VER="4.4";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -472,6 +472,7 @@ async function load(){
   data.gallery=data.gallery||[]; data.prices=data.prices||[];
   data.pricing=data.pricing||{title:"Bảng giá tham khảo",intro:"",note:""};
   data.videos=data.videos||[];
+  data.nav=Object.assign({services:"Dịch vụ",works:"Công trình",video:"Video",prices:"Bảng giá",why:"Vì sao chọn AIOTI",contact:"Liên hệ"},data.nav||{});
   // địa chỉ web = thư mục cha của trang quản lý đang mở (đổi tài khoản / tên kho vẫn đúng)
   try{
     if(/^https?:$/.test(location.protocol)){
@@ -1371,6 +1372,15 @@ const F=(label,path,type,hint)=>{
 function buildForms(){
   const g=D.services.groups;
   $("cForms").innerHTML=`
+  <details class="grp"><summary>Thanh menu trên cùng — tên các nút</summary><div>
+    <p class="hint" style="margin:0 0 10px">Nên đặt ngắn (1–4 chữ) để menu nằm gọn một hàng. Để trống ô nào thì dùng lại tên mặc định. Nút chỉ hiện khi mục đó có nội dung.</p>
+    ${F("Nút 1 — mục Dịch vụ","nav.services")}
+    ${F("Nút 2 — mục Công trình","nav.works")}
+    ${F("Nút 3 — mục Video","nav.video")}
+    ${F("Nút 4 — mục Bảng giá","nav.prices")}
+    ${F("Nút 5 — mục Vì sao chọn AIOTI","nav.why")}
+    ${F("Nút 6 — mục Liên hệ","nav.contact")}
+  </div></details>
   <details class="grp" open><summary>Đầu trang</summary><div>
     ${F("Dòng nhỏ phía trên","hero.eyebrow")}
     ${F("Tiêu đề — phần chữ trắng","hero.title")}
