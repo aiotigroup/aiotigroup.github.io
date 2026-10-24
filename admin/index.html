@@ -248,7 +248,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.4</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.5</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -417,13 +417,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=44"></script>
+<script src="render.js?v=45"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="4.4";
+const APP_VER="4.5";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -1517,6 +1517,14 @@ $("btnPreview").addEventListener("click",()=>{
     html=html.split(`"${pre}t-${id}.jpg"`).join(`"${v.url}"`).split(`"${full}"`).join(`"${v.url}"`);
   });
   html=html.replace("<body>",'<body><div style="position:sticky;top:0;z-index:999;background:#FFB300;color:#3E2200;font:600 14px sans-serif;padding:8px 12px;text-align:center">XEM TRƯỚC — chưa đăng lên web</div>');
+  /* Trang xem trước dùng <base> trỏ về web thật → bấm nút menu (#muc) sẽ nhảy sang web thật.
+     Chặn lại: cuộn tới mục ngay trong trang xem trước. */
+  html=html.replace("</body>",`<script>document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a) return;
+    e.preventDefault(); var id=a.getAttribute("href").slice(1);
+    var t=id&&id!=="top"?document.getElementById(id):null;
+    if(t) t.scrollIntoView({behavior:"smooth",block:"start"}); else window.scrollTo({top:0,behavior:"smooth"});
+  },true);<\/script></body>`);
   const w=window.open(URL.createObjectURL(new Blob([html],{type:"text/html"})),"_blank");
   if(!w) alert("Trình duyệt chặn cửa sổ mới. Hãy cho phép mở cửa sổ bật lên cho trang này.");
 });
