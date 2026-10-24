@@ -151,7 +151,9 @@ ${priceTiles}
 </section>
 ` : "";
 
-    const vows = (D.why.items || []).map((v, i) =>
+    /* Ẩn/hiện mục Vì sao: why.hide = ẩn cả mục; why.hideMenu = chỉ ẩn nút trên thanh menu */
+    const W = D.why || {}, whyOn = !W.hide, whyMenu = whyOn && !W.hideMenu;
+    const vows = (W.items || []).map((v, i) =>
       `      <div class="vow rv"><span class="n">${String(i + 1).padStart(2, "0")}</span><div><h3>${esc(v.t)}</h3><p>${rich(v.d)}</p></div></div>`
     ).join("\n");
 
@@ -189,7 +191,7 @@ ${priceTiles}
   <nav class="nav wrap" id="nav">
     <a class="brand" href="#top"><img class="mark" src="img/logo-trang.png" alt="Logo AIOTI"><span><b>AIOTI</b><i>Công nghệ · An ninh · Năng lượng</i></span></a>
     <a class="lnk" href="#dichvu">Dịch vụ</a>
-${gal.length ? `    <a class="lnk" href="#congtrinh">Công trình</a>\n` : ""}${vids.length ? `    <a class="lnk" href="#video">Video</a>\n` : ""}${prices.length ? `    <a class="lnk" href="#banggia">Bảng giá</a>\n` : ""}    <a class="lnk" href="#visao">Vì sao chọn AIOTI</a>
+${gal.length ? `    <a class="lnk" href="#congtrinh">Công trình</a>\n` : ""}${vids.length ? `    <a class="lnk" href="#video">Video</a>\n` : ""}${prices.length ? `    <a class="lnk" href="#banggia">Bảng giá</a>\n` : ""}${whyMenu ? `    <a class="lnk" href="#visao">Vì sao chọn AIOTI</a>` : ""}
     <a class="lnk" href="#lienhe">Liên hệ</a>
     <a class="btn btn-sun call" href="${tel}"><span>${esc(C.phoneDisplay)}</span></a>
     <button class="burger" id="burger" aria-label="Mở menu">☰</button>
@@ -261,7 +263,7 @@ ${tiles}
   </div>
 </section>` : ""}
 ${videoSection}${pricingSection}
-<div class="mark-div" aria-hidden="true">
+${whyOn ? `<div class="mark-div" aria-hidden="true">
   <span></span><img src="img/daibang-do.png" alt=""><span></span>
 </div>
 
@@ -278,7 +280,7 @@ ${vows}
     </div>
   </div>
 </section>
-
+` : ""}
 <!-- ===== LIÊN HỆ ===== -->
 <section class="contact" id="lienhe">
   <div class="wrap">

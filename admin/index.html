@@ -236,6 +236,10 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
 .junk{font-family:'IBM Plex Mono';font-size:12.5px;max-height:150px;overflow:auto;background:var(--cream);
   border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:8px 0;white-space:pre-line}
 @media(max-width:520px){ .g2{grid-template-columns:1fr} }
+.tgl{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:10px 12px;border:1px solid #d8dee6;border-radius:10px;background:#f7f9fb;cursor:pointer;font-weight:600}
+.tgl input{width:20px;height:20px;flex:none;accent-color:#c0392b}
+.tgl.dis{opacity:.45;cursor:not-allowed}
+.st-off{font-style:normal;color:#c0392b;font-weight:700}
 </style>
 </head>
 <body>
@@ -244,7 +248,7 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   <div class="wrap">
     <div class="top-in">
       <img src="../img/logo-trang.png" alt="">
-      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.2</span></small></div>
+      <div><h1>Quản lý website</h1><small>CÔNG TY TNHH AIOTI · <span id="appVer">v4.3</span></small></div>
       <a id="viewSite" href="../" target="_blank" rel="noopener">Xem web ↗</a>
     </div>
     <nav class="tabs hide" id="tabs">
@@ -413,13 +417,13 @@ code{font-family:'IBM Plex Mono';font-size:13.5px;background:var(--cream-2);padd
   </div>
 </div>
 
-<script src="render.js?v=42"></script>
+<script src="render.js?v=43"></script>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
 const CATS=AIOTIRender.CATS;
 const LS="aioti_admin_v1";
-const APP_VER="4.2";
+const APP_VER="4.3";
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
 let cfg=null;        // {token,owner,repo,branch}
@@ -490,7 +494,7 @@ async function load(){
   sel=new Set(); undo=null; if($("wMsg")){$("wMsg").innerHTML="";$("dupOut").innerHTML="";}
   $("acctInfo").innerHTML=`Kho: <b>${esc(cfg.owner)}/${esc(cfg.repo)}</b> · nhánh <b>${esc(cfg.branch)}</b><br>Phiên bản đang sửa: <code>${commit.slice(0,7)}</code><br>Công cụ quản lý: <b>v${APP_VER}</b>`;
   $("viewSite").href=D.site&&D.site.url?D.site.url:"../";
-  buildForms(); setView(wView); renderVideos(); renderPrices(); updateBar(); histReset();
+  buildForms(); whyUI(); setView(wView); renderVideos(); renderPrices(); updateBar(); histReset();
   $("tabs").classList.remove("hide"); $("bar").classList.remove("hide");
   switchTab(curTab||"works");
 }
@@ -545,7 +549,7 @@ function hRestore(s){
   H.restoring=true;
   D=JSON.parse(s.d); newFiles=new Map(s.files); junk=s.junk.slice();
   for(const id of [...sel]) if(!D.gallery.some(p=>p.id===id)) sel.delete(id);
-  buildForms(); renderWorks(); renderVideos(); renderPrices(); updateBar();
+  buildForms(); whyUI(); renderWorks(); renderVideos(); renderPrices(); updateBar();
   H.restoring=false; H.lastEl=null; hBtns();
 }
 function histUndo(){ if(H.i>0&&!document.querySelector(".ov")){ H.i--; hRestore(H.stack[H.i]); hNote("Đã hoàn tác"); } }
@@ -1360,6 +1364,7 @@ const F=(label,path,type,hint)=>{
   const v=getP(D,path);
   if(type==="area") return `<div class="fld"><label>${label}</label><textarea data-b="${path}">${esc(v)}</textarea>${hint?`<p class="hint">${hint}</p>`:""}</div>`;
   if(type==="lines") return `<div class="fld"><label>${label}</label><textarea data-lines="${path}" style="min-height:130px">${esc((v||[]).join("\n"))}</textarea><p class="hint">Mỗi dòng là một mục.</p></div>`;
+  if(type==="show") return `<label class="tgl"><input type="checkbox" data-show="${path}"${v?"":" checked"}><span>${label}</span></label>${hint?`<p class="hint" style="margin:-4px 0 10px">${hint}</p>`:""}`;
   if(type==="num") return `<div class="fld"><label>${label}</label><input type="number" inputmode="numeric" data-num="${path}" value="${esc(v)}">${hint?`<p class="hint">${hint}</p>`:""}</div>`;
   return `<div class="fld"><label>${label}</label><input data-b="${path}" value="${esc(v)}">${hint?`<p class="hint">${hint}</p>`:""}</div>`;
 };
@@ -1394,7 +1399,9 @@ function buildForms(){
       ${F("Mô tả ngắn","services.groups."+i+".desc","area")}
       ${F("Danh sách sản phẩm","services.groups."+i+".items","lines")}`).join("")}
   </div></details>
-  <details class="grp"><summary>Vì sao chọn AIOTI — cam kết</summary><div>
+  <details class="grp"><summary>Vì sao chọn AIOTI — cam kết <em id="whySt" class="st-off">${D.why.hide?"· đang ẩn":""}</em></summary><div>
+    ${F("Hiện mục này trên web","why.hide","show","Bỏ chọn để ẩn cả mục (nội dung vẫn giữ, bật lại lúc nào cũng được).")}
+    ${F("Hiện nút “Vì sao chọn AIOTI” trên thanh menu","why.hideMenu","show")}
     ${F("Dòng nhỏ","why.eyebrow")}
     ${F("Tiêu đề","why.title")}
     ${F("Giới thiệu","why.intro","area")}
@@ -1434,7 +1441,12 @@ document.addEventListener("input",e=>{
   if(el.dataset.b!==undefined){ setP(D,el.dataset.b,el.value); updateBar(); }
   else if(el.dataset.lines!==undefined){ setP(D,el.dataset.lines,el.value.split("\n").map(s=>s.trim()).filter(Boolean)); updateBar(); }
   else if(el.dataset.num!==undefined){ setP(D,el.dataset.num,parseInt(el.value)||0); updateBar(); }
+  else if(el.dataset.show!==undefined){ setP(D,el.dataset.show,!el.checked); whyUI(); updateBar(); }
 });
+function whyUI(){
+  const st=$("whySt"); if(st) st.textContent=D.why.hide?"· đang ẩn":"";
+  const m=document.querySelector('[data-show="why.hideMenu"]'); if(m){ m.disabled=!!D.why.hide; m.closest(".tgl").classList.toggle("dis",!!D.why.hide); }
+}
 document.addEventListener("click",e=>{
   if(!D) return;
   if(e.target.id==="whyAdd"){ D.why.items.push({t:"",d:""}); $("whyItems").innerHTML=whyItems(); updateBar(); }
