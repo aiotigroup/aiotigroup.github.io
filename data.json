@@ -5296,29 +5296,29 @@
  },
  "prices": [],
  "why": {
-  "eyebrow": "Vì sao chọn AIOTI",
-  "title": "Báo giá giải pháp, dịch vụ hợp đồng rõ ràng",
-  "intro": "Đây là cam kết bằng văn bản, không phải lời hứa lúc tư vấn.",
+  "eyebrow": "Quy trình tiếp nhận và nghiệm thu.",
+  "title": "Rõ ràng, chuẩn chỉnh từ đầu mang lại giải pháp hiệu quả và kết quả tốt đẹp.",
+  "intro": "Cam kết tương lai không bằng làm tốt ngay hiện tại.\nLàm dịch vụ từ 2016 và có giấy phép kinh doanh từ 2017\nMục tiêu nói được làm được, Không phô trương cam kết rồi biến mất không dấu vết.\n",
   "items": [
    {
-    "t": "Báo giá trước",
-    "d": "Báo giá giải pháp + dịch vụ phù hợp từng hạng mục nhu cầu của khách hàng trước khi thi công. Không làm trước tính sau."
+    "t": "Tiếp nhận thông tin. Báo giá trước",
+    "d": "Tìm hiểu hiện trạng và nhu cầu sử dụng sản phẩm dịch vụ."
    },
    {
-    "t": "Không phát sinh ngoài hợp đồng",
-    "d": "Phần phát sinh có bảng giá căn cứ rõ ràng. Mọi thay đổi làm tăng chi phí đều phải có xác nhận của khách bằng văn bản trước khi thực hiện."
+    "t": "Thiết kế giải pháp + Báo giá.",
+    "d": "Báo giá giải pháp + dịch vụ phù hợp từng  nhu cầu của khách hàng trước khi thi công.\nPhần phát sinh có bảng giá căn cứ rõ ràng.\nMọi thay đổi làm tăng chi phí đều phải có xác nhận của khách bằng văn bản trước khi thực hiện."
    },
    {
     "t": "Hợp đồng và hóa đơn đầy đủ",
-    "d": "AIOTI là Công ty có giấy phép kinh doanh và mã số thuế, xuất hóa đơn giá trị gia tăng cho mọi công trình."
+    "d": "Công ty có giấy phép kinh doanh và mã số thuế, xuất hóa đơn giá trị gia tăng cho mọi công trình.\nNguồn gốc sản phẩm chính hãng, đầy đủ giấy tờ liên quan."
    },
    {
-    "t": "Bảo hành có phiếu",
+    "t": "Bảo hành",
     "d": "Thời hạn bảo hành thiết bị và thi công dược ghi rõ trong hợp đồng, kèm chính sách bảo hành từ chính hãng sản xuất để khách hàng có đầy đủ thông tin cần thiết."
    },
    {
-    "t": "Hoàn trả mặt bằng",
-    "d": "Dọn dẹp mặt bằng sạch sẽ trước khi bàn giao cho khách hàng."
+    "t": "Nghiệm thu",
+    "d": "Hoàn trả mặt bằngDọn dẹp mặt bằng sạch sẽ trước khi bàn giao cho khách hàng."
    },
    {
     "t": "Hỗ trợ sau bàn giao",
@@ -5356,7 +5356,7 @@
   "works": "Công trình",
   "video": "Video",
   "prices": "Bảng giá",
-  "why": "Vì sao chọn AIOTI",
+  "why": "Quy trình",
   "contact": "Liên hệ"
  }
 }
